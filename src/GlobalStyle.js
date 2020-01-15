@@ -97,8 +97,9 @@ export default createGlobalStyle`
     color: var(--color-light-grey);
     font-weight: 300;
   }
+  /* Hide fonts until webfonts have loaded to avoid FOUT */
   .wf-loading {
-    display: none;
+    visibility: hidden;
   }
   .map {
     width: 100%;

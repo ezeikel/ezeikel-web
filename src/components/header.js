@@ -1,42 +1,37 @@
-import { Link } from "gatsby"
-import PropTypes from "prop-types"
-import React from "react"
+import React from "react";
+import styled from "styled-components";
+import Hamburger from "./hamburger";
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: `white`,
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </header>
-)
+const Wrapper = styled.header`
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+  height: var(--header-height);
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  padding: 50px;
+`;
 
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
+const Ezeikel = styled.span`
+  font-size: 48px;
+  color: var(--color-white);
+  font-weight: bold;
+  span {
+    color: #2DE1C2;
+  }
+`;
 
-Header.defaultProps = {
-  siteTitle: ``,
-}
+const Header = () => (
+  <Wrapper>
+    <Ezeikel>
+      Ezeikel<span>.</span>
+    </Ezeikel>
+    <Hamburger />
+  </Wrapper>
+);
 
-export default Header
+export default Header;

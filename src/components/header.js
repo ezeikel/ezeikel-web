@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Hamburger from "./hamburger";
+import { Link } from "gatsby";
 
 const Wrapper = styled.header`
   display: flex;
@@ -23,12 +24,15 @@ const Ezeikel = styled.span`
   span {
     color: #2DE1C2;
   }
+  a {
+    color: var(--color-white);
+  }
 `;
 
 const Header = () => (
   <Wrapper>
     <Ezeikel>
-      Ezeikel<span>.</span>
+      <Link to={"/"}>Ezeikel<span>.</span></Link>
     </Ezeikel>
     <Hamburger />
   </Wrapper>

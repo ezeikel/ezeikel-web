@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import SocialLinks from "./socialLinks";
 
 const Wrapper = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ const Wrapper = styled.div`
   height: 100%;
   background-image: linear-gradient(to bottom, #1E3C72, #2A5298);
   position: relative;
-  height: 70vh;
+  min-height: 70vh;
   padding: 50px;
   padding-top: 180px;
 `;
@@ -15,6 +16,7 @@ const Wrapper = styled.div`
 const Headline = styled.aside`
   display: flex;
   flex-direction: column;
+  max-width: 50%;
   h2 {
     font-size: 48px;
     line-height: 60px;
@@ -48,6 +50,7 @@ const StyledButton = styled.button`
   font-size: 20px;
   font-weight: bold;
   box-shadow: var(--box-shadow);
+  margin-bottom: 116px;
 `;
 
 const Hero = () => (
@@ -56,8 +59,9 @@ const Hero = () => (
       <h2>Freelance</h2>
       <h1>Front End Developer<span>.</span></h1>
       <p>I love solving problems with JavaScript and building beautiful UIs.</p>
+      <StyledButton>Hire me</StyledButton>
     </Headline>
-    <StyledButton>Hire me</StyledButton>
+    <SocialLinks />
   </Wrapper>
 );
 

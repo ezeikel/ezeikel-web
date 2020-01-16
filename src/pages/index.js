@@ -5,6 +5,7 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fal } from "@fortawesome/pro-light-svg-icons";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
 import Hero from "../components/hero";
+import Experience from "../components/experience";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import GlobalStyle from "../GlobalStyle";
@@ -41,6 +42,7 @@ const IndexPage = () => (
     <GlobalStyle />
     <Wrapper>
       <Hero />
+      <Experience />
     </Wrapper>
   </Layout>
 );

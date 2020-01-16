@@ -4,20 +4,30 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.ul`
   display: flex;
+  li {
+    svg path {
+      transition: fill 0.3s ease-in-out;
+    }
+    &:hover {
+      svg path {
+        fill: var(--color-primary);
+      }
+    }
+  }
   li + li {
     margin-left: 32px;
   }
 `;
 
-const SocialLinks = () => {
+const SocialLinks = ({ className }) => {
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <li>
         <a href="https://twitter.com/118eighty8">
           <FontAwesomeIcon
             icon={["fab", "twitter"]}
             color="var(--color-white)"
-            size="4x"
+            size="5x"
           />
         </a>
       </li>
@@ -26,7 +36,7 @@ const SocialLinks = () => {
           <FontAwesomeIcon
             icon={["fab", "github"]}
             color="var(--color-white)"
-            size="4x"
+            size="5x"
           />
         </a>
       </li>
@@ -35,7 +45,7 @@ const SocialLinks = () => {
           <FontAwesomeIcon
             icon={["fab", "linkedin-in"]}
             color="var(--color-white)"
-            size="4x"
+            size="5x"
           />
         </a>
       </li>
@@ -44,7 +54,7 @@ const SocialLinks = () => {
           <FontAwesomeIcon
             icon={["fab", "instagram"]}
             color="var(--color-white)"
-            size="4x"
+            size="5x"
           />
         </a>
       </li>

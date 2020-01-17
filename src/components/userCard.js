@@ -1,4 +1,5 @@
 import React from "react";
+import Img from "gatsby-image"
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -105,7 +106,7 @@ const UserCard = ({ avatar, name, handle, link, copy, order }) => {
     <Wrapper className={order}>
       <Top>
         <Avatar>
-          <img src={avatar} alt="avatar" />
+          <Img fluid={avatar} alt="avatar" />
         </Avatar>
         <Details>
           <span>{name}</span>

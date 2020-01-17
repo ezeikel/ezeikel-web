@@ -2,9 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import SocialLinks from "./socialLinks";
 import UserCard from "./userCard";
-import Ezeikel from "../images/ezeikel.png"
-import Kanye from "../images/kanye.png"
-import Nipsey from "../images/nipsey.png"
+import Ezeikel from "../images/ezeikel.png";
+import Kanye from "../images/kanye.png";
+import Nipsey from "../images/nipsey.png";
 
 const users = [
   {
@@ -35,52 +35,83 @@ const users = [
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: column;
   height: 100%;
-  background-image: linear-gradient(to bottom, #1E3C72, #2A5298);
+  background-image: linear-gradient(to bottom, #1e3c72, #2a5298);
   position: relative;
   min-height: 50vh;
-  padding: 50px;
-  padding-top: 180px;
-`;
+  padding: 32px;
+  padding-top: 80px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    padding-top: 180px;
+  }
+`
 
 const Headline = styled.aside`
   display: flex;
   flex-direction: column;
-  flex: 1 0 50%;
+  flex: 0 1 auto;
   height: 100%;
+  margin-bottom: 192px;
   h2 {
-    font-size: 48px;
-    line-height: 60px;
-    color: #2DE1C2;
+    font-size: 36px;
+    color: #2de1c2;
     font-weight: 300;
     margin: 0;
+    text-align: center;
   }
   h1 {
-    font-size: 72px;
-    line-height: 90px;
+    font-size: 48px;
     color: var(--color-white);
-    margin: 0 0 8px 0;
+    margin: 0 0 16px 0;
+    text-align: center;
     span {
-      color: #2DE1C2;
+      color: #2de1c2;
     }
   }
   p {
     margin: 0 0 32px 0;
-    font-size: 30px;
+    font-size: 20px;
+    line-height: 22px;
     color: var(--color-white);
     font-weight: 300;
+    text-align: center;
   }
-`;
+  @media (min-width: 768px) {
+    flex: 1 0 50%;
+    margin-bottom: 0;
+    h2 {
+      font-size: 48px;
+      line-height: 60px;
+      text-align: left;
+    }
+    h1 {
+      font-size: 72px;
+      line-height: 90px;
+      margin: 0 0 8px 0;
+      text-align: left;
+    }
+    p {
+      font-size: 30px;
+      text-align: left;
+    }
+  }
+`
 
 const StyledButton = styled.button`
-  background-color: #FF595E;
+  background-color: #ff595e;
   color: var(--color-white);
   border-radius: 4px;
   padding: 16px;
-  width: 180px;
-  font-size: 20px;
+  width: 100%;
+  font-size: 24px;
   font-weight: bold;
   box-shadow: var(--box-shadow);
+
+  @media (min-width: 768px) {
+    width: 180px;
+  }
 `;
 
 const CardsWrapper = styled.div`
@@ -95,22 +126,41 @@ const Cards = styled.div`
   > div {
     position: relative;
     &.top {
-      transform: translateY(100%);
       z-index: 4;
     }
     &.middle {
-      transform: translate(-20%, -35%);
+      transform: translate(-15%, -120%);
       z-index: 3;
     }
     &.bottom {
-      transform: translate(-15%, -55%);
+      transform: translate(10%, -190%);
       z-index: 2;
     }
   }
-`;
+  @media (min-width: 768px) {
+    > div {
+      &.top {
+        transform: translateY(50%);
+        z-index: 4;
+      }
+      &.middle {
+        transform: translate(-15%, -70%);
+        z-index: 3;
+      }
+      &.bottom {
+        transform: translate(-23%, -115%);
+        z-index: 2;
+      }
+    }
+  }
+`
 
 const StyledSocialLinks = styled(SocialLinks)`
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
     margin-top: auto;
+  }
 `;
 
 const Hero = () => (

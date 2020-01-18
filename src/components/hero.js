@@ -1,12 +1,8 @@
 import React from "react";
 import { StaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
 import styled from "styled-components";
 import SocialLinks from "./socialLinks";
 import UserCard from "./userCard";
-import Ezeikel from "../images/ezeikel.png";
-import Kanye from "../images/kanye.png";
-import Nipsey from "../images/nipsey.png";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +17,7 @@ const Wrapper = styled.div`
     flex-direction: row;
     padding-top: 180px;
   }
-`
+`;
 
 const Headline = styled.aside`
   display: flex;
@@ -69,10 +65,11 @@ const Headline = styled.aside`
     }
     p {
       font-size: 30px;
+      line-height: 38px;
       text-align: left;
     }
   }
-`
+`;
 
 const StyledButton = styled.button`
   background-color: #ff595e;
@@ -90,41 +87,37 @@ const StyledButton = styled.button`
 `;
 
 const CardsWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  flex: 1 0 50%;
+  /* border: 5px solid red; */
+  flex: 0 0 50%;
 `;
 
 const Cards = styled.div`
+  display: flex;
+  flex-direction: column;
   > div {
     position: relative;
     &.top {
       z-index: 4;
     }
     &.middle {
-      transform: translate(-15%, -120%);
+      /* transform: translate(-15%, -120%); */
       z-index: 3;
     }
     &.bottom {
-      transform: translate(10%, -190%);
+      /* transform: translate(10%, -190%); */
       z-index: 2;
     }
   }
   @media (min-width: 768px) {
     > div {
       &.top {
-        transform: translateY(50%);
-        z-index: 4;
+        /* transform: translateY(50%); */
       }
       &.middle {
-        transform: translate(-15%, -70%);
-        z-index: 3;
+        /* transform: translate(-15%, -70%); */
       }
       &.bottom {
-        transform: translate(-23%, -115%);
-        z-index: 2;
+        /* transform: translate(-23%, -115%); */
       }
     }
   }
@@ -142,7 +135,7 @@ const Hero = ({ data }) => {
   const users = [
     {
       name: "Ezeikel Pemberton",
-      avatar: data.ezeikelImage.childImageSharp.fluid,
+      avatar: data.ezeikelImage.childImageSharp.fixed,
       handle: "ezeikel_",
       link: "https://twitter.com/ezeikel_",
       copy:
@@ -151,7 +144,7 @@ const Hero = ({ data }) => {
     },
     {
       name: "Kanye West",
-      avatar: data.kanyeImage.childImageSharp.fluid,
+      avatar: data.kanyeImage.childImageSharp.fixed,
       handle: "kanyewest",
       link: "https://twitter.com/kanyewest",
       copy:
@@ -160,7 +153,7 @@ const Hero = ({ data }) => {
     },
     {
       name: "Nipsey Hussle",
-      avatar: data.nipseyImage.childImageSharp.fluid,
+      avatar: data.nipseyImage.childImageSharp.fixed,
       handle: "nipseyhussle",
       link: "https://twitter.com/nipseyhussle",
       copy:
@@ -197,27 +190,27 @@ export default props => (
       query {
         ezeikelImage: file(relativePath: { eq: "ezeikel.png" }) {
           childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fixed(width: 150, height: 150, quality: 100) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
         kanyeImage: file(relativePath: { eq: "kanye.png" }) {
           childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fixed(width: 150, height: 150, quality: 100) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
         nipseyImage: file(relativePath: { eq: "nipsey.png" }) {
           childImageSharp {
-            fluid(maxWidth: 1000, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fixed(width: 150, height: 150, quality: 100) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
       }
     `}
     render={data => <Hero data={data} {...props} />}
-    />
-  )
+  />
+)

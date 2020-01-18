@@ -85,7 +85,6 @@ const StyledButton = styled.button`
 `;
 
 const CardsWrapper = styled.div`
-  /* border: 5px solid red; */
   flex: 0 0 50%;
 `;
 
@@ -98,11 +97,11 @@ const Cards = styled.div`
       z-index: 4;
     }
     &.middle {
-      /* transform: translate(-15%, -120%); */
+      transform: translate(-22%, -120%);
       z-index: 3;
     }
     &.bottom {
-      /* transform: translate(10%, -190%); */
+      transform: translate(22%, -190%);
       z-index: 2;
     }
   }
@@ -133,7 +132,7 @@ const Hero = ({ data }) => {
   const users = [
     {
       name: "Ezeikel Pemberton",
-      avatar: data.ezeikelImage.childImageSharp.fixed,
+      avatar: data.ezeikelImage.childImageSharp.fluid,
       handle: "ezeikel_",
       link: "https://twitter.com/ezeikel_",
       copy:
@@ -142,7 +141,7 @@ const Hero = ({ data }) => {
     },
     {
       name: "Kanye West",
-      avatar: data.kanyeImage.childImageSharp.fixed,
+      avatar: data.kanyeImage.childImageSharp.fluid,
       handle: "kanyewest",
       link: "https://twitter.com/kanyewest",
       copy:
@@ -151,7 +150,7 @@ const Hero = ({ data }) => {
     },
     {
       name: "Nipsey Hussle",
-      avatar: data.nipseyImage.childImageSharp.fixed,
+      avatar: data.nipseyImage.childImageSharp.fluid,
       handle: "nipseyhussle",
       link: "https://twitter.com/nipseyhussle",
       copy:
@@ -188,22 +187,22 @@ export default props => (
       query {
         ezeikelImage: file(relativePath: { eq: "ezeikel.png" }) {
           childImageSharp {
-            fixed(width: 64, height: 64, quality: 100) {
-              ...GatsbyImageSharpFixed
+            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
         kanyeImage: file(relativePath: { eq: "kanye.png" }) {
           childImageSharp {
-            fixed(width: 64, height: 64, quality: 100) {
-              ...GatsbyImageSharpFixed
+            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
         nipseyImage: file(relativePath: { eq: "nipsey.png" }) {
           childImageSharp {
-            fixed(width: 64, height: 64, quality: 100) {
-              ...GatsbyImageSharpFixed
+            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
+              ...GatsbyImageSharpFluid
             }
           }
         }

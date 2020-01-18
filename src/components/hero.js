@@ -5,19 +5,16 @@ import SocialLinks from "./socialLinks";
 import UserCard from "./userCard";
 
 const Wrapper = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  height: 100%;
   background-image: linear-gradient(to bottom, #1e3c72, #2a5298);
-  position: relative;
-  min-height: 50vh;
-  padding: 32px;
-  padding-top: 80px;
+  padding: var(--header-height) var(--spacing-large) var(--spacing-large)
+    var(--spacing-large);
   @media (min-width: 768px) {
     flex-direction: row;
-    padding-top: 180px;
   }
-`;
+`
 
 const Headline = styled.aside`
   display: flex;
@@ -34,6 +31,7 @@ const Headline = styled.aside`
   }
   h1 {
     font-size: 48px;
+    line-height: 1;
     color: var(--color-white);
     margin: 0 0 16px 0;
     text-align: center;
@@ -44,7 +42,7 @@ const Headline = styled.aside`
   p {
     margin: 0 0 32px 0;
     font-size: 20px;
-    line-height: 22px;
+    line-height: 1.5;
     color: var(--color-white);
     font-weight: 300;
     text-align: center;
@@ -52,6 +50,7 @@ const Headline = styled.aside`
   @media (min-width: 768px) {
     flex: 1 0 50%;
     margin-bottom: 0;
+    padding-right: var(--spacing-large);
     h2 {
       font-size: 48px;
       line-height: 60px;
@@ -59,7 +58,6 @@ const Headline = styled.aside`
     }
     h1 {
       font-size: 72px;
-      line-height: 90px;
       margin: 0 0 8px 0;
       text-align: left;
     }
@@ -69,7 +67,7 @@ const Headline = styled.aside`
       text-align: left;
     }
   }
-`;
+`
 
 const StyledButton = styled.button`
   background-color: #ff595e;
@@ -111,13 +109,13 @@ const Cards = styled.div`
   @media (min-width: 768px) {
     > div {
       &.top {
-        /* transform: translateY(50%); */
+        transform: translateY(50%);
       }
       &.middle {
-        /* transform: translate(-15%, -70%); */
+        transform: translate(-15%, -70%);
       }
       &.bottom {
-        /* transform: translate(-23%, -115%); */
+        transform: translate(-23%, -115%);
       }
     }
   }
@@ -190,21 +188,21 @@ export default props => (
       query {
         ezeikelImage: file(relativePath: { eq: "ezeikel.png" }) {
           childImageSharp {
-            fixed(width: 150, height: 150, quality: 100) {
+            fixed(width: 64, height: 64, quality: 100) {
               ...GatsbyImageSharpFixed
             }
           }
         }
         kanyeImage: file(relativePath: { eq: "kanye.png" }) {
           childImageSharp {
-            fixed(width: 150, height: 150, quality: 100) {
+            fixed(width: 64, height: 64, quality: 100) {
               ...GatsbyImageSharpFixed
             }
           }
         }
         nipseyImage: file(relativePath: { eq: "nipsey.png" }) {
           childImageSharp {
-            fixed(width: 150, height: 150, quality: 100) {
+            fixed(width: 64, height: 64, quality: 100) {
               ...GatsbyImageSharpFixed
             }
           }

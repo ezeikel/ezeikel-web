@@ -14,11 +14,10 @@ const Wrapper = styled.header`
   top: 0;
   left: 0;
   right: 0;
-  padding: 32px;
+  padding: 0 var(--spacing-large);
   height: 80px;
   @media (min-width: 768px) {
-    padding: 50px;
-    height: 180px;
+    height: var(--header-height);
   }
 `
 

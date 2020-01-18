@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fal } from "@fortawesome/pro-light-svg-icons";
@@ -32,18 +31,14 @@ library.add(
   faPaperPlane,
 );
 
-const Wrapper = styled.div`
-  display: grid;
-`;
-
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
     <GlobalStyle />
-    <Wrapper>
+    <>
       <Hero />
       <Experience />
-    </Wrapper>
+    </>
   </Layout>
 );
 

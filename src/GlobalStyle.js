@@ -4,8 +4,6 @@ import styledNormalize from 'styled-normalize';
 export default createGlobalStyle`
   ${styledNormalize}
 
-  /* Font faces */
-
   /* CSS Variables */
   :root {
     /* Colors */
@@ -45,6 +43,9 @@ export default createGlobalStyle`
     --box-shadow: 0 3px 6px rgba(0,0,0, 0.16);
 
     --border-radius: 4px;
+
+    /* components */
+    --header-height: 120px;
   }
   * {
     box-sizing: border-box;

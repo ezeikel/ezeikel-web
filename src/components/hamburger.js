@@ -10,33 +10,33 @@ const Wrapper = styled.div`
     flex: 0 0 auto;
     display: block;
     border-radius: 4px;
-    width: 16px;
-    height: 2px;
+    width: 24px;
+    height: 4px;
     background-color: #2de1c2;
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     &:nth-of-type(2) {
-      width: 8px;
+      width: 12px;
     }
     + span {
-      margin-top: 5px;
+      margin-top: 8px;
     }
   }
   ${({ active }) => {
     return active
       ? `
       > span:nth-child(1) {
-        transform: translateY(7px) rotate(45deg);
-        background-color: var(--color-black);
+        transform: translateY(12px) rotate(45deg);
+        background-color: var(--color-white);
       }
       > span:nth-child(2) {
         opacity: 0;
       }
       > span:nth-child(3) {
-        transform: translateY(-7px) rotate(-45deg);
-        background-color: var(--color-black);
+        transform: translateY(-12px) rotate(-45deg);
+        background-color: var(--color-white);
       }
     `
-      : ""
+      : "";
   }};
   @media (min-width: 768px) {
     > span {
@@ -59,10 +59,10 @@ const Wrapper = styled.div`
         transform: translateY(-12px) rotate(-45deg);
       }
     `
-        : ""
+        : "";
     }};
   }
-`
+`;
 
 const Hamburger = () => {
   const [active, setActive] = useState(false);

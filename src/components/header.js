@@ -19,12 +19,12 @@ const Wrapper = styled.header`
   @media (min-width: 768px) {
     height: var(--header-height);
   }
-`
+`;
 
 const Ezeikel = styled.span`
   font-size: 30px;
   color: var(--color-white);
-  font-weight: bold;
+  font-weight: 600;
   span {
     color: #2de1c2;
   }
@@ -34,12 +34,18 @@ const Ezeikel = styled.span`
   @media (min-width: 768px) {
     font-size: 48px;
   }
-`
+`;
+
+const StyledLink = styled(Link)`
+  letter-spacing: 1px;
+`;
 
 const Header = () => (
   <Wrapper>
     <Ezeikel>
-      <Link to={"/"}>Ezeikel<span>.</span></Link>
+      <StyledLink to={"/"}>
+        Ezeikel<span>.</span>
+      </StyledLink>
     </Ezeikel>
     <Hamburger />
   </Wrapper>

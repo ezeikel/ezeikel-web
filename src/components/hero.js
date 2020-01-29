@@ -55,11 +55,11 @@ const Headline = styled.aside`
       font-size: 48px;
       line-height: 60px;
       text-align: left;
-      margin: 100px 0 8px 0;
+      margin: 100px 0 16px 0;
     }
     h1 {
       font-size: 72px;
-      margin: 0 0 16px 0;
+      margin: 0 24px 0;
       text-align: left;
       font-weight: 600;
     }
@@ -67,8 +67,7 @@ const Headline = styled.aside`
       font-size: 30px;
       line-height: 1.5;
       text-align: left;
-      margin: 0 0 64px 0;
-      font-weight: 400;
+      margin: 0 0 76px 0;
     }
   }
 `;
@@ -81,7 +80,7 @@ const StyledButton = styled.button`
   padding: 16px;
   width: 100%;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   box-shadow: 0 3px 6px rgba(255, 89, 94, 0.16);
   @media (min-width: 768px) {
     width: auto;
@@ -97,7 +96,7 @@ const SecondaryButton = styled.button`
   padding: 16px;
   width: 100%;
   font-size: 18px;
-  font-weight: 600;
+  font-weight: 700;
   @media (min-width: 768px) {
     width: auto;
     padding: 16px 48px;
@@ -114,12 +113,12 @@ const StyledSocialLinks = styled(SocialLinks)`
 
 const Buttons = styled.span`
   button + button {
-    margin-top: 16px;
+    margin: 32px 0 0 0;
   }
   @media (min-width: 768px) {
     margin-bottom: 128px;
     button + button {
-      margin-left: 32px;
+      margin: 0 0 0 32px;
     }
   }
 `;

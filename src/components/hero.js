@@ -55,11 +55,11 @@ const Headline = styled.aside`
       font-size: 48px;
       line-height: 60px;
       text-align: left;
-      margin: 100px 0 16px 0;
+      margin: 100px 0 24px 0;
     }
     h1 {
       font-size: 72px;
-      margin: 0 24px 0;
+      margin: 0 0 24px 0;
       text-align: left;
       font-weight: 600;
     }

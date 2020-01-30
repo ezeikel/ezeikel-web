@@ -2,23 +2,24 @@ import React from "react";
 import { StaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import SocialLinks from "./socialLinks";
+import InstagramCard from "./instagramCard";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   background-image: linear-gradient(to bottom, #1e3c72, #2a5298);
-  padding: var(--header-height) var(--spacing-large) var(--spacing-large)
-    var(--spacing-large);
   @media (min-width: 768px) {
     flex-direction: row;
   }
 `;
 
-const Headline = styled.aside`
+const Primary = styled.section`
   display: flex;
   flex-direction: column;
   flex: 0 1 auto;
   height: 100%;
+  padding: var(--header-height) var(--spacing-large) var(--spacing-large)
+    var(--spacing-large);
   h2 {
     font-size: 36px;
     color: #2de1c2;
@@ -70,6 +71,11 @@ const Headline = styled.aside`
       margin: 0 0 76px 0;
     }
   }
+`;
+
+const Secondary = styled.section`
+  background-color: rgb(255, 89, 94);
+  padding: var(--spacing-large);
 `;
 
 const StyledButton = styled.button`
@@ -126,7 +132,7 @@ const Buttons = styled.span`
 const Hero = ({ data }) => {
   return (
     <Wrapper>
-      <Headline>
+      <Primary>
         <h2>Freelance</h2>
         <h1>
           Front End Developer<span>.</span>
@@ -139,7 +145,10 @@ const Hero = ({ data }) => {
           <SecondaryButton>Hire me</SecondaryButton>
         </Buttons>
         <StyledSocialLinks />
-      </Headline>
+      </Primary>
+      <Secondary>
+        <InstagramCard />
+      </Secondary>
     </Wrapper>
   );
 };

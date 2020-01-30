@@ -1,0 +1,195 @@
+import React from "react";
+import styled from "styled-components";
+import { StaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+const Wrapper = styled.div`
+  background-color: var(--color-white);
+  border-radius: 4px;
+  box-shadow: 0 3px 6px #2de1c2;
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 16px;
+`;
+
+const Avatar = styled(Img)`
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  margin-right: 4px;
+`;
+
+const Details = styled.section`
+  span {
+    display: flex;
+    flex-direction: row;
+    &:first-of-type {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      svg {
+        width: 12px;
+        height: 12px;
+        margin-left: 4px;
+      }
+    }
+    &:nth-of-type(2) {
+      font-size: 12px;
+    }
+  }
+`;
+
+const Content = styled.section``;
+const Actions = styled.section`
+  padding: 16px;
+  svg {
+    cursor: pointer;
+    & + svg {
+      margin-left: 16px;
+    }
+  }
+`;
+
+const Interactions = styled.section`
+  padding: 16px;
+`;
+
+const Likes = styled.section`
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 12px;
+`;
+
+const Caption = styled.section`
+  font-size: 14px;
+  margin-bottom: 8px;
+  span {
+    &:first-of-type {
+      font-weight: 700;
+    }
+    &:nth-of-type(2) {
+      margin-left: 8px;
+    }
+  }
+`;
+
+const Comments = styled.section`
+  font-size: 14px;
+  div {
+    span {
+      &:first-of-type {
+        font-weight: 700;
+      }
+      &:nth-of-type(2) {
+        margin-left: 8px;
+      }
+    }
+  }
+`;
+
+const Comment = styled.div`
+  & + div {
+    margin-top: 8px;
+    span:last-of-type span {
+      color: var(--color-primary);
+      font-weight: 400;
+      cursor: pointer;
+    }
+  }
+`;
+
+export const InstagramCard = ({ data }) => (
+  <Wrapper>
+    <Header>
+      <Avatar
+        fluid={data.avatarImage.childImageSharp.fluid}
+        objectFit="cover"
+        objectPosition="50% 0%"
+        alt="avatar"
+      />
+      <Details>
+        <span>
+          ezeikel
+          <FontAwesomeIcon
+            icon={["fas", "badge-check"]}
+            color="var(--color-primary)"
+            size="5x"
+          />
+        </span>
+        <span>Eggslut</span>
+      </Details>
+    </Header>
+    <Content>
+      <Img
+        fluid={data.contentImage.childImageSharp.fluid}
+        objectFit="cover"
+        objectPositin="50% 50%"
+        alt="eggslut"
+      />
+    </Content>
+    <Actions>
+      <FontAwesomeIcon
+        icon={["fal", "heart"]}
+        color="var(--color-black)"
+        size="3x"
+      />
+      <FontAwesomeIcon
+        icon={["fal", "comment"]}
+        color="var(--color-black)"
+        size="3x"
+      />
+      <FontAwesomeIcon
+        icon={["fal", "paper-plane"]}
+        color="var(--color-black)"
+        size="3x"
+      />
+    </Actions>
+    <Interactions>
+      <Likes>87,267 likes</Likes>
+      <Caption>
+        <span>ezeikel</span>
+        <span>Literally the best Front End Developer ever.</span>
+      </Caption>
+      <Comments>
+        <Comment>
+          <span>apple</span>
+          <span>We need to hire this guy!</span>
+        </Comment>
+        <Comment>
+          <span>facebook</span>
+          <span>
+            Move over <span>@apple</span>
+          </span>
+        </Comment>
+      </Comments>
+    </Interactions>
+  </Wrapper>
+);
+
+export default props => (
+  <StaticQuery
+    query={graphql`
+      query {
+        avatarImage: file(relativePath: { eq: "ezeikel.png" }) {
+          childImageSharp {
+            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        contentImage: file(relativePath: { eq: "eggslut.jpg" }) {
+          childImageSharp {
+            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+      }
+    `}
+    render={data => <InstagramCard data={data} {...props} />}
+  />
+);

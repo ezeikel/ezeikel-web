@@ -1,9 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Circles from "../images/circles.svg";
 import QuarterCircle from "../images/quarter-circle.svg";
 import Wave from "../images/wave.svg";
-import Step from "../images/step.svg";
 
 const Wrapper = styled.div`
   position: relative;

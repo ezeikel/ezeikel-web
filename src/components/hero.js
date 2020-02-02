@@ -9,7 +9,8 @@ const Wrapper = styled.div`
   flex-direction: column;
   background-image: linear-gradient(to bottom, #1e3c72, #2a5298);
   @media (min-width: 768px) {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
   }
 `;
 
@@ -49,7 +50,7 @@ const Primary = styled.section`
     text-align: center;
   }
   @media (min-width: 768px) {
-    flex: 1 0 50%;
+    grid-column: 1 / 7;
     margin-bottom: 0;
     padding-right: var(--spacing-large);
     h2 {
@@ -76,6 +77,11 @@ const Primary = styled.section`
 const Secondary = styled.section`
   background-color: rgb(255, 89, 94);
   padding: var(--spacing-large);
+  @media (min-width: 768px) {
+    grid-column: 9 / -1;
+    display: grid;
+    grid-template-rows: var(--header-height) repeat(4, auto);
+  }
 `;
 
 const StyledButton = styled.button`
@@ -129,6 +135,15 @@ const Buttons = styled.span`
   }
 `;
 
+const StyledInstagramCard = styled(InstagramCard)`
+  @media (min-width: 768px) {
+    transform: translateX(-100%);
+    grid-row: 2 / 3;
+    width: 400px;
+    margin-left: 184px;
+  }
+`;
+
 const Hero = ({ data }) => {
   return (
     <Wrapper>
@@ -147,7 +162,7 @@ const Hero = ({ data }) => {
         <StyledSocialLinks />
       </Primary>
       <Secondary>
-        <InstagramCard />
+        <StyledInstagramCard />
       </Secondary>
     </Wrapper>
   );

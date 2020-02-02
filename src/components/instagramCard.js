@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { navigate } from "gatsby";
 import styled from "styled-components";
 import { StaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
@@ -39,6 +40,14 @@ const Details = styled.section`
     }
     &:nth-of-type(2) {
       font-size: 12px;
+    }
+  }
+  a {
+    &:link,
+    &:visited,
+    &:active,
+    &:hover {
+      color: var(--color-black);
     }
   }
 `;
@@ -102,73 +111,87 @@ const Comment = styled.div`
   }
 `;
 
-export const InstagramCard = ({ data }) => (
-  <Wrapper>
-    <Header>
-      <Avatar
-        fluid={data.avatarImage.childImageSharp.fluid}
-        objectFit="cover"
-        objectPosition="50% 0%"
-        alt="avatar"
-      />
-      <Details>
-        <span>
-          ezeikel
-          <FontAwesomeIcon
-            icon={["fas", "badge-check"]}
-            color="var(--color-primary)"
-            size="5x"
-          />
-        </span>
-        <span>Eggslut</span>
-      </Details>
-    </Header>
-    <Content>
-      <Img
-        fluid={data.contentImage.childImageSharp.fluid}
-        objectFit="cover"
-        objectPositin="50% 50%"
-        alt="eggslut"
-      />
-    </Content>
-    <Actions>
-      <FontAwesomeIcon
-        icon={["fal", "heart"]}
-        color="var(--color-black)"
-        size="3x"
-      />
-      <FontAwesomeIcon
-        icon={["fal", "comment"]}
-        color="var(--color-black)"
-        size="3x"
-      />
-      <FontAwesomeIcon
-        icon={["fal", "paper-plane"]}
-        color="var(--color-black)"
-        size="3x"
-      />
-    </Actions>
-    <Interactions>
-      <Likes>87,267 likes</Likes>
-      <Caption>
-        <span>ezeikel</span>
-        <span>Literally the best Front End Developer ever.</span>
-      </Caption>
-      <Comments>
-        <Comment>
-          <span>apple</span>
-          <span>We need to hire this guy!</span>
-        </Comment>
-        <Comment>
-          <span>facebook</span>
+export const InstagramCard = ({ data, className }) =>  {
+  const [liked, setLiked] = useState(false);
+  const [likes, setLikes] = useState(87267);
+
+  return (
+    <Wrapper className={className}>
+      <Header>
+        <Avatar
+          fluid={data.avatarImage.childImageSharp.fluid}
+          objectFit="cover"
+          objectPosition="50% 0%"
+          alt="avatar"
+        />
+        <Details>
           <span>
-            Move over <span>@apple</span>
+            ezeikel
+            <FontAwesomeIcon
+              icon={["fas", "badge-check"]}
+              color="var(--color-primary)"
+              size="5x"
+            />
           </span>
-        </Comment>
-      </Comments>
-    </Interactions>
-  </Wrapper>
-);
+          <span><a href="http://www.eggslut.com/">Eggslut</a></span>
+        </Details>
+      </Header>
+      <Content>
+        <Img
+          fluid={data.contentImage.childImageSharp.fluid}
+          objectFit="cover"
+          objectPositin="50% 50%"
+          alt="eggslut"
+        />
+      </Content>
+      <Actions>
+        <FontAwesomeIcon
+          icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
+          color={`var(--color-${liked ? 'like' : 'black'})`}
+          size="3x"
+          onClick={() => {
+            setLiked(!liked);
+            if (liked) {
+              setLikes(likes - 1)
+            } else {
+              setLikes(likes + 1);
+            }
+          }}
+        />
+        <FontAwesomeIcon
+          icon={["fal", "comment"]}
+          color="var(--color-black)"
+          size="3x"
+          onClick={() => navigate("#contact")}
+        />
+        <FontAwesomeIcon
+          icon={["fal", "paper-plane"]}
+          color="var(--color-black)"
+          size="3x"
+        />
+      </Actions>
+      <Interactions>
+        <Likes>{likes.toLocaleString()} likes</Likes>
+        <Caption>
+          <span>ezeikel</span>
+          <span>Literally the best Front End Developer ever.</span>
+        </Caption>
+        <Comments>
+          <Comment>
+            <span>apple</span>
+            <span>We need to hire this guy!</span>
+          </Comment>
+          <Comment>
+            <span>facebook</span>
+            <span>
+              Move over <span>@apple</span>
+            </span>
+          </Comment>
+        </Comments>
+      </Interactions>
+    </Wrapper>
+  );
+}
 
 export default props => (
   <StaticQuery

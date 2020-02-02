@@ -25,6 +25,7 @@ export default createGlobalStyle`
     --color-dark-grey: #9B9B9B;
     --color-black: #484848;
     --color-gold: #CDA349;
+    --color-like: #E94D59;
     /* Spacing */
     --spacing-tiny: 4px;
     --spacing-small: 8px;
@@ -171,5 +172,14 @@ export const scrollDown = keyframes`
   40%, 60% {
     -webkit-transform: translateY(10px);
     transform: translateY(10px);
+  }
+`;
+
+export const likeButton = keyframes`
+  from {
+    transform: scale(1.3);
+  }
+  to {
+    transform: scale(0);
   }
 `;

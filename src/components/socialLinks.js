@@ -23,7 +23,7 @@ const SocialLinks = ({ className }) => {
   return (
     <Wrapper className={className}>
       <li>
-        <a href="https://twitter.com/118eighty8">
+        <a href="https://twitter.com/ezeikel_">
           <FontAwesomeIcon
             icon={["fab", "twitter"]}
             color="var(--color-white)"
@@ -32,7 +32,7 @@ const SocialLinks = ({ className }) => {
         </a>
       </li>
       <li>
-        <a href="https://fb.me/118eighty8">
+        <a href="https://github/ezeikel">
           <FontAwesomeIcon
             icon={["fab", "github"]}
             color="var(--color-white)"
@@ -41,7 +41,7 @@ const SocialLinks = ({ className }) => {
         </a>
       </li>
       <li>
-        <a href="https://www.linkedin.com/company/eleven-8eighty8">
+        <a href="https://www.linkedin.com/in/ezeikel-pemberton-5bb53728/">
           <FontAwesomeIcon
             icon={["fab", "linkedin-in"]}
             color="var(--color-white)"
@@ -50,7 +50,7 @@ const SocialLinks = ({ className }) => {
         </a>
       </li>
       <li>
-        <a href="https://www.instagram.com/118eighty8">
+        <a href="https://www.instagram.com/ezeikel_">
           <FontAwesomeIcon
             icon={["fab", "instagram"]}
             color="var(--color-white)"

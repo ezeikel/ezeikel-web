@@ -3,10 +3,6 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fal } from "@fortawesome/pro-light-svg-icons";
 import { fas } from "@fortawesome/pro-solid-svg-icons";
-import Hero from "../components/hero";
-import Layout from "../components/layout";
-import SEO from "../components/seo";
-import GlobalStyle from "../GlobalStyle";
 import {
   far,
   faTablet,
@@ -16,6 +12,11 @@ import {
   faFillDrip,
   faPaperPlane,
 } from "@fortawesome/pro-regular-svg-icons";
+import GlobalStyle from "../GlobalStyle";
+import SEO from "../components/seo";
+import Layout from "../components/layout";
+import Hero from "../components/hero";
+import Footer from "../components/footer";
 
 library.add(
   fab,
@@ -35,6 +36,7 @@ const IndexPage = () => (
     <SEO title="Home" />
     <GlobalStyle />
     <Hero />
+    <Footer />
   </Layout>
 );
 

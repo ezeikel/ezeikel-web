@@ -18,7 +18,7 @@ const Primary = styled.section`
   flex-direction: column;
   flex: 0 1 auto;
   height: 100%;
-  padding: 0  var(--spacing-large) var(--spacing-large) var(--spacing-large);
+  padding: var(--header-height) var(--spacing-large) var(--spacing-large) var(--spacing-large);
   h2 {
     font-size: 36px;
     color: #2de1c2;
@@ -49,12 +49,11 @@ const Primary = styled.section`
   }
   @media (min-width: 768px) {
     grid-column: 1 / 7;
-
     display: grid;
     grid-template-rows: var(--header-height) auto auto auto 1fr auto;
     grid-row-gap: 24px;
     margin-bottom: 0;
-    padding-right: var(--spacing-large);
+    padding-top: var(--spacing-large);
     h2 {
       grid-row: 2 / span 1;
       align-self: end;

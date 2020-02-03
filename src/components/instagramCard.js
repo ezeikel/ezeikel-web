@@ -111,7 +111,7 @@ const Comment = styled.div`
   }
 `;
 
-export const InstagramCard = ({ data, className }) =>  {
+export const InstagramCard = ({ data, className }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(87267);
 
@@ -119,9 +119,9 @@ export const InstagramCard = ({ data, className }) =>  {
     <Wrapper className={className}>
       <Header>
         <Avatar
-          fluid={data.avatarImage.childImageSharp.fluid}
+          fixed={data.avatarImage.childImageSharp.fixed}
           objectFit="cover"
-          objectPosition="50% 0%"
+          objectPosition="50%"
           alt="avatar"
         />
         <Details>
@@ -133,26 +133,28 @@ export const InstagramCard = ({ data, className }) =>  {
               size="5x"
             />
           </span>
-          <span><a href="http://www.eggslut.com/">Eggslut</a></span>
+          <span>
+            <a href="http://www.eggslut.com/">Eggslut</a>
+          </span>
         </Details>
       </Header>
       <Content>
         <Img
           fluid={data.contentImage.childImageSharp.fluid}
           objectFit="cover"
-          objectPositin="50% 50%"
+          objectPositin="50%"
           alt="eggslut"
         />
       </Content>
       <Actions>
         <FontAwesomeIcon
           icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
-          color={`var(--color-${liked ? 'like' : 'black'})`}
+          color={`var(--color-${liked ? "like" : "black"})`}
           size="3x"
           onClick={() => {
             setLiked(!liked);
             if (liked) {
-              setLikes(likes - 1)
+              setLikes(likes - 1);
             } else {
               setLikes(likes + 1);
             }
@@ -191,7 +193,7 @@ export const InstagramCard = ({ data, className }) =>  {
       </Interactions>
     </Wrapper>
   );
-}
+};
 
 export default props => (
   <StaticQuery
@@ -199,14 +201,14 @@ export default props => (
       query {
         avatarImage: file(relativePath: { eq: "ezeikel.png" }) {
           childImageSharp {
-            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fixed(width: 36, height: 36, quality: 100) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
         contentImage: file(relativePath: { eq: "eggslut.jpg" }) {
           childImageSharp {
-            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
+            fluid(maxWidth: 400, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }

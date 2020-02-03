@@ -1,5 +1,4 @@
 import React from "react";
-import { StaticQuery, graphql } from "gatsby";
 import styled from "styled-components";
 import SocialLinks from "./socialLinks";
 import InstagramCard from "./instagramCard";
@@ -19,8 +18,7 @@ const Primary = styled.section`
   flex-direction: column;
   flex: 0 1 auto;
   height: 100%;
-  padding: var(--header-height) var(--spacing-large) var(--spacing-large)
-    var(--spacing-large);
+  padding: 0  var(--spacing-large) var(--spacing-large) var(--spacing-large);
   h2 {
     font-size: 36px;
     color: #2de1c2;
@@ -51,25 +49,33 @@ const Primary = styled.section`
   }
   @media (min-width: 768px) {
     grid-column: 1 / 7;
+
+    display: grid;
+    grid-template-rows: var(--header-height) auto auto auto 1fr auto;
+    grid-row-gap: 24px;
     margin-bottom: 0;
     padding-right: var(--spacing-large);
     h2 {
+      grid-row: 2 / span 1;
+      align-self: end;
       font-size: 48px;
       line-height: 60px;
       text-align: left;
-      margin: 100px 0 24px 0;
+      margin: 0
     }
     h1 {
+      grid-row: 3 / span 1;
       font-size: 72px;
-      margin: 0 0 24px 0;
+      margin: 0;
       text-align: left;
       font-weight: 600;
     }
     p {
+      grid-row: 4 / span 1;
       font-size: 30px;
       line-height: 1.5;
       text-align: left;
-      margin: 0 0 76px 0;
+      margin: 0;
     }
   }
 `;
@@ -118,20 +124,22 @@ const SecondaryButton = styled.button`
 const StyledSocialLinks = styled(SocialLinks)`
   display: none;
   @media (min-width: 768px) {
+    grid-row: 6 / -1;
     display: flex;
-    margin-top: auto;
   }
 `;
 
 const Buttons = styled.span`
-  button + button {
-    margin: 32px 0 0 0;
-  }
+  display: grid;
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: 1fr;
+  grid-gap: var(--spacing-medium) 0;
   @media (min-width: 768px) {
-    margin-bottom: 128px;
-    button + button {
-      margin: 0 0 0 32px;
-    }
+    grid-row: 5 / span 1;
+    grid-template-columns: repeat(2, minmax(auto, 250px));
+    grid-template-rows: 1fr;
+    grid-gap: 0 var(--spacing-medium);
+    align-items: start;
   }
 `;
 
@@ -139,12 +147,16 @@ const StyledInstagramCard = styled(InstagramCard)`
   @media (min-width: 768px) {
     transform: translateX(-100%);
     grid-row: 2 / 3;
+    width: 320px;
+    margin-left: 144px;
+  }
+  @media (min-width: 1024px) {
     width: 400px;
     margin-left: 184px;
   }
 `;
 
-const Hero = ({ data }) => {
+const Hero = () => {
   return (
     <Wrapper>
       <Primary>
@@ -168,33 +180,4 @@ const Hero = ({ data }) => {
   );
 };
 
-export default props => (
-  <StaticQuery
-    query={graphql`
-      query {
-        ezeikelImage: file(relativePath: { eq: "ezeikel.png" }) {
-          childImageSharp {
-            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        kanyeImage: file(relativePath: { eq: "kanye.png" }) {
-          childImageSharp {
-            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        nipseyImage: file(relativePath: { eq: "nipsey.png" }) {
-          childImageSharp {
-            fluid(maxWidth: 150, maxHeight: 150, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-      }
-    `}
-    render={data => <Hero data={data} {...props} />}
-  />
-);
+export default Hero;

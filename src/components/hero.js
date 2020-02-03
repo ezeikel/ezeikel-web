@@ -93,12 +93,12 @@ const Secondary = styled.section`
 const StyledButton = styled.button`
   background-color: #ff595e;
   color: var(--color-white);
-  border: 4px solid #ff595e;
+  border: 3px solid #ff595e;
   border-radius: 4px;
   padding: 16px;
   width: 100%;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   box-shadow: 0 3px 6px rgba(255, 89, 94, 0.16);
   @media (min-width: 768px) {
     width: auto;
@@ -108,13 +108,13 @@ const StyledButton = styled.button`
 
 const SecondaryButton = styled.button`
   color: var(--color-white);
-  border: 4px solid var(--color-white);
+  border: 3px solid var(--color-white);
   background-color: transparent;
   border-radius: 4px;
   padding: 16px;
   width: 100%;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   @media (min-width: 768px) {
     width: auto;
     padding: 16px 48px;

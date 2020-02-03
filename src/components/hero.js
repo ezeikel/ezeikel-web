@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import SocialLinks from "./socialLinks";
 import InstagramCard from "./instagramCard";
 
 const Wrapper = styled.div`
@@ -18,7 +17,8 @@ const Primary = styled.section`
   flex-direction: column;
   flex: 0 1 auto;
   height: 100%;
-  padding: var(--header-height) var(--spacing-large) var(--spacing-large) var(--spacing-large);
+  padding: var(--header-height) var(--spacing-large) var(--spacing-large)
+    var(--spacing-large);
   h2 {
     font-size: 36px;
     color: #2de1c2;
@@ -60,7 +60,7 @@ const Primary = styled.section`
       font-size: 48px;
       line-height: 60px;
       text-align: left;
-      margin: 0
+      margin: 0;
     }
     h1 {
       grid-row: 3 / span 1;
@@ -120,14 +120,6 @@ const SecondaryButton = styled.button`
   }
 `;
 
-const StyledSocialLinks = styled(SocialLinks)`
-  display: none;
-  @media (min-width: 768px) {
-    grid-row: 6 / -1;
-    display: flex;
-  }
-`;
-
 const Buttons = styled.span`
   display: grid;
   grid-template-rows: repeat(2, 1fr);
@@ -170,7 +162,6 @@ const Hero = () => {
           <StyledButton>Check out my work</StyledButton>
           <SecondaryButton>Hire me</SecondaryButton>
         </Buttons>
-        <StyledSocialLinks />
       </Primary>
       <Secondary>
         <StyledInstagramCard />

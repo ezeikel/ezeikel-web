@@ -35,19 +35,20 @@ module.exports = {
     // `gatsby-plugin-offline`,
     `gatsby-plugin-styled-components`,
     {
-      resolve: 'gatsby-plugin-web-font-loader',
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
         typekit: {
-          id: "mxg4qkx"
-        }
-      }
+          id: "mxg4qkx",
+        },
+      },
     },
     `gatsby-plugin-sitemap`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
-        trackingId: "UA-60859122-3"
-      }
-    }
+        trackingId: "UA-60859122-3",
+      },
+    },
+    `gatsby-plugin-preload-fonts`,
   ],
-}
+};

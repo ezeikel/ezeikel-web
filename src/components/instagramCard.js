@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
 import { StaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
+import Img from "gatsby-image/withIEPolyfill";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
@@ -52,7 +52,13 @@ const Details = styled.section`
   }
 `;
 
-const Content = styled.section``;
+const Content = styled.section`
+  @media (min-width: 1024px) {
+    width: 400px;
+    height: 300px;
+  }
+`;
+
 const Actions = styled.section`
   padding: 16px;
   svg {
@@ -141,8 +147,8 @@ export const InstagramCard = ({ data, className }) => {
       <Content>
         <Img
           fluid={data.contentImage.childImageSharp.fluid}
-          objectFit="cover"
-          objectPositin="50%"
+          objectFit="contain"
+          objectPosition="center top"
           alt="eggslut"
         />
       </Content>
@@ -208,7 +214,7 @@ export default props => (
         }
         contentImage: file(relativePath: { eq: "eggslut.jpg" }) {
           childImageSharp {
-            fluid(maxWidth: 400, quality: 100) {
+            fluid(maxWidth: 400, maxHeight: 300, quality: 100) {
               ...GatsbyImageSharpFluid
             }
           }

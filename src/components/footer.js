@@ -10,29 +10,6 @@ const Wrapper = styled.footer`
   grid-template-rows: auto 1fr auto auto;
   grid-row-gap: var(--spacing-large);
   text-align: center;
-  @media (min-width: 768px) {
-    grid-template-rows: auto 1fr auto auto;
-    grid-template-columns: 1fr 2fr 1fr;
-    form {
-      grid-column: 2 / span 1;
-      grid-row: 2 / span 1;
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      grid-template-rows: auto 1fr;
-      grid-column-gap: var(--spacing-medium);
-      grid-row-gap: var(--spacing-large);
-      label {
-        grid-row: 1 / span 1;
-        grid-column: 1 / -1;
-      }
-      input {
-        grid-column: 1 / span 1;
-      }
-      button {
-        grid-column: 2 / -1;
-      }
-    }
-  }
   form {
     display: grid;
     grid-template-rows: auto 1fr;
@@ -56,6 +33,29 @@ const Wrapper = styled.footer`
       color: var(--color-white);
       font-weight: 500;
       border-radius: 4px;
+    }
+  }
+  @media (min-width: 768px) {
+    grid-template-rows: auto 1fr auto auto;
+    grid-template-columns: 1fr 2fr 1fr;
+    form {
+      grid-column: 2 / span 1;
+      grid-row: 2 / span 1;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      grid-template-rows: auto 1fr;
+      grid-column-gap: var(--spacing-medium);
+      grid-row-gap: var(--spacing-large);
+      label {
+        grid-row: 1 / span 1;
+        grid-column: 1 / -1;
+      }
+      input {
+        grid-column: 1 / span 1;
+      }
+      button {
+        grid-column: 2 / -1;
+      }
     }
   }
 `;
@@ -144,7 +144,7 @@ const Footer = () => {
       </Ezeikel>
       <form>
         <label>Subscribe to my Newsletter</label>
-        <input placeholder="kanye@yeezy.com" />
+        <input type="email" placeholder="kanye@yeezy.com" />
         <button>Subscribe</button>
       </form>
       <Follow>

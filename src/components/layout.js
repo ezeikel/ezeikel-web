@@ -12,7 +12,6 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "./header";
 
 const Wrapper = styled.div`
-  min-height: 100vh;
   display: grid;
 `;
 

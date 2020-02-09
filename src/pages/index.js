@@ -17,6 +17,8 @@ import SEO from "../components/seo";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import Footer from "../components/footer";
+import Background from "../components/background";
+import Contact from "../components/contact";
 
 library.add(
   fab,
@@ -36,6 +38,8 @@ const IndexPage = () => (
     <SEO title="Home" />
     <GlobalStyle />
     <Hero />
+    <Background />
+    <Contact />
     <Footer />
   </Layout>
 );

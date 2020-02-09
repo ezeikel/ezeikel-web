@@ -19,7 +19,7 @@ export default createGlobalStyle`
     --color-radical-red: #FF3D63;
     --color-aquamarine: #62FFD3;
     --color-bittersweet: #FF7264;
-    --color-black: #2E3333;
+    --color-black: #545454;
     --color-white: #FFFFFF;
     --color-gold: #CDA349;
     --color-gold-lighter: #D4AF61;
@@ -28,7 +28,6 @@ export default createGlobalStyle`
     --color-green: #2ECC71;
     --color-grey: #BDC3C7;
     --color-dark-grey: #9B9B9B;
-    --color-black: #484848;
     --color-gold: #CDA349;
     --color-like: #E94D59;
     /* Spacing */

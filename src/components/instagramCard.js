@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
 import { StaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image/withIEPolyfill";
+import Img from "gatsby-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
   background-color: var(--color-white);
   border-radius: 4px;
   box-shadow: 0 3px 6px #2de1c2;
+  @media (min-width: 768px) {
+    box-shadow: none;
+    transition: box-shadow 0.3s ease-in-out;
+    &:hover {
+      box-shadow: 0 3px 6px #2de1c2;
+    }
+  }
 `;
 
 const Header = styled.div`
@@ -125,9 +132,11 @@ export const InstagramCard = ({ data, className }) => {
     <Wrapper className={className}>
       <Header>
         <Avatar
-          fixed={data.avatarImage.childImageSharp.fixed}
-          objectFit="cover"
-          objectPosition="50%"
+          fluid={data.avatarImage.childImageSharp.fluid}
+          imgStyle={{
+            "object-fit": "cover",
+            "object-position": "center top"
+          }}
           alt="avatar"
         />
         <Details>
@@ -146,9 +155,17 @@ export const InstagramCard = ({ data, className }) => {
       </Header>
       <Content>
         <Img
-          fluid={data.contentImage.childImageSharp.fluid}
-          objectFit="contain"
-          objectPosition="center top"
+          fixed={data.contentImage.childImageSharp.fixed}
+          imgStyle={{
+            "object-fit": "cover",
+            "object-position": "center top",
+            "max-height": "100%",
+            "width": "100%"
+          }}
+          style={{
+            width: "100%",
+            "max-height": "100%"
+          }}
           alt="eggslut"
         />
       </Content>
@@ -207,15 +224,15 @@ export default props => (
       query {
         avatarImage: file(relativePath: { eq: "ezeikel.png" }) {
           childImageSharp {
-            fixed(width: 36, height: 36, quality: 100) {
-              ...GatsbyImageSharpFixed
+            fluid(maxHeight: 36, quality: 100) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
         contentImage: file(relativePath: { eq: "eggslut.jpg" }) {
           childImageSharp {
-            fluid(maxWidth: 400, maxHeight: 300, quality: 100) {
-              ...GatsbyImageSharpFluid
+            fixed(height: 300, quality: 100) {
+              ...GatsbyImageSharpFixed
             }
           }
         }

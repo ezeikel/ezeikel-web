@@ -143,8 +143,8 @@ const Footer = () => {
         </StyledLink>
       </Ezeikel>
       <form>
-        <label>Subscribe to my Newsletter</label>
-        <input type="email" placeholder="kanye@yeezy.com" />
+        <label htmlFor="email">Subscribe to my Newsletter</label>
+        <input id="email" type="email" placeholder="kanye@yeezy.com" />
         <button>Subscribe</button>
       </form>
       <Follow>

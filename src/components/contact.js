@@ -39,6 +39,7 @@ const FormWrapper = styled.section`
   }
   textarea {
     margin-bottom: 32px;
+    resize: none;
   }
   button {
     background-color: var(--color-primary);
@@ -77,7 +78,7 @@ const Background = () => (
       <form>
         <label htmlFor="name">Name</label>
         <input id="name" type="text" placeholder="Biggie Smalls" />
-        <label htmlFor="email">Name</label>
+        <label htmlFor="email">Email</label>
         <input id="email" type="email" placeholder="bsmalls@badboy.com" />
         <label htmlFor="message">Message</label>
         <textarea id="message" placeholder="It was all a dream, I used to read Word Up! magazine" />

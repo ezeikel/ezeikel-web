@@ -33,6 +33,7 @@ const Wrapper = styled.footer`
       color: var(--color-white);
       font-weight: 500;
       border-radius: 4px;
+      box-shadow: 0 3px 6px rgba(255,84, 85, 0.16);
     }
   }
   @media (min-width: 768px) {

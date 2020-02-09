@@ -41,7 +41,7 @@ const Primary = styled.section`
   }
   p {
     margin: 0 auto 64px auto;
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.5;
     color: var(--color-white);
     font-weight: 300;
@@ -96,10 +96,11 @@ const StyledButton = styled.button`
   border-radius: 4px;
   padding: 16px;
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   box-shadow: 0 3px 6px rgba(255, 89, 94, 0.16);
   @media (min-width: 768px) {
+    font-size: 18px;
     width: auto;
     padding: 16px 32px;
   }
@@ -112,9 +113,10 @@ const SecondaryButton = styled.button`
   border-radius: 4px;
   padding: 16px;
   width: 100%;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 500;
   @media (min-width: 768px) {
+    font-size: 18px;
     width: auto;
     padding: 16px 48px;
   }

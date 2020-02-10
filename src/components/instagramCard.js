@@ -7,13 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Wrapper = styled.div`
   background-color: var(--color-white);
-  border-radius: 4px;
-  box-shadow: 0 3px 6px #2de1c2;
+  border-radius: var(--border-radius);
+  box-shadow: 0 3px 6px var(--color-primary);
   @media (min-width: 768px) {
     box-shadow: none;
     transition: box-shadow 0.3s ease-in-out;
     &:hover {
-      box-shadow: 0 3px 6px #2de1c2;
+      box-shadow: 0 3px 6px var(--color-primary);
     }
   }
 `;
@@ -21,14 +21,14 @@ const Wrapper = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
-  padding: 16px;
+  padding: var(--spacing-medium);
 `;
 
 const Avatar = styled(Img)`
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  margin-right: 4px;
+  margin-right: var(--spacing-tiny);
 `;
 
 const Details = styled.section`
@@ -42,7 +42,7 @@ const Details = styled.section`
       svg {
         width: 12px;
         height: 12px;
-        margin-left: 4px;
+        margin-left: var(--spacing-tint);
       }
     }
     &:nth-of-type(2) {
@@ -67,17 +67,17 @@ const Content = styled.section`
 `;
 
 const Actions = styled.section`
-  padding: 16px;
+  padding: var(--spacing-medium);
   svg {
     cursor: pointer;
     & + svg {
-      margin-left: 16px;
+      margin-left: var(--spacing-medium);
     }
   }
 `;
 
 const Interactions = styled.section`
-  padding: 16px;
+  padding: var(--spacing-medium);
 `;
 
 const Likes = styled.section`
@@ -88,13 +88,13 @@ const Likes = styled.section`
 
 const Caption = styled.section`
   font-size: 14px;
-  margin-bottom: 8px;
+  margin-bottom: var(--spacing-small);
   span {
     &:first-of-type {
       font-weight: 700;
     }
     &:nth-of-type(2) {
-      margin-left: 8px;
+      margin-left: var(--spacing-small);
     }
   }
 `;
@@ -107,7 +107,7 @@ const Comments = styled.section`
         font-weight: 700;
       }
       &:nth-of-type(2) {
-        margin-left: 8px;
+        margin-left: var(--spacing-small);
       }
     }
   }
@@ -115,7 +115,7 @@ const Comments = styled.section`
 
 const Comment = styled.div`
   & + div {
-    margin-top: 8px;
+    margin-top: var(--spacing-small);
     span:last-of-type span {
       color: var(--color-primary);
       font-weight: 400;

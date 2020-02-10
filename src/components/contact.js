@@ -4,8 +4,8 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: #789EB4;
-  padding: 32px;
+  background-color: var(--color-quinary);
+  padding: var(--spacing-large);
 `;
 
 const CopyWrapper = styled.section`
@@ -18,7 +18,7 @@ const FormWrapper = styled.section`
   background-color: var(--color-white);
   box-shadow: var(--box-shadow);
   border-radius: var(--border-radius);
-  padding: 32px;
+  padding: var(--spacing-large);
   form {
     width: 100%;
     display: flex;
@@ -30,21 +30,21 @@ const FormWrapper = styled.section`
   label {
     display: flex;
     color: var(--color-black);
-    margin-bottom: 8px;
+    margin-bottom: var(--spacing-medium);
   }
   input, input[type="text"], input[type="email"], textarea {
     border-radius: var(--border-radius);
-    border: 1px solid #EFEFEF;
-    margin-bottom: 16px;
+    border: 1px solid var(--color-border);
+    margin-bottom: var(--spacing-medium)
   }
   textarea {
-    margin-bottom: 32px;
+    margin-bottom: var(--spacing-large);
     resize: none;
   }
   button {
     background-color: var(--color-primary);
     color: var(--color-white);
-    padding: 16px 104px;
+    padding: var(--spacing-medium) 104px;
     border-radius: var(--border-radius);
     box-shadow: 0 3px 6px rgba(0,227,194, 0.16);
     font-weight: 500;
@@ -56,7 +56,7 @@ const Title = styled.h2`
   font-weight: 600;
   text-align: center;
   color: var(--color-white);
-  margin: 0 0 32px 0;
+  margin: 0 0 var(--spacing-large) 0;
 `;
 
 const Copy = styled.p`
@@ -64,8 +64,8 @@ const Copy = styled.p`
   font-weight: 300;
   color: var(--color-white);
   font-weight: 300;
-  line-height: 1.5;
-  margin: 0 0 64px 0;
+  line-height: var(--line-height);
+  margin: 0 0 var(--spacing-huge) 0;
 `;
 
 const Background = () => (

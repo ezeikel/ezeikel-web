@@ -26,7 +26,7 @@ const Ezeikel = styled.span`
   color: var(--color-white);
   font-weight: 600;
   span {
-    color: #2de1c2;
+    color: var(--color-primary);
   }
   a {
     color: var(--color-white);

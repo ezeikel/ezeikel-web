@@ -13,9 +13,11 @@ export default createGlobalStyle`
   :root {
     /* Colors */
     --color-primary: #2DE1C2;
-    /* --color-primary: #F7E7CE; */
-    --color-secondary: #F1D3D1;
-    --color-tertiary: #4629D3;
+    --color-secondary: #1E3C72;
+    --color-tertiary: #EDAE49;
+    --color-quaternary: #FF595E;
+    --color-quinary: #7C9EB2;
+    --color-senary: #2A5298;
     --color-radical-red: #FF3D63;
     --color-aquamarine: #62FFD3;
     --color-bittersweet: #FF7264;
@@ -30,6 +32,8 @@ export default createGlobalStyle`
     --color-dark-grey: #9B9B9B;
     --color-gold: #CDA349;
     --color-like: #E94D59;
+    --color-border: #EFEFEF;
+    --color-footer: #333333;
     /* Spacing */
     --spacing-tiny: 4px;
     --spacing-small: 8px;
@@ -48,6 +52,8 @@ export default createGlobalStyle`
     --box-shadow: 0 3px 6px rgba(0,0,0, 0.16);
 
     --border-radius: 4px;
+
+    --line-height: 1.5;
 
     /* components */
     --header-height: 120px;

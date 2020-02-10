@@ -4,8 +4,8 @@ import { Link } from "gatsby";
 import SocialLinks from "./socialLinks";
 
 const Wrapper = styled.footer`
-  background-color: #333333;
-  padding: 32px;
+  background-color: var(--color-footer);
+  padding: var(--spacing-large);
   display: grid;
   grid-template-rows: auto 1fr auto auto;
   grid-row-gap: var(--spacing-large);
@@ -21,18 +21,18 @@ const Wrapper = styled.footer`
     }
     input {
       font-size: 18px;
-      padding: 16px;
-      border-radius: 4px;
+      padding: var(--spacing-medium);
+      border-radius: var(--border-radius);
       border: 0;
       outline: 0;
     }
     button {
-      background-color: #ff575a;
+      background-color: var(--color-quaternary);
       font-size: 16px;
       padding: 16px;
       color: var(--color-white);
       font-weight: 500;
-      border-radius: 4px;
+      border-radius: var(--border-radius);
       box-shadow: 0 3px 6px rgba(255,84, 85, 0.16);
     }
   }
@@ -66,7 +66,7 @@ const Ezeikel = styled.span`
   color: var(--color-white);
   font-weight: 600;
   span {
-    color: #2de1c2;
+    color: var(--color-primary);
   }
   a {
     color: var(--color-white);

@@ -18,7 +18,7 @@ const Wrapper = styled.ul`
     }
   }
   li + li {
-    margin-left: 32px;
+    margin-left: var(--spacing-large);
   }
 `;
 

@@ -9,16 +9,16 @@ const Wrapper = styled.div`
   > span {
     flex: 0 0 auto;
     display: block;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     width: 24px;
     height: 4px;
-    background-color: #2de1c2;
+    background-color: var(--color-primary);
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
     &:nth-of-type(2) {
       width: 12px;
     }
     + span {
-      margin-top: 8px;
+      margin-top: var(--spacing-small);
     }
   }
   ${({ active }) => {
@@ -46,7 +46,7 @@ const Wrapper = styled.div`
         width: 15px;
       }
       + span {
-        margin-top: 8px;
+        margin-top: var(--spacing-small);
       }
     }
     ${({ active }) => {

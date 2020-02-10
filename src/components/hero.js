@@ -5,7 +5,7 @@ import InstagramCard from "./instagramCard";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to bottom, #1e3c72, #2a5298);
+  background-image: linear-gradient(to bottom, var(--color-secondary), var(--color-senary));
   @media (min-width: 768px) {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
@@ -21,9 +21,9 @@ const Primary = styled.section`
     var(--spacing-large);
   h2 {
     font-size: 36px;
-    color: #2de1c2;
+    color: var(--color-primary);
     font-weight: 300;
-    margin: 0 0 8px 0;
+    margin: 0 0 var(--spacing-small) 0;
     text-align: center;
     letter-spacing: 1px;
   }
@@ -31,18 +31,18 @@ const Primary = styled.section`
     font-size: 48px;
     line-height: 1;
     color: var(--color-white);
-    margin: 0 0 32px 0;
+    margin: 0 0 var(--spacing-large) 0;
     text-align: center;
     font-weight: 600;
     letter-spacing: 1px;
     span {
-      color: #2de1c2;
+      color: var(--color-primary);
     }
   }
   p {
-    margin: 0 auto 64px auto;
+    margin: 0 auto var(--spacing-huge) auto;
     font-size: 20px;
-    line-height: 1.5;
+    line-height: var(--line-height);
     color: var(--color-white);
     font-weight: 300;
     text-align: center;
@@ -90,11 +90,11 @@ const Secondary = styled.section`
 `;
 
 const StyledButton = styled.button`
-  background-color: #ff595e;
+  background-color: var(--color-quaternary);
   color: var(--color-white);
-  border: 3px solid #ff595e;
-  border-radius: 4px;
-  padding: 16px;
+  border: 3px solid var(--color-quaternary);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-medium);
   width: 100%;
   font-size: 16px;
   font-weight: 500;
@@ -102,7 +102,7 @@ const StyledButton = styled.button`
   @media (min-width: 768px) {
     font-size: 18px;
     width: auto;
-    padding: 16px 32px;
+    padding: var(--spacing-medium) var(--spacing-large);
   }
 `;
 
@@ -110,15 +110,15 @@ const SecondaryButton = styled.button`
   color: var(--color-white);
   border: 3px solid var(--color-white);
   background-color: transparent;
-  border-radius: 4px;
-  padding: 16px;
+  border-radius: var(--border-radius);
+  padding: var(--spacing-medium);
   width: 100%;
   font-size: 16px;
   font-weight: 500;
   @media (min-width: 768px) {
     font-size: 18px;
     width: auto;
-    padding: 16px 48px;
+    padding: var(--spacing-medium) 48px;
   }
 `;
 

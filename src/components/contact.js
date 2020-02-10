@@ -30,7 +30,7 @@ const FormWrapper = styled.section`
   label {
     display: flex;
     color: var(--color-black);
-    margin-bottom: var(--spacing-medium);
+    margin-bottom: var(--spacing-small);
   }
   input, input[type="text"], input[type="email"], textarea {
     border-radius: var(--border-radius);

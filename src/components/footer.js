@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "gatsby";
 import SocialLinks from "./socialLinks";
+import Logo from "./logo";
 
 const Wrapper = styled.footer`
   background-color: var(--color-footer);
@@ -61,26 +62,12 @@ const Wrapper = styled.footer`
   }
 `;
 
-const Ezeikel = styled.span`
-  font-size: 30px;
-  color: var(--color-white);
-  font-weight: 600;
-  span {
-    color: var(--color-primary);
-  }
-  a {
-    color: var(--color-white);
-  }
+const StyledLogo = styled(Logo)`
   @media (min-width: 768px) {
-    font-size: 48px;
     grid-column: 1 / span 1;
     grid-row: 1 / span 1;
     text-align: left;
   }
-`;
-
-const StyledLink = styled(Link)`
-  letter-spacing: 1px;
 `;
 
 const Follow = styled.section`
@@ -138,11 +125,7 @@ const Copyright = styled.section`
 const Footer = () => {
   return (
     <Wrapper>
-      <Ezeikel>
-        <StyledLink to={"/"}>
-          Ezeikel<span>.</span>
-        </StyledLink>
-      </Ezeikel>
+      <StyledLogo />
       <form>
         <label htmlFor="email">Subscribe to my Newsletter</label>
         <input id="email" type="email" placeholder="kanye@yeezy.com" />

@@ -11,6 +11,8 @@ import {
   faMapMarkedAlt,
   faFillDrip,
   faPaperPlane,
+  faBookmark,
+  faSmile,
 } from "@fortawesome/pro-regular-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import SEO from "../components/seo";
@@ -30,7 +32,9 @@ library.add(
   faMobile,
   faMapMarkedAlt,
   faFillDrip,
-  faPaperPlane
+  faPaperPlane,
+  faBookmark,
+  faSmile
 );
 
 const IndexPage = () => (

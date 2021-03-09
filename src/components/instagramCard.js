@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
-import { StaticQuery, graphql } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StaticImage } from "gatsby-plugin-image";
+import CommentForm from "./CommentForm";
 
 const Wrapper = styled.div`
   background-color: var(--color-white);
@@ -18,19 +18,19 @@ const Wrapper = styled.div`
     0 100px 80px rgba(0, 0, 0, 0.12) */
 `;
 
-const Header = styled.div`
+const Header = styled.header`
   display: flex;
   align-items: center;
   padding: var(--spacing-medium);
 `;
 
-const Details = styled.section`
+const Details = styled.div`
   span {
     display: flex;
     flex-direction: row;
     &:first-of-type {
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
       display: flex;
       align-items: center;
       svg {
@@ -53,8 +53,10 @@ const Details = styled.section`
   }
 `;
 
-const Actions = styled.section`
-  padding: var(--spacing-medium);
+const Actions = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-medium);
   svg {
     cursor: pointer;
     & + svg {
@@ -63,22 +65,18 @@ const Actions = styled.section`
   }
 `;
 
-const Interactions = styled.section`
-  padding: var(--spacing-medium);
-`;
-
-const Likes = styled.section`
-  font-size: 14px;
-  font-weight: 600;
+const Likes = styled.div`
+  font-size: 1.4rem;
+  font-weight: 500;
   margin-bottom: 12px;
 `;
 
-const Caption = styled.section`
-  font-size: 14px;
+const Caption = styled.div`
+  font-size: 1.4rem;
   margin-bottom: var(--spacing-small);
   span {
     &:first-of-type {
-      font-weight: 700;
+      font-weight: 500;
     }
     &:nth-of-type(2) {
       margin-left: var(--spacing-small);
@@ -86,12 +84,12 @@ const Caption = styled.section`
   }
 `;
 
-const Comments = styled.section`
-  font-size: 14px;
+const Comments = styled.div`
+  font-size: 1.4rem;
   div {
     span {
       &:first-of-type {
-        font-weight: 700;
+        font-weight: 500;
       }
       &:nth-of-type(2) {
         margin-left: var(--spacing-small);
@@ -111,7 +109,8 @@ const Comment = styled.div`
   }
 `;
 
-const Content = styled.section`
+const Footer = styled.footer`
+  padding: var(--spacing-medium);
 `;
 
 export const InstagramCard = ({ className }) => {
@@ -131,10 +130,10 @@ export const InstagramCard = ({ className }) => {
           objectFit="cover"
           objectPosition="center top"
           style={{
-            marginRight: "var(--spacing-small)"
+            marginRight: "var(--spacing-small)",
           }}
           imgStyle={{
-            borderRadius: "50%"
+            borderRadius: "50%",
           }}
         />
         <Details>
@@ -151,58 +150,74 @@ export const InstagramCard = ({ className }) => {
           </span>
         </Details>
       </Header>
-      <Content>
-        <StaticImage src="../images/eggslut.jpg" alt="ezeikel" placeholder="blurred" layout="fullWidth" objectFit="cover" objectPosition="top center" style={{
-            maxHeight: "250px"
-          }} />
-      </Content>
-      <Actions>
+      <section>
+        <StaticImage
+          src="../images/eggslut.jpg"
+          alt="ezeikel"
+          placeholder="blurred"
+          layout="fullWidth"
+          objectFit="cover"
+          objectPosition="top center"
+          style={{
+            maxHeight: "250px",
+          }}
+        />
+      </section>
+      <Footer>
+        <Actions>
+          <div>
+            <FontAwesomeIcon
+              icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
+              color={`var(--color-${liked ? "like" : "black"})`}
+              size="2x"
+              onClick={() => {
+                setLiked((liked) => !liked);
+                if (liked) {
+                  setLikes((likes) => likes - 1);
+                } else {
+                  setLikes((likes) => likes + 1);
+                }
+              }}
+            />
+            <FontAwesomeIcon
+              icon={["fal", "comment"]}
+              color="var(--color-black)"
+              size="2x"
+              onClick={() => navigate("#contact")}
+            />
+            <FontAwesomeIcon
+              icon={["fal", "paper-plane"]}
+              color="var(--color-black)"
+              size="2x"
+            />
+          </div>
+          <FontAwesomeIcon
+            icon={["fal", "bookmark"]}
+            color="var(--color-black)"
+            size="2x"
+          />
+        </Actions>
         <div>
-          <FontAwesomeIcon
-            icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
-            color={`var(--color-${liked ? "like" : "black"})`}
-            size="2x"
-            onClick={() => {
-              setLiked( liked => !liked);
-              if (liked) {
-                setLikes((likes) => likes - 1);
-              } else {
-                setLikes((likes) => likes + 1);
-              }
-            }}
-          />
-          <FontAwesomeIcon
-            icon={["fal", "comment"]}
-            color="var(--color-black)"
-            size="2x"
-            onClick={() => navigate("#contact")}
-          />
-          <FontAwesomeIcon
-            icon={["fal", "paper-plane"]}
-            color="var(--color-black)"
-            size="2x"
-          />
+          <Likes>{likes.toLocaleString()} likes</Likes>
+          <Caption>
+            <span>ezeikel</span>
+            <span>Literally the best Front End Developer ever.</span>
+          </Caption>
+          <Comments>
+            <Comment>
+              <span>apple</span>
+              <span>We need to hire this guy!</span>
+            </Comment>
+            <Comment>
+              <span>facebook</span>
+              <span>
+                Move over <span>@apple</span>
+              </span>
+            </Comment>
+          </Comments>
         </div>
-      </Actions>
-      <Interactions>
-        <Likes>{likes.toLocaleString()} likes</Likes>
-        <Caption>
-          <span>ezeikel</span>
-          <span>Literally the best Front End Developer ever.</span>
-        </Caption>
-        <Comments>
-          <Comment>
-            <span>apple</span>
-            <span>We need to hire this guy!</span>
-          </Comment>
-          <Comment>
-            <span>facebook</span>
-            <span>
-              Move over <span>@apple</span>
-            </span>
-          </Comment>
-        </Comments>
-      </Interactions>
+      </Footer>
+      <CommentForm />
     </Wrapper>
   );
 };

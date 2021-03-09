@@ -2,33 +2,26 @@ import React, { useState } from "react";
 import { navigate } from "gatsby";
 import styled from "styled-components";
 import { StaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { StaticImage } from "gatsby-plugin-image";
 
 const Wrapper = styled.div`
   background-color: var(--color-white);
   border-radius: var(--border-radius);
-  box-shadow: 0 3px 6px var(--color-primary);
-  @media (min-width: 768px) {
-    box-shadow: none;
-    transition: box-shadow 0.3s ease-in-out;
-    &:hover {
-      box-shadow: 0 3px 6px var(--color-primary);
-    }
-  }
+  border: 1px solid #dbdbdb;
+  /* box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+    0 100px 80px rgba(0, 0, 0, 0.12) */
 `;
 
 const Header = styled.div`
   display: flex;
   align-items: center;
   padding: var(--spacing-medium);
-`;
-
-const Avatar = styled(Img)`
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  margin-right: var(--spacing-tiny);
 `;
 
 const Details = styled.section`
@@ -39,10 +32,11 @@ const Details = styled.section`
       font-size: 14px;
       font-weight: 600;
       display: flex;
+      align-items: center;
       svg {
         width: 12px;
         height: 12px;
-        margin-left: var(--spacing-tint);
+        margin-left: var(--spacing-tiny);
       }
     }
     &:nth-of-type(2) {
@@ -56,13 +50,6 @@ const Details = styled.section`
     &:hover {
       color: var(--color-black);
     }
-  }
-`;
-
-const Content = styled.section`
-  @media (min-width: 1024px) {
-    width: 400px;
-    height: 300px;
   }
 `;
 
@@ -124,20 +111,31 @@ const Comment = styled.div`
   }
 `;
 
-export const InstagramCard = ({ data, className }) => {
+const Content = styled.section`
+`;
+
+export const InstagramCard = ({ className }) => {
   const [liked, setLiked] = useState(false);
   const [likes, setLikes] = useState(87267);
 
   return (
     <Wrapper className={className}>
       <Header>
-        <Avatar
-          fluid={data.avatarImage.childImageSharp.fluid}
-          imgStyle={{
-            "object-fit": "cover",
-            "object-position": "center top"
-          }}
+        <StaticImage
+          src="../images/ezeikel.png"
           alt="avatar"
+          placeholder="blurred"
+          layout="fixed"
+          width={36}
+          height={36}
+          objectFit="cover"
+          objectPosition="center top"
+          style={{
+            marginRight: "var(--spacing-small)"
+          }}
+          imgStyle={{
+            borderRadius: "50%"
+          }}
         />
         <Details>
           <span>
@@ -154,46 +152,37 @@ export const InstagramCard = ({ data, className }) => {
         </Details>
       </Header>
       <Content>
-        <Img
-          fixed={data.contentImage.childImageSharp.fixed}
-          imgStyle={{
-            "object-fit": "cover",
-            "object-position": "center top",
-            "max-height": "100%",
-            "width": "100%"
-          }}
-          style={{
-            width: "100%",
-            "max-height": "100%"
-          }}
-          alt="eggslut"
-        />
+        <StaticImage src="../images/eggslut.jpg" alt="ezeikel" placeholder="blurred" layout="fullWidth" objectFit="cover" objectPosition="top center" style={{
+            maxHeight: "250px"
+          }} />
       </Content>
       <Actions>
-        <FontAwesomeIcon
-          icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
-          color={`var(--color-${liked ? "like" : "black"})`}
-          size="3x"
-          onClick={() => {
-            setLiked(!liked);
-            if (liked) {
-              setLikes(likes - 1);
-            } else {
-              setLikes(likes + 1);
-            }
-          }}
-        />
-        <FontAwesomeIcon
-          icon={["fal", "comment"]}
-          color="var(--color-black)"
-          size="3x"
-          onClick={() => navigate("#contact")}
-        />
-        <FontAwesomeIcon
-          icon={["fal", "paper-plane"]}
-          color="var(--color-black)"
-          size="3x"
-        />
+        <div>
+          <FontAwesomeIcon
+            icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
+            color={`var(--color-${liked ? "like" : "black"})`}
+            size="2x"
+            onClick={() => {
+              setLiked( liked => !liked);
+              if (liked) {
+                setLikes((likes) => likes - 1);
+              } else {
+                setLikes((likes) => likes + 1);
+              }
+            }}
+          />
+          <FontAwesomeIcon
+            icon={["fal", "comment"]}
+            color="var(--color-black)"
+            size="2x"
+            onClick={() => navigate("#contact")}
+          />
+          <FontAwesomeIcon
+            icon={["fal", "paper-plane"]}
+            color="var(--color-black)"
+            size="2x"
+          />
+        </div>
       </Actions>
       <Interactions>
         <Likes>{likes.toLocaleString()} likes</Likes>
@@ -218,26 +207,4 @@ export const InstagramCard = ({ data, className }) => {
   );
 };
 
-export default props => (
-  <StaticQuery
-    query={graphql`
-      query {
-        avatarImage: file(relativePath: { eq: "ezeikel.png" }) {
-          childImageSharp {
-            fluid(maxHeight: 36, quality: 100) {
-              ...GatsbyImageSharpFluid
-            }
-          }
-        }
-        contentImage: file(relativePath: { eq: "eggslut.jpg" }) {
-          childImageSharp {
-            fixed(height: 300, quality: 100) {
-              ...GatsbyImageSharpFixed
-            }
-          }
-        }
-      }
-    `}
-    render={data => <InstagramCard data={data} {...props} />}
-  />
-);
+export default InstagramCard;

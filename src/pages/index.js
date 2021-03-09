@@ -30,7 +30,7 @@ library.add(
   faMobile,
   faMapMarkedAlt,
   faFillDrip,
-  faPaperPlane,
+  faPaperPlane
 );
 
 const IndexPage = () => (
@@ -38,9 +38,8 @@ const IndexPage = () => (
     <SEO title="Home" />
     <GlobalStyle />
     <Hero />
-    <Background />
-    <Contact />
-    <Footer />
+    {/* <Contact />
+    <Footer /> */}
   </Layout>
 );
 

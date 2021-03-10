@@ -1,40 +1,39 @@
 import React from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { fab } from "@fortawesome/free-brands-svg-icons";
-import { fal } from "@fortawesome/pro-light-svg-icons";
-import { fas } from "@fortawesome/pro-solid-svg-icons";
+import { faLinkedinIn, faInstagram, faGithub, faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faBadgeCheck, faHeart as fasHeart, faBookmark as fasBookmark } from "@fortawesome/pro-solid-svg-icons";
+import { faComment, faPaperPlane, faHeart as falHeart, faBookmark as falBookmark } from "@fortawesome/pro-light-svg-icons";
 import {
-  far,
   faTablet,
   faBrowser,
   faMobile,
   faMapMarkedAlt,
   faFillDrip,
-  faPaperPlane,
-  faBookmark,
   faSmile,
 } from "@fortawesome/pro-regular-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
-import Footer from "../components/footer";
-import Background from "../components/background";
-import Contact from "../components/contact";
 
 library.add(
-  fab,
-  fal,
-  far,
-  fas,
+  faLinkedinIn,
+  faInstagram,
+  faGithub,
+  faTwitter,
   faTablet,
   faBrowser,
   faMobile,
   faMapMarkedAlt,
   faFillDrip,
   faPaperPlane,
-  faBookmark,
-  faSmile
+  faComment,
+  falHeart,
+  fasHeart,
+  fasBookmark,
+  falBookmark,
+  faSmile,
+  faBadgeCheck
 );
 
 const IndexPage = () => (

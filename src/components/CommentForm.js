@@ -9,27 +9,36 @@ const CommentFormSchema = Yup.object().shape({
 });
 
 const StyledForm = styled(Form)`
-  input {
-    border-left: none;
-    border-right: none;
-    border-bottom: none;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+  .text-input {
+    border: 1px solid  #dbdbdb;
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 0;
+    padding: var(--spacing-medium);
+    input {
+      font-size: 1.4rem;
+      border: 0;
+      padding: 0;
+    }
   }
 `;
 
 const CommentForm = () => {
   return (
     <Formik
-      initalValues={{ text: "" }}
+      initialValues={{ text: "" }}
       validationSchema={CommentFormSchema}
       onSubmit={({ text }, { resetForm }) => {
         console.log({ text });
+
+        resetForm();
       }}
     >
       {({ handleSubmit }) => (
         <StyledForm onSubmit={handleSubmit}>
-          <TextInput name="text" type="text" placeholder="Add a comment..." />
+          <TextInput name="text" type="text" placeholder="Add a comment..." leftIcon="smile" className="text-input" />
         </StyledForm>
       )}
     </Formik>

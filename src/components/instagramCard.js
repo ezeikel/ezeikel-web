@@ -115,6 +115,7 @@ const Footer = styled.footer`
 
 export const InstagramCard = ({ className }) => {
   const [liked, setLiked] = useState(false);
+  const [bookmarked, setBookmarked] = useState(false);
   const [likes, setLikes] = useState(87267);
 
   return (
@@ -125,8 +126,8 @@ export const InstagramCard = ({ className }) => {
           alt="avatar"
           placeholder="blurred"
           layout="fixed"
-          width={36}
-          height={36}
+          width={32}
+          height={32}
           objectFit="cover"
           objectPosition="center top"
           style={{
@@ -193,8 +194,10 @@ export const InstagramCard = ({ className }) => {
           </div>
           <FontAwesomeIcon
             icon={["fal", "bookmark"]}
+            icon={bookmarked ? ["fas", "bookmark"] : ["fal", "bookmark"]}
             color="var(--color-black)"
             size="2x"
+            onClick={() => setBookmarked(bookmarked => !bookmarked)}
           />
         </Actions>
         <div>

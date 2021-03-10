@@ -7,11 +7,13 @@ const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   padding: 0 var(--spacing-large);
+  margin-top: -64px;
   > section {
+    margin-top: 64px;
     &:first-of-type {
       flex: 0 1 auto;
       max-width: 750px;
-      /* border: 1px solid green; */
+
       h1 {
         font-family: var(--font-family-secondary);
         font-size: 9.537rem;
@@ -22,8 +24,18 @@ const Wrapper = styled.div`
       h3 {
         font-size: 4.883rem;
         font-weight: 400;
-        color: var(--color-primary);
+        color: #545977;
+        margin: 0 0 var(--spacing-medium);
+      }
+      h4 {
+        font-weight: 400;
+        color: #777c9b;
+        font-size: 2.5rem;
         margin: 0 0 var(--spacing-huge);
+        a {
+          text-decoration: underline;
+          color: #777c9b;
+        }
       }
     }
     &:nth-of-type(2) {
@@ -40,6 +52,7 @@ const Hero = () => {
     <section>
       <h1>Ezeikel.</h1>
       <h3>I love solving problems with JavaScript and building beautiful UIs.</h3>
+      <h4>Lead Web Engineer and JavaScript All-Rounder at <a href="https://sparksapp.io" target="_blank">Sparks</a></h4>
       <Button title="Let's talk" />
     </section>
     <section><InstagramCard /></section>

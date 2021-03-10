@@ -15,6 +15,8 @@ export default createGlobalStyle`
     --color-primary: #233044;
     --color-black: #545454;
     --color-white: #ffffff;
+    --color-light-grey: rgba(153, 153, 153, 0.75);
+    --color-like: #ed4956;
     /* Spacing */
     --spacing-tiny: 4px;
     --spacing-small: 8px;
@@ -106,7 +108,7 @@ export default createGlobalStyle`
     -moz-appearance: none;
     outline: 0;
     border-radius: 0;
-    padding: 16px;
+    padding: var(--spacing-medium);
     border: 1px solid #ECF0F1;
     width: 100%;
     font-weight: 300;

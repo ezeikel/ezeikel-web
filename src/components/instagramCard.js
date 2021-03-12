@@ -127,8 +127,6 @@ export const InstagramCard = ({ className }) => {
           placeholder="blurred"
           layout="fullWidth"
           objectFit="cover"
-          width={32}
-          height={32}
           objectPosition="center top"
           style={{
             width: "32px",
@@ -197,7 +195,6 @@ export const InstagramCard = ({ className }) => {
             />
           </div>
           <FontAwesomeIcon
-            icon={["fal", "bookmark"]}
             icon={bookmarked ? ["fas", "bookmark"] : ["fal", "bookmark"]}
             color="var(--color-black)"
             size="2x"

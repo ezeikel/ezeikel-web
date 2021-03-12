@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { navigate } from "gatsby";
+// import { navigate } from "gatsby";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StaticImage } from "gatsby-plugin-image";
@@ -125,12 +125,14 @@ export const InstagramCard = ({ className }) => {
           src="../images/ezeikel.png"
           alt="avatar"
           placeholder="blurred"
-          layout="fixed"
+          layout="fullWidth"
+          objectFit="cover"
           width={32}
           height={32}
-          objectFit="cover"
           objectPosition="center top"
           style={{
+            width: "32px",
+            height: "32px",
             marginRight: "var(--spacing-small)",
           }}
           imgStyle={{
@@ -147,7 +149,9 @@ export const InstagramCard = ({ className }) => {
             />
           </span>
           <span>
-            <a href="http://www.eggslut.com/">Eggslut</a>
+            <a href="http://www.eggslut.com/" target="_blank" rel="noreferrer">
+              Eggslut
+            </a>
           </span>
         </Details>
       </Header>
@@ -158,7 +162,7 @@ export const InstagramCard = ({ className }) => {
           placeholder="blurred"
           layout="fullWidth"
           objectFit="cover"
-          objectPosition="top center"
+          objectPosition="center top"
           style={{
             maxHeight: "250px",
           }}
@@ -184,7 +188,7 @@ export const InstagramCard = ({ className }) => {
               icon={["fal", "comment"]}
               color="var(--color-black)"
               size="2x"
-              onClick={() => navigate("#contact")}
+              // onClick={() => navigate("#contact")}
             />
             <FontAwesomeIcon
               icon={["fal", "paper-plane"]}
@@ -197,7 +201,7 @@ export const InstagramCard = ({ className }) => {
             icon={bookmarked ? ["fas", "bookmark"] : ["fal", "bookmark"]}
             color="var(--color-black)"
             size="2x"
-            onClick={() => setBookmarked(bookmarked => !bookmarked)}
+            onClick={() => setBookmarked((bookmarked) => !bookmarked)}
           />
         </Actions>
         <div>

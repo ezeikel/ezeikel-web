@@ -19,22 +19,24 @@ const Wrapper = styled.div`
         font-size: 9.537rem;
         font-weight: 700;
         color: var(--color-primary);
-        margin: 0 0 var(--spacing-medium);
+        margin: 0 0 var(--spacing-large);
       }
       h3 {
         font-size: 4.883rem;
+        line-height: 1.2;
         font-weight: 400;
-        color: #545977;
+        color: var(--color-secondary);
         margin: 0 0 var(--spacing-medium);
       }
       h4 {
         font-weight: 400;
-        color: #777c9b;
+        line-height: 1.5;
+        color: var(--color-tertiary);
         font-size: 2.5rem;
         margin: 0 0 var(--spacing-huge);
         a {
           text-decoration: underline;
-          color: #777c9b;
+          color: var(--color-tertiary);
         }
       }
     }
@@ -42,22 +44,47 @@ const Wrapper = styled.div`
       flex: 1 0 auto;
       display: flex;
       justify-content: center;
-      /* border: 1px solid red; */
+    }
+  }
+`;
+
+const ButtonsWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -32px;
+  margin-left: -32px;
+  button {
+    flex: 1 0 auto;
+    margin-top: var(--spacing-large);
+    margin-left: var(--spacing-large);
+    @media (min-width: 375px) {
+      flex: 0 0 auto;
     }
   }
 `;
 
 const Hero = () => {
-  return <Wrapper>
-    <section>
-      <h1>Ezeikel.</h1>
-      <h3>I love solving problems with JavaScript and building beautiful UIs.</h3>
-      <h4>Lead Web Engineer and JavaScript All-Rounder at <a href="https://sparksapp.io" target="_blank">Sparks</a></h4>
-      <Button title="Let's talk" />
-    </section>
-    <section><InstagramCard /></section>
-
-  </Wrapper>;
+  return (
+    <Wrapper>
+      <section>
+        <h1>Ezeikel.</h1>
+        <h3>I love solving problems with code and building beautiful UIs.</h3>
+        <h4>
+          Lead Web Engineer and JavaScript All-Rounder at{" "}
+          <a href="https://sparksapp.io" target="_blank" rel="noreferrer">
+            Sparks
+          </a>
+        </h4>
+        <ButtonsWrapper>
+          <Button title="See my work" variant="outline" />
+          <Button title="Hire me" />
+        </ButtonsWrapper>
+      </section>
+      <section>
+        <InstagramCard />
+      </section>
+    </Wrapper>
+  );
 };
 
 export default Hero;

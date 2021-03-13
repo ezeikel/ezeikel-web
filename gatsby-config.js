@@ -33,25 +33,25 @@ console.log({
   googleAnalyticsConfig,
 });
 
-// const contentfulConfig = {
-//   spaceId: process.env.CONTENTFUL_SPACE_ID,
-//   host:
-//     process.env.CUSTOM_NODE_ENV === "production"
-//       ? "cdn.contentful.com"
-//       : "preview.contentful.com",
-//   accessToken:
-//     process.env.CUSTOM_NODE_ENV === "production"
-//       ? process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN
-//       : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-// };
+const contentfulConfig = {
+  spaceId: process.env.CONTENTFUL_SPACE_ID,
+  host:
+    process.env.CUSTOM_NODE_ENV === "production"
+      ? "cdn.contentful.com"
+      : "preview.contentful.com",
+  accessToken:
+    process.env.CUSTOM_NODE_ENV === "production"
+      ? process.env.CONTENTFUL_DELIVERY_ACCESS_TOKEN
+      : process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+};
 
-// const { spaceId, accessToken } = contentfulConfig;
+const { spaceId, accessToken } = contentfulConfig;
 
-// if (!spaceId || !accessToken) {
-//   throw new Error(
-//     "Contentful spaceId and the access token need to be provided."
-//   );
-// }
+if (!spaceId || !accessToken) {
+  throw new Error(
+    "Contentful spaceId and the access token need to be provided."
+  );
+}
 
 module.exports = {
   siteMetadata: {

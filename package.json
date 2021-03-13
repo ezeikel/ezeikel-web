@@ -47,6 +47,7 @@
     "yup": "^0.32.9"
   },
   "devDependencies": {
+    "contentful-import": "^7.9.40",
     "prettier": "^2.2.1"
   },
   "keywords": [
@@ -60,6 +61,8 @@
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
     "serve": "gatsby serve",
+    "postinstall": "node ./bin/hello.js",
+    "setup": "node ./bin/setup.js",
     "clean": "gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
     "preload-fonts": "gatsby-preload-fonts"

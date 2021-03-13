@@ -29,10 +29,6 @@ const googleAnalyticsConfig = {
   pageTransitionDelay: 0,
 };
 
-console.log({
-  googleAnalyticsConfig,
-});
-
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   host:
@@ -88,6 +84,12 @@ module.exports = {
       resolve: `gatsby-plugin-google-analytics`,
       options: googleAnalyticsConfig,
     },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [`gatsby-remark-reading-time`],
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -136,10 +138,10 @@ module.exports = {
           "https://mynextlayer.us20.list-manage.com/subscribe/post?u=27cabe4e6eb1deee12ba4dc5d&amp;id=790324b928",
       },
     },
-    // {
-    //   resolve: `gatsby-source-contentful`,
-    //   options: contentfulConfig,
-    // },
+    {
+      resolve: `gatsby-source-contentful`,
+      options: contentfulConfig,
+    },
     {
       resolve: "gatsby-plugin-sentry",
       options: sentryConfig,

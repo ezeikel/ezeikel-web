@@ -1,6 +1,5 @@
 import React from "react";
 import { graphql } from "gatsby";
-import get from "lodash/get";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faLinkedinIn,
@@ -26,12 +25,13 @@ import {
   faMapMarkedAlt,
   faFillDrip,
   faSmile,
+  faLongArrowRight,
 } from "@fortawesome/pro-regular-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import SEO from "../components/seo";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
-import ArticlePreview from "../components/article-preview";
+import LatestPosts from "../components/latestPosts";
 
 library.add(
   faLinkedinIn,
@@ -50,55 +50,21 @@ library.add(
   fasBookmark,
   falBookmark,
   faSmile,
-  faBadgeCheck
+  faBadgeCheck,
+  faLongArrowRight
 );
 
 const IndexPage = (props) => {
-  const posts = get(props, "data.allContentfulBlogPost.edges");
-
   return (
     <Layout>
       <SEO title="Home" />
       <GlobalStyle />
       <Hero />
-      <ul className="article-list">
-        {posts.map(({ node }) => {
-          return (
-            <li key={node.slug}>
-              <ArticlePreview article={node} />
-            </li>
-          );
-        })}
-      </ul>
-      {/* <Contact />
-    <Footer /> */}
+      <LatestPosts />
+      {/* <Contact /> */}
+      {/* <Footer /> */}
     </Layout>
   );
 };
 
 export default IndexPage;
-
-export const pageQuery = graphql`
-  query HomeQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
-      edges {
-        node {
-          title
-          slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
-        }
-      }
-    }
-  }
-`;

@@ -13,7 +13,7 @@ const useLatesPosts = () => {
               title
               body {
                 childMarkdownRemark {
-                  excerptAst(pruneLength: 180)
+                  excerpt(pruneLength: 280)
                   fields {
                     readingTime {
                       text
@@ -39,21 +39,10 @@ const useLatesPosts = () => {
   return allContentfulBlogPost.edges
     .map((edge) => edge.node)
     .map((post) => {
-      // doing this to remove heading from excerpt
-      const paragraphs = post.body.childMarkdownRemark?.excerptAst.children.filter(
-        (element) => element.tagName === "p"
-      );
-
-      let firstParagraph;
-
-      if (paragraphs.length) {
-        firstParagraph = paragraphs[0].children[0].value;
-      }
-
       return {
         ...post,
-        excerpt: firstParagraph,
-        readingTime: post.body.childMarkdownRemark?.fields.readingTime.text,
+        excerpt: post.body.childMarkdownRemark.excerpt,
+        readingTime: post.body.childMarkdownRemark.fields.readingTime.text,
       };
     });
 };

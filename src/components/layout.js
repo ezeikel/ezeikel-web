@@ -12,7 +12,13 @@ import { useStaticQuery, graphql } from "gatsby";
 import Header from "./header";
 
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Main = styled.main`
   display: grid;
+  grid-row-gap: var(--spacing-huge);
 `;
 
 const Layout = ({ children }) => {
@@ -29,9 +35,9 @@ const Layout = ({ children }) => {
   return (
     <Wrapper>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <main>{children}</main>
+      <Main>{children}</Main>
     </Wrapper>
-  )
+  );
 };
 
 Layout.propTypes = {

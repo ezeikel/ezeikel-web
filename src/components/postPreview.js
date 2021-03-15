@@ -41,11 +41,6 @@ const ReadMore = styled.div`
 const PostPreview = ({ post }) => (
   <Wrapper>
     <Title>{post.title}</Title>
-    <Excerpt
-      dangerouslySetInnerHTML={{
-        __html: post.description.childMarkdownRemark.html,
-      }}
-    />
     <Excerpt>{post.excerpt}</Excerpt>
     <ReadMore>
       <Link to={`/blog/${post.slug}`}>

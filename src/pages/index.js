@@ -1,5 +1,4 @@
 import React from "react";
-import { graphql } from "gatsby";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faLinkedinIn,
@@ -32,6 +31,8 @@ import SEO from "../components/seo";
 import Layout from "../components/layout";
 import Hero from "../components/hero";
 import LatestPosts from "../components/latestPosts";
+import Contact from "../components/contact";
+import Footer from "../components/footer";
 
 library.add(
   faLinkedinIn,
@@ -61,8 +62,8 @@ const IndexPage = (props) => {
       <GlobalStyle />
       <Hero />
       <LatestPosts />
-      {/* <Contact /> */}
-      {/* <Footer /> */}
+      <Contact />
+      <Footer />
     </Layout>
   );
 };

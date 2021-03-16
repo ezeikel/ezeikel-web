@@ -12,7 +12,7 @@ const Wrapper = styled.ul`
     @media (min-width: 768px) {
       &:hover {
         svg path {
-          fill: var(--color-primary);
+          fill: var(--color-white);
         }
       }
     }

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StaticImage } from "gatsby-plugin-image";
-import CommentForm from "./CommentForm";
+import CommentForm from "./commentForm";
 
 const Wrapper = styled.div`
   background-color: var(--color-white);

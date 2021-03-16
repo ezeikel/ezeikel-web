@@ -1,122 +1,77 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "gatsby";
+import { Formik, Form } from "formik";
+import * as Yup from "yup";
+import Button from "./button";
 import SocialLinks from "./socialLinks";
-import Logo from "./logo";
+import TextInput from "./textInput";
+
+const newsletterFormSchema = Yup.object().shape({
+  email: Yup.string(),
+});
 
 const Wrapper = styled.footer`
-  background-color: var(--color-footer);
+  display: flex;
+  flex-direction: column;
+  background-color: #333333;
   padding: var(--spacing-large);
-  display: grid;
-  grid-template-rows: auto 1fr auto auto;
-  grid-row-gap: var(--spacing-large);
   text-align: center;
-  form {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    grid-row-gap: var(--spacing-medium);
-    label {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--color-white);
-    }
-    input {
-      font-size: 18px;
-      padding: var(--spacing-medium);
-      border-radius: var(--border-radius);
-      border: 0;
-      outline: 0;
-    }
-    button {
-      background-color: var(--color-quaternary);
-      font-size: 16px;
-      padding: 16px;
-      color: var(--color-white);
-      font-weight: 500;
-      border-radius: var(--border-radius);
-      box-shadow: 0 3px 6px rgba(255,84, 85, 0.16);
-    }
-  }
-  @media (min-width: 768px) {
-    grid-template-rows: auto 1fr auto auto;
-    grid-template-columns: 1fr 2fr 1fr;
-    form {
-      grid-column: 2 / span 1;
-      grid-row: 2 / span 1;
-      display: grid;
-      grid-template-columns: 3fr 1fr;
-      grid-template-rows: auto 1fr;
-      grid-column-gap: var(--spacing-medium);
-      grid-row-gap: var(--spacing-large);
-      label {
-        grid-row: 1 / span 1;
-        grid-column: 1 / -1;
-      }
-      input {
-        grid-column: 1 / span 1;
-      }
-      button {
-        grid-column: 2 / -1;
-      }
-    }
+  color: var(--color-white);
+  h1 {
+    font-family: var(--font-family-secondary);
+    font-size: 4.8rem;
+    font-weight: 700;
+    margin: 0 0 var(--spacing-large);
+    text-align: left;
   }
 `;
 
-const StyledLogo = styled(Logo)`
-  @media (min-width: 768px) {
-    grid-column: 1 / span 1;
-    grid-row: 1 / span 1;
-    text-align: left;
+const StyledForm = styled(Form)`
+  align-self: center;
+  margin-bottom: var(--spacing-large);
+  display: flex;
+  flex-direction: column;
+  max-width: 615px;
+  > div {
+    display: flex;
+    &:first-of-type {
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: var(--spacing-large);
+
+    }
+  }
+  .input {
+    flex: 1;
+  }
+  button {
+    flex: 1;
+    max-width: 160px;
+    margin-left: var(--spacing-medium);
   }
 `;
 
 const Follow = styled.section`
-  color: var(--color-white);
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-row-gap: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-large);
   span {
-    font-size: 18px;
-    font-weight: 600;
-  }
-  @media (min-width: 768px) {
-    grid-row: 3 / span 1;
-    grid-column: 1 / span 1;
-    text-align: left;
-    justify-content: start;
+    display: flex;
+    margin-bottom: var(--spacing-medium);
+    font-size: 2rem;
+    font-weight: 700;
   }
 `;
 
 const Copyright = styled.section`
-  display: grid;
-  grid-template-rows: repeat(2, auto);
-  grid-row-gap: var(--spacing-medium);
-  span {
-    &:first-of-type {
-      font-size: 16px;
-      color: var(--color-white);
-      span {
-        color: var(--color-red);
-      }
-    }
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.6rem;
+  > div {
     &:last-of-type {
-      font-size: 16px;
-      color: var(--color-white);
-    }
-  }
-  @media (min-width: 768px) {
-    grid-row: 4 / span 1;
-    grid-column: 1 / -1;
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: space-between;
-    grid-template-rows: 1fr;
-    span {
-      grid-column: 2 / -1;
-      grid-row: 1 / span 1;
-      &:nth-of-type(2) {
-        grid-column: 1 / span 1;
-        grid-row: 1 / span 1;
+      span {
+        color: var(--color-like);
       }
     }
   }
@@ -125,21 +80,38 @@ const Copyright = styled.section`
 const Footer = () => {
   return (
     <Wrapper>
-      <StyledLogo />
-      <form>
-        <label htmlFor="email">Subscribe to my Newsletter</label>
-        <input id="email" type="email" placeholder="kanye@yeezy.com" />
-        <button>Subscribe</button>
-      </form>
+      <h1>Ezeikel.</h1>
+      <Formik
+        initialValues={{ email: "" }}
+        validationSchema={newsletterFormSchema}
+        onSubmit={async (
+          { email },
+          { resetForm }
+        ) => {
+          console.log({ email });
+
+          resetForm();
+        }}
+      >
+        {() => (
+          <StyledForm>
+            <div>Subscribe to the mailing list and never miss a post.</div>
+            <div>
+              <TextInput name="email" type="email" placeholder="kanye@yeezy.com" className="input"/>
+              <Button type="submit" title="Send" />
+            </div>
+          </StyledForm>
+        )}
+      </Formik>
       <Follow>
         <span>Follow</span>
         <SocialLinks size="4x" fill="#9B9B9B" />
       </Follow>
       <Copyright>
-        <span>
+        <div>&copy; {new Date().getFullYear()} Ezeikel.</div>
+        <div>
           Made with <span>♡</span> in South London.
-        </span>
-        <span>&copy; 2020 Ezeikel. All rights reserved</span>
+        </div>
       </Copyright>
     </Wrapper>
   );

@@ -116,7 +116,7 @@ export default createGlobalStyle`
     font-weight: 300;
   }
 
-  textarea, input[type="textarea"] {
-    height: 160px;
+  textarea {
+    resize: none;
   }
   `;

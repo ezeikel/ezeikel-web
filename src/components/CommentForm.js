@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import TextInput from "./TextInput";
+import TextInput from "./textInput";
 
 const CommentFormSchema = Yup.object().shape({
   text: Yup.string(),

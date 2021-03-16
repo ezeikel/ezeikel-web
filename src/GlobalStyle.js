@@ -100,22 +100,6 @@ export default createGlobalStyle`
   .wf-loading {
     visibility: hidden;
   }
-  input, textarea {
-    font-size: var(--default);
-    color: var(--color-black);
-  }
-  input[type="text"], input[type="email"], input[type="tel"], input[type="date"], input[type="submit"], input[type="textarea"], textarea, select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    outline: 0;
-    border-radius: 0;
-    padding: var(--spacing-medium);
-    border: 1px solid #ECF0F1;
-    width: 100%;
-    font-weight: 300;
-  }
-
   textarea {
     resize: none;
   }

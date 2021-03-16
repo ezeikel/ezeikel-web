@@ -22,7 +22,9 @@ const Wrapper = styled.footer`
     font-size: 4.8rem;
     font-weight: 700;
     margin: 0 0 var(--spacing-large);
-    text-align: left;
+    @media (min-width: 768px) {
+      text-align: left;
+    }
   }
 `;
 
@@ -31,23 +33,32 @@ const StyledForm = styled(Form)`
   margin-bottom: var(--spacing-large);
   display: flex;
   flex-direction: column;
-  max-width: 615px;
+  width: 100%;
+  max-width: 874px;
   > div {
-    display: flex;
     &:first-of-type {
-      font-size: 2.5rem;
+      font-size: 2rem;
       font-weight: 400;
+      text-align: center;
       margin-bottom: var(--spacing-large);
-
+    }
+    &:nth-of-type(2) {
+      display: flex;
+      justify-content: center;
     }
   }
   .input {
     flex: 1;
+    max-width: 432px;
+    box-shadow: var(--spacing-box-shadow);
   }
   button {
-    flex: 1;
     max-width: 160px;
     margin-left: var(--spacing-medium);
+    box-shadow: var(--spacing-box-shadow);
+    @media (min-width: 768px) {
+      flex: 1;
+    }
   }
 `;
 
@@ -84,10 +95,7 @@ const Footer = () => {
       <Formik
         initialValues={{ email: "" }}
         validationSchema={newsletterFormSchema}
-        onSubmit={async (
-          { email },
-          { resetForm }
-        ) => {
+        onSubmit={async ({ email }, { resetForm }) => {
           console.log({ email });
 
           resetForm();
@@ -95,9 +103,14 @@ const Footer = () => {
       >
         {() => (
           <StyledForm>
-            <div>Subscribe to the mailing list and never miss a post.</div>
+            <div>Subscribe to the email list and never miss a post.</div>
             <div>
-              <TextInput name="email" type="email" placeholder="kanye@yeezy.com" className="input"/>
+              <TextInput
+                name="email"
+                type="email"
+                placeholder="kanye@yeezy.com"
+                className="input"
+              />
               <Button type="submit" title="Send" />
             </div>
           </StyledForm>
@@ -105,7 +118,7 @@ const Footer = () => {
       </Formik>
       <Follow>
         <span>Follow</span>
-        <SocialLinks size="4x" fill="#9B9B9B" />
+        <SocialLinks size="3x" fill="#9B9B9B" />
       </Follow>
       <Copyright>
         <div>&copy; {new Date().getFullYear()} Ezeikel.</div>

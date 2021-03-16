@@ -7,7 +7,7 @@ const Wrapper = styled.header`
   align-items: center;
   height: var(--header-height);
   padding: 0 var(--spacing-large);
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #777c9b;
   margin-bottom: var(--spacing-huge);
 `;

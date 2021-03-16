@@ -8,11 +8,16 @@ const Wrapper = styled.div`
   flex-direction: column;
   > div {
     display: flex;
+    flex: 1;
     input {
-      font-size: 2rem;
+      font-size: 1.6rem;
       padding: var(--spacing-medium);
       border-radius: var(--border-radius);
-      border: 1px solid #EFEFEF;
+      border: 1px solid #efefef;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
       outline: 0;
     }
     svg {
@@ -24,13 +29,14 @@ const Wrapper = styled.div`
 const Label = styled.label`
   display: flex;
   margin-bottom: var(--spacing-small);
+  font-size: 1.6rem;
 `;
 
 const TextInput = ({ label, leftIcon, rightIcon, className, ...props }) => {
   const [field, meta] = useField(props);
 
   return (
-    <Wrapper className={className}>
+    <Wrapper className={className + " input"}>
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
       <div>
         {leftIcon && (
@@ -39,11 +45,10 @@ const TextInput = ({ label, leftIcon, rightIcon, className, ...props }) => {
             color="var(--color-black)"
             size="2x"
             onClick={() => null}
-        />
+          />
         )}
         <input {...field} {...props} />
       </div>
-  
     </Wrapper>
   );
 };

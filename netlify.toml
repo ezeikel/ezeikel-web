@@ -1,9 +1,9 @@
 [[redirects]]
   from = "https://ezeikel.co.uk/*"
   to = "https://www.ezeikel.com/:splat"
-  status = 301!
+  status = 301
 
 [[redirects]]
   from = "https://ezeikel.dev/*"
   to = "https://www.ezeikel.com/:splat"
-  status = 301!
+  status = 301

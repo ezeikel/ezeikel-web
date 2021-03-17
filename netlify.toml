@@ -1,8 +1,20 @@
 [[redirects]]
+  from = "https://www.ezeikel.co.uk/*"
+  to = "https://www.ezeikel.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "https://ezeikel.co.uk/*"
   to = "https://www.ezeikel.com/:splat"
   status = 301
   force = true
+
+[[redirects]]
+  from = "https://www.ezeikel.dev/*"
+  to = "https://www.ezeikel.com/:splat"
+  status = 301
+    force = true
 
 [[redirects]]
   from = "https://ezeikel.dev/*"

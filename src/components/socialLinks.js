@@ -31,7 +31,7 @@ const SocialLinks = ({ className, size, fill }) => {
         </a>
       </li>
       <li>
-        <a href="https://github/ezeikel">
+        <a href="https://github.com/ezeikel">
           <FontAwesomeIcon icon={["fab", "github"]} color={fill} size={size} />
         </a>
       </li>

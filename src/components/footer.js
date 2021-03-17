@@ -50,12 +50,12 @@ const StyledForm = styled(Form)`
   .input {
     flex: 1;
     max-width: 432px;
-    box-shadow: var(--spacing-box-shadow);
+    box-shadow: var(--box-shadow);
   }
   button {
     max-width: 160px;
     margin-left: var(--spacing-medium);
-    box-shadow: var(--spacing-box-shadow);
+    box-shadow: var(--box-shadow);
     @media (min-width: 768px) {
       flex: 1;
     }

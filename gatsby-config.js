@@ -20,15 +20,6 @@ const typekitConfig = {
   },
 };
 
-const googleAnalyticsConfig = {
-  trackingId: process.env.GA_TRACKING_ID,
-  head: true,
-  // TODO: find out if this is required due to any privacy laws
-  // anonymize: true,
-  // respectDNT: true,
-  pageTransitionDelay: 0,
-};
-
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   host:
@@ -81,10 +72,6 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: googleAnalyticsConfig,
-    },
-    {
       resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [`gatsby-remark-reading-time`],
@@ -122,10 +109,6 @@ module.exports = {
       options: typekitConfig,
     },
     `gatsby-plugin-sitemap`,
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: googleAnalyticsConfig,
-    },
     `gatsby-plugin-preload-fonts`,
     {
       resolve: `gatsby-plugin-hotjar`,

@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
+import axios from "axios";
 import TextInput from "./textInput";
 import TextareaInput from "./textareaInput";
 import Button from "./button";
@@ -55,13 +56,13 @@ const Contact = () => {
         onSubmit={async ({ fullName, email, message }, { resetForm }) => {
           console.log({ fullName, email, message });
 
-          const resposne = await axios.post("/.netlify/functions/contact", {
+          const response = await axios.post("/.netlify/functions/contact", {
             fullName,
             email,
             message,
           });
 
-          console.log({ resposne });
+          console.log({ response });
 
           resetForm();
         }}

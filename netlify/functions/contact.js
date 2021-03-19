@@ -1,5 +1,17 @@
 const postmark = require("postmark");
 
+const createEmail = (text) => `
+  <div style="
+  border: 1px solid black;
+  padding: 20px;
+  font-family: sans-serif;
+  line-height: 2;
+  font-size: 20px;
+  ">
+    <p>${text}</p>
+  </div>
+`;
+
 exports.handler = async (event) => {
   const payload = JSON.parse(event.body);
   const { fullName, email, message } = payload;
@@ -10,16 +22,16 @@ exports.handler = async (event) => {
     message,
   });
 
-  // Send an email:
+  // send an email
   const client = new postmark.ServerClient(process.env.POSTMARK_TOKEN);
 
   try {
     const response = await client.sendEmail({
-      From: "hi@ezeikel.dev",
+      From: email,
       To: "hi@ezeikel.dev",
-      Subject: "Hello from Postmark",
-      HtmlBody: "<strong>Hello</strong> dear Postmark user.",
-      TextBody: "Hello from Postmark!",
+      Subject: `Enquiry via ezeikel.com from ${fullName}`,
+      HtmlBody: createEmail(message),
+      TextBody: message,
       MessageStream: "outbound",
     });
 

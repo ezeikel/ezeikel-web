@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { OutboundLink } from "gatsby-plugin-google-gtag";
 import Button from "./button";
 import InstagramCard from "./instagramCard";
 
@@ -71,9 +72,13 @@ const Hero = () => {
         <h3>I love solving problems with code and building beautiful UIs.</h3>
         <h4>
           Lead Web Engineer and JavaScript All-Rounder at{" "}
-          <a href="https://sparksapp.io" target="_blank" rel="noreferrer">
+          <OutboundLink
+            href="https://sparksapp.io"
+            target="_blank"
+            rel="noreferrer"
+          >
             Sparks
-          </a>
+          </OutboundLink>
         </h4>
         <ButtonsWrapper>
           <Button title="See my work" variant="outline" />

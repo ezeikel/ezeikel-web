@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { OutboundLink } from "gatsby-plugin-google-gtag";
 
 const Wrapper = styled.ul`
   display: flex;
@@ -26,32 +27,32 @@ const SocialLinks = ({ className, size, fill }) => {
   return (
     <Wrapper className={className}>
       <li>
-        <a href="https://twitter.com/ezeikel_">
+        <OutboundLink href="https://twitter.com/ezeikel_">
           <FontAwesomeIcon icon={["fab", "twitter"]} color={fill} size={size} />
-        </a>
+        </OutboundLink>
       </li>
       <li>
-        <a href="https://github.com/ezeikel">
+        <OutboundLink href="https://github.com/ezeikel">
           <FontAwesomeIcon icon={["fab", "github"]} color={fill} size={size} />
-        </a>
+        </OutboundLink>
       </li>
       <li>
-        <a href="https://www.linkedin.com/in/ezeikel-pemberton-5bb53728/">
+        <OutboundLink href="https://www.linkedin.com/in/ezeikel-pemberton-5bb53728/">
           <FontAwesomeIcon
             icon={["fab", "linkedin-in"]}
             color={fill}
             size={size}
           />
-        </a>
+        </OutboundLink>
       </li>
       <li>
-        <a href="https://www.instagram.com/ezeikel_">
+        <OutboundLink href="https://www.instagram.com/ezeikel_">
           <FontAwesomeIcon
             icon={["fab", "instagram"]}
             color={fill}
             size={size}
           />
-        </a>
+        </OutboundLink>
       </li>
     </Wrapper>
   );

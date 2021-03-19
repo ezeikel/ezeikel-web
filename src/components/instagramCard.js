@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StaticImage } from "gatsby-plugin-image";
+import { OutboundLink } from "gatsby-plugin-google-gtag";
 import CommentForm from "./commentForm";
 
 const Wrapper = styled.div`
@@ -147,9 +148,13 @@ export const InstagramCard = ({ className }) => {
             />
           </span>
           <span>
-            <a href="http://www.eggslut.com/" target="_blank" rel="noreferrer">
+            <OutboundLink
+              href="http://www.eggslut.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Eggslut
-            </a>
+            </OutboundLink>
           </span>
         </Details>
       </Header>

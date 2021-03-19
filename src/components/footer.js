@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+// import { trackCustomEvent } from "gatsby-plugin-google-analytics";
+import addToMailchimp from "gatsby-plugin-mailchimp";
 import Button from "./button";
 import SocialLinks from "./socialLinks";
 import TextInput from "./textInput";
 
 const newsletterFormSchema = Yup.object().shape({
-  email: Yup.string(),
+  email: Yup.string().email().required(),
 });
 
 const Wrapper = styled.footer`
@@ -95,13 +97,49 @@ const Footer = () => {
       <Formik
         initialValues={{ email: "" }}
         validationSchema={newsletterFormSchema}
-        onSubmit={async ({ email }, { resetForm }) => {
+        onSubmit={async (
+          { email },
+          { setSubmitting, setErrors, resetForm }
+        ) => {
           console.log({ email });
 
-          resetForm();
+          const listData = {};
+
+          try {
+            const result = await addToMailChimp(email, listData);
+
+            console.log({ result });
+
+            if (result.result === "error") {
+              // trackCustomEvent({
+              //   category: "Form",
+              //   action: "Fail",
+              //   label: "Signup",
+              // });
+
+              setSubmitting(false);
+            } else {
+              // trackCustomEvent({
+              //   category: "Form",
+              //   action: "Success",
+              //   label: "Signup",
+              // });
+
+              setSubmitting(false);
+              resetForm();
+            }
+          } catch (error) {
+            if (error.message === "Timeout") {
+              setErrors({
+                email:
+                  "Looks like you are using an ad blocking browser that's preventing this form from being submitted - please temporarily toggle off the 'Ads and trackers blocked' settings and then re-submit the form.",
+              });
+            }
+            setSubmitting(false);
+          }
         }}
       >
-        {() => (
+        {({ isSubmitting, errors }) => (
           <StyledForm>
             <div>Subscribe to the email list and never miss a post.</div>
             <div>
@@ -111,7 +149,7 @@ const Footer = () => {
                 placeholder="kanye@yeezy.com"
                 className="input"
               />
-              <Button type="submit" title="Send" />
+              <Button type="submit" title={isSubmitting ? "Sending" : "Send"} />
             </div>
           </StyledForm>
         )}

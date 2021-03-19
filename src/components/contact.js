@@ -8,9 +8,9 @@ import TextareaInput from "./textareaInput";
 import Button from "./button";
 
 const contactFormSchema = Yup.object().shape({
-  fullName: Yup.string(),
-  email: Yup.string(),
-  message: Yup.string(),
+  fullName: Yup.string().required(),
+  email: Yup.string().email().required(),
+  message: Yup.string().required(),
 });
 
 const Wrapper = styled.div`

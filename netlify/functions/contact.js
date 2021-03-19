@@ -9,8 +9,8 @@ exports.handler = async (event) => {
 
   try {
     client.sendEmail({
-      From: "sender@example.org",
-      To: "sender@example.org",
+      From: "hi@ezeikel.dev",
+      To: "hi@ezeikel.dev",
       Subject: "Hello from Postmark",
       HtmlBody: "<strong>Hello</strong> dear Postmark user.",
       TextBody: "Hello from Postmark!",

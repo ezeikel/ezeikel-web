@@ -4,11 +4,17 @@ exports.handler = async (event) => {
   const payload = JSON.parse(event.body);
   const { fullName, email, message } = payload;
 
+  console.log({
+    fullName,
+    email,
+    message,
+  });
+
   // Send an email:
   const client = new postmark.ServerClient(process.env.POSTMARK_TOKEN);
 
   try {
-    client.sendEmail({
+    const response = client.sendEmail({
       From: "hi@ezeikel.dev",
       To: "hi@ezeikel.dev",
       Subject: "Hello from Postmark",
@@ -16,6 +22,8 @@ exports.handler = async (event) => {
       TextBody: "Hello from Postmark!",
       MessageStream: "outbound",
     });
+
+    console.log({ response });
 
     return {
       statusCode: 200,

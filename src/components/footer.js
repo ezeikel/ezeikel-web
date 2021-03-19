@@ -129,6 +129,8 @@ const Footer = () => {
               resetForm();
             }
           } catch (error) {
+            console.error({ error });
+
             if (error.message === "Timeout") {
               setErrors({
                 email:

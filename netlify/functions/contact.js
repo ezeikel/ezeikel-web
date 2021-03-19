@@ -14,7 +14,7 @@ exports.handler = async (event) => {
   const client = new postmark.ServerClient(process.env.POSTMARK_TOKEN);
 
   try {
-    const response = client.sendEmail({
+    const response = await client.sendEmail({
       From: "hi@ezeikel.dev",
       To: "hi@ezeikel.dev",
       Subject: "Hello from Postmark",

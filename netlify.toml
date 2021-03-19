@@ -21,3 +21,6 @@
   to = "https://www.ezeikel.com/:splat"
   status = 301
     force = true
+
+[build]
+  functions = "netlify/functions"

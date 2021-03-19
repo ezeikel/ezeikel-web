@@ -55,6 +55,14 @@ const Contact = () => {
         onSubmit={async ({ fullName, email, message }, { resetForm }) => {
           console.log({ fullName, email, message });
 
+          const resposne = await axios.post("/.netlify/functions/contact", {
+            fullName,
+            email,
+            message,
+          });
+
+          console.log({ resposne });
+
           resetForm();
         }}
       >

@@ -11165,6 +11165,13 @@ postcss@^8.2.6:
     nanoid "^3.1.20"
     source-map "^0.6.1"
 
+postmark@^2.7.3:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/postmark/-/postmark-2.7.3.tgz#e699dd52794cbca8a0d22b9bdcf472fe4e5f9dbc"
+  integrity sha512-YQ6mngTBmX9x/s9E5cE2K8JwOeMNI2yfNlLLRdtM+WyxyrLJ8CuIqDRGa5hyngd7+P4bH34mKuy2CHeci8ViOQ==
+  dependencies:
+    axios "^0.21.1"
+
 potrace@^2.1.8:
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/potrace/-/potrace-2.1.8.tgz#50f6fba92e1e39ddef6f979b0a0f841809e0acf2"

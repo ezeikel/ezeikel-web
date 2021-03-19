@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 // import { trackCustomEvent } from "gatsby-plugin-google-analytics";
-import addToMailchimp from "gatsby-plugin-mailchimp";
 import Button from "./button";
 import SocialLinks from "./socialLinks";
 import TextInput from "./textInput";
+import addToMailchimp from "gatsby-plugin-mailchimp";
 
 const newsletterFormSchema = Yup.object().shape({
   email: Yup.string().email().required(),
@@ -106,7 +106,7 @@ const Footer = () => {
           const listData = {};
 
           try {
-            const result = await addToMailChimp(email, listData);
+            const result = await addToMailchimp(email, listData);
 
             console.log({ result });
 

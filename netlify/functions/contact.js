@@ -27,7 +27,7 @@ exports.handler = async (event) => {
 
   try {
     const response = await client.sendEmail({
-      From: "hi@ezeikel.dev",
+      From: "contact-form@ezeikel.dev",
       To: "hi@ezeikel.dev",
       Subject: `Enquiry via ezeikel.com from ${fullName} (${email})`,
       HtmlBody: createEmail(message),

@@ -56,13 +56,31 @@ const Contact = () => {
         onSubmit={async ({ fullName, email, message }, { resetForm }) => {
           console.log({ fullName, email, message });
 
-          const response = await axios.post("/.netlify/functions/contact", {
-            fullName,
-            email,
-            message,
-          });
+          try {
+            const response = await axios.post("/.netlify/functions/contact", {
+              fullName,
+              email,
+              message,
+            });
 
-          console.log({ response });
+            console.log({ response });
+
+            typeof window !== "undefined" &&
+              window.gtag("event", "contact_form_submit_success", {
+                fullName,
+                email,
+                message,
+              });
+          } catch (error) {
+            console.error({ error });
+
+            typeof window !== "undefined" &&
+              window.gtag("event", "contact_form_submit_fail", {
+                fullName,
+                email,
+                message,
+              });
+          }
 
           resetForm();
         }}

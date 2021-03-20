@@ -117,19 +117,26 @@ const Footer = () => {
               //   label: "Signup",
               // });
 
-              setSubmitting(false);
+              // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
+
+              typeof window !== "undefined" &&
+                window.gtag("event", "email_list_signup_fail", { email });
             } else {
               // trackCustomEvent({
               //   category: "Form",
               //   action: "Success",
               //   label: "Signup",
               // });
+              typeof window !== "undefined" &&
+                window.gtag("event", "email_list_signup_success", { email });
 
-              setSubmitting(false);
               resetForm();
             }
           } catch (error) {
             console.error({ error });
+
+            typeof window !== "undefined" &&
+              window.gtag("event", "email_list_signup_fail", { email });
 
             if (error.message === "Timeout") {
               setErrors({
@@ -137,6 +144,7 @@ const Footer = () => {
                   "Looks like you are using an ad blocking browser that's preventing this form from being submitted - please temporarily toggle off the 'Ads and trackers blocked' settings and then re-submit the form.",
               });
             }
+          } finally {
             setSubmitting(false);
           }
         }}

@@ -1,5 +1,4 @@
 require("dotenv").config();
-const path = require(`path`);
 
 const sentryConfig = {
   dsn: process.env.SENTRY_DSN,
@@ -82,7 +81,7 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: path.join(__dirname, `src`, `images`),
+        path: `${__dirname}/src/images`,
       },
     },
     `gatsby-plugin-image`,

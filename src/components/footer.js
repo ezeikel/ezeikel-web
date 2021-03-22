@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-// import { trackCustomEvent } from "gatsby-plugin-google-analytics";
 import Button from "./button";
 import SocialLinks from "./socialLinks";
 import TextInput from "./textInput";
@@ -101,8 +100,6 @@ const Footer = () => {
           { email },
           { setSubmitting, setErrors, resetForm }
         ) => {
-          console.log({ email });
-
           const listData = {};
 
           try {
@@ -111,22 +108,11 @@ const Footer = () => {
             console.log({ result });
 
             if (result.result === "error") {
-              // trackCustomEvent({
-              //   category: "Form",
-              //   action: "Fail",
-              //   label: "Signup",
-              // });
-
-              // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
-
+              // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
               typeof window !== "undefined" &&
                 window.gtag("event", "email_list_signup_fail", { email });
             } else {
-              // trackCustomEvent({
-              //   category: "Form",
-              //   action: "Success",
-              //   label: "Signup",
-              // });
+              // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
               typeof window !== "undefined" &&
                 window.gtag("event", "email_list_signup_success", { email });
 

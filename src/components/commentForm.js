@@ -31,6 +31,7 @@ const CommentForm = () => {
       initialValues={{ text: "" }}
       validationSchema={CommentFormSchema}
       onSubmit={({ text }, { resetForm }) => {
+        // TODO: take text put it inside message input in contact form
         console.log({ text });
 
         resetForm();

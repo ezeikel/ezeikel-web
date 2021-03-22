@@ -35,8 +35,6 @@ const Title = styled.h2`
 const LatestPosts = () => {
   const posts = useLatesPosts();
 
-  console.log({ posts });
-
   return (
     <Wrapper>
       <Title>Posts</Title>

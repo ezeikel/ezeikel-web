@@ -54,16 +54,12 @@ const Contact = () => {
         initialValues={{ fullName: "", email: "", message: "" }}
         validationSchema={contactFormSchema}
         onSubmit={async ({ fullName, email, message }, { resetForm }) => {
-          console.log({ fullName, email, message });
-
           try {
             const response = await axios.post("/.netlify/functions/contact", {
               fullName,
               email,
               message,
             });
-
-            console.log({ response });
 
             typeof window !== "undefined" &&
               window.gtag("event", "contact_form_submit_success", {

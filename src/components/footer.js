@@ -1,15 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import Button from "./button";
+import SubscribeForm from "./subscribeForm";
 import SocialLinks from "./socialLinks";
-import TextInput from "./textInput";
-import addToMailchimp from "gatsby-plugin-mailchimp";
-
-const newsletterFormSchema = Yup.object().shape({
-  email: Yup.string().email().required(),
-});
 
 const Wrapper = styled.footer`
   display: flex;
@@ -18,6 +10,7 @@ const Wrapper = styled.footer`
   padding: var(--spacing-large);
   text-align: center;
   color: var(--color-white);
+  margin-top: var(--spacing-huge);
   h1 {
     font-family: var(--font-family-secondary);
     font-size: 4.8rem;
@@ -25,40 +18,6 @@ const Wrapper = styled.footer`
     margin: 0 0 var(--spacing-large);
     @media (min-width: 768px) {
       text-align: left;
-    }
-  }
-`;
-
-const StyledForm = styled(Form)`
-  align-self: center;
-  margin-bottom: var(--spacing-large);
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 874px;
-  > div {
-    &:first-of-type {
-      font-size: 2rem;
-      font-weight: 400;
-      text-align: center;
-      margin-bottom: var(--spacing-large);
-    }
-    &:nth-of-type(2) {
-      display: flex;
-      justify-content: center;
-    }
-  }
-  .input {
-    flex: 1;
-    max-width: 432px;
-    box-shadow: var(--box-shadow);
-  }
-  button {
-    max-width: 160px;
-    margin-left: var(--spacing-medium);
-    box-shadow: var(--box-shadow);
-    @media (min-width: 768px) {
-      flex: 1;
     }
   }
 `;
@@ -93,63 +52,7 @@ const Footer = () => {
   return (
     <Wrapper>
       <h1>Ezeikel.</h1>
-      <Formik
-        initialValues={{ email: "" }}
-        validationSchema={newsletterFormSchema}
-        onSubmit={async (
-          { email },
-          { setSubmitting, setErrors, resetForm }
-        ) => {
-          const listData = {};
-
-          try {
-            const result = await addToMailchimp(email, listData);
-
-            console.log({ result });
-
-            if (result.result === "error") {
-              // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
-              typeof window !== "undefined" &&
-                window.gtag("event", "email_list_signup_fail", { email });
-            } else {
-              // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
-              typeof window !== "undefined" &&
-                window.gtag("event", "email_list_signup_success", { email });
-
-              resetForm();
-            }
-          } catch (error) {
-            console.error({ error });
-
-            typeof window !== "undefined" &&
-              window.gtag("event", "email_list_signup_fail", { email });
-
-            if (error.message === "Timeout") {
-              setErrors({
-                email:
-                  "Looks like you are using an ad blocking browser that's preventing this form from being submitted - please temporarily toggle off the 'Ads and trackers blocked' settings and then re-submit the form.",
-              });
-            }
-          } finally {
-            setSubmitting(false);
-          }
-        }}
-      >
-        {({ isSubmitting, errors }) => (
-          <StyledForm>
-            <div>Subscribe to the email list and never miss a post.</div>
-            <div>
-              <TextInput
-                name="email"
-                type="email"
-                placeholder="kanye@yeezy.com"
-                className="input"
-              />
-              <Button type="submit" title={isSubmitting ? "Sending" : "Send"} />
-            </div>
-          </StyledForm>
-        )}
-      </Formik>
+      <SubscribeForm />
       <Follow>
         <span>Follow</span>
         <SocialLinks size="3x" fill="#9B9B9B" />

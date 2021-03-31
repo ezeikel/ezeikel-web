@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "gatsby";
 import styled from "styled-components";
 
 const Wrapper = styled.header`
@@ -7,9 +8,11 @@ const Wrapper = styled.header`
   align-items: center;
   height: var(--header-height);
   padding: 0 var(--spacing-large);
-  font-size: 2.5rem;
-  color: #777c9b;
   margin-bottom: var(--spacing-huge);
+  a {
+    font-size: 2.5rem;
+    color: #777c9b;
+  }
 `;
 
 const Nav = styled.nav`
@@ -25,13 +28,23 @@ const Nav = styled.nav`
 
 const Header = () => (
   <Wrapper>
-    <div>Hello</div>
+    <div>
+      <Link to="/">Hello</Link>
+    </div>
     <Nav>
       <ul>
-        {/* <li>Work</li>
-        <li>About</li> */}
-        <li>Blog</li>
-        {/* <li>Speaking</li> */}
+        {/* <li>
+          <Link to="/work">Work</Link>
+        </li> */}
+        {/* <li>
+          <Link to="/about">About</Link>
+        </li> */}
+        <li>
+          <Link to="/blog">Blog</Link>
+        </li>
+        {/* <li>
+          <Link to="/speaking">Speaking</Link>
+        </li> */}
       </ul>
     </Nav>
   </Wrapper>

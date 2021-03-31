@@ -4,7 +4,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextInput from "./textInput";
 
-const CommentFormSchema = Yup.object().shape({
+const commentFormSchema = Yup.object().shape({
   text: Yup.string(),
 });
 
@@ -29,7 +29,7 @@ const CommentForm = () => {
   return (
     <Formik
       initialValues={{ text: "" }}
-      validationSchema={CommentFormSchema}
+      validationSchema={commentFormSchema}
       onSubmit={({ text }, { resetForm }) => {
         // TODO: take text put it inside message input in contact form
         console.log({ text });

@@ -1,42 +1,82 @@
-/**
- * Layout component that queries for data
- * with Gatsby's useStaticQuery component
- *
- * See: https://www.gatsbyjs.org/docs/use-static-query/
- */
-
 import React from "react";
-import styled from "styled-components";
 import PropTypes from "prop-types";
-import { useStaticQuery, graphql } from "gatsby";
+import styled from "styled-components";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+  faLinkedinIn,
+  faInstagram,
+  faGithub,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faBadgeCheck,
+  faHeart as fasHeart,
+  faBookmark as fasBookmark,
+} from "@fortawesome/pro-solid-svg-icons";
+import {
+  faComment,
+  faPaperPlane,
+  faHeart as falHeart,
+  faBookmark as falBookmark,
+} from "@fortawesome/pro-light-svg-icons";
+import {
+  faTablet,
+  faBrowser,
+  faMobile,
+  faMapMarkedAlt,
+  faFillDrip,
+  faSmile,
+  faLongArrowRight,
+} from "@fortawesome/pro-regular-svg-icons";
+import GlobalStyle from "../GlobalStyle";
+import SEO from "./seo";
 import Header from "./header";
+import Footer from "./footer";
+
+library.add(
+  faLinkedinIn,
+  faInstagram,
+  faGithub,
+  faTwitter,
+  faTablet,
+  faBrowser,
+  faMobile,
+  faMapMarkedAlt,
+  faFillDrip,
+  faPaperPlane,
+  faComment,
+  falHeart,
+  fasHeart,
+  fasBookmark,
+  falBookmark,
+  faSmile,
+  faBadgeCheck,
+  faLongArrowRight
+);
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 `;
 
 const Main = styled.main`
   display: grid;
   grid-row-gap: var(--spacing-huge);
+  flex: 1;
 `;
 
-const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `);
-
+const Layout = ({ pageTitle, children }) => {
   return (
-    <Wrapper>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      <Main>{children}</Main>
-    </Wrapper>
+    <>
+      <SEO title={pageTitle} />
+      <GlobalStyle />
+      <Wrapper>
+        <Header />
+        <Main>{children}</Main>
+        <Footer />
+      </Wrapper>
+    </>
   );
 };
 

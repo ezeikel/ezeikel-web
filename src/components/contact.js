@@ -61,6 +61,8 @@ const Contact = () => {
               message,
             });
 
+            console.log({ response });
+
             typeof window !== "undefined" &&
               window.gtag("event", "contact_form_submit_success", {
                 fullName,

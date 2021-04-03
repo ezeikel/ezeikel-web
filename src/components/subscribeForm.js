@@ -18,9 +18,6 @@ const StyledForm = styled(Form)`
   flex-direction: column;
   width: 100%;
   max-width: 874px;
-  @media (min-width: 768px) {
-    margin-bottom: var(--spacing-medium);
-  }
   > div {
     &:first-of-type {
       font-size: 2rem;

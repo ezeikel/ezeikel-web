@@ -28,15 +28,6 @@ const Follow = styled.section`
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: var(--spacing-large);
-  span {
-    display: flex;
-    margin-bottom: var(--spacing-medium);
-    font-size: 2rem;
-    font-weight: 700;
-    @media (min-width: 768px) {
-      margin-bottom: var(--spacing-small);
-    }
-  }
 `;
 
 const Copyright = styled.section`
@@ -58,7 +49,6 @@ const Footer = () => {
       <h1>Ezeikel.</h1>
       <SubscribeForm />
       <Follow>
-        <span>Follow</span>
         <SocialLinks size="3x" fill="#9B9B9B" />
       </Follow>
       <Copyright>

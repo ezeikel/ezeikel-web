@@ -7,7 +7,6 @@ import InstagramCard from "./instagramCard";
 const Wrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  /* padding: 0 var(--spacing-large); */
   margin-top: -64px;
   > section {
     margin-top: 64px;

@@ -36,15 +36,11 @@ const useLatesPosts = () => {
     `
   );
 
-  return allContentfulBlogPost.edges
-    .map((edge) => edge.node)
-    .map((post) => {
-      return {
-        ...post,
-        excerpt: post.body.childMarkdownRemark.excerpt,
-        readingTime: post.body.childMarkdownRemark.fields.readingTime.text,
-      };
-    });
+  return allContentfulBlogPost.edges.map((edge) => ({
+    ...edge.node,
+    excerpt: edge.node.body.childMarkdownRemark.excerpt,
+    readingTime: edge.node.body.childMarkdownRemark.fields.readingTime.text,
+  }));
 };
 
 export default useLatesPosts;

@@ -7,7 +7,6 @@ import PostPreview from "./postPreview";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* padding: 0 var(--spacing-large); */
 
   ul {
     display: grid;

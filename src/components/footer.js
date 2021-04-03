@@ -18,6 +18,7 @@ const Wrapper = styled.footer`
     margin: 0 0 var(--spacing-large);
     @media (min-width: 768px) {
       text-align: left;
+      margin: 0 0 var(--spacing-medium);
     }
   }
 `;
@@ -32,6 +33,9 @@ const Follow = styled.section`
     margin-bottom: var(--spacing-medium);
     font-size: 2rem;
     font-weight: 700;
+    @media (min-width: 768px) {
+      margin-bottom: var(--spacing-small);
+    }
   }
 `;
 

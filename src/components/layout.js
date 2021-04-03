@@ -7,6 +7,7 @@ import {
   faInstagram,
   faGithub,
   faTwitter,
+  faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
 import {
   faBadgeCheck,
@@ -38,6 +39,7 @@ library.add(
   faInstagram,
   faGithub,
   faTwitter,
+  faYoutube,
   faTablet,
   faBrowser,
   faMobile,

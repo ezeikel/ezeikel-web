@@ -18,6 +18,9 @@ const StyledForm = styled(Form)`
   flex-direction: column;
   width: 100%;
   max-width: 874px;
+  @media (min-width: 768px) {
+    margin-bottom: var(--spacing-medium);
+  }
   > div {
     &:first-of-type {
       font-size: 2rem;
@@ -27,8 +30,23 @@ const StyledForm = styled(Form)`
     }
     &:nth-of-type(2) {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
+      margin-left: calc(-1 * var(--spacing-medium));
+      margin-top: calc(-1 * var(--spacing-medium));
+      > div,
+      > button {
+        margin-left: var(--spacing-medium);
+        margin-top: var(--spacing-medium);
+      }
       > div {
+        flex: 2 0 auto;
+      }
+      > button {
+        flex: 1 0 auto;
+      }
+      /* > div {
+        flex: 1;
         display: flex;
         flex-wrap: wrap;
         .input {
@@ -40,7 +58,7 @@ const StyledForm = styled(Form)`
             margin-left: var(--spacing-medium);
           }
         }
-      }
+      } */
     }
   }
   button {
@@ -112,20 +130,12 @@ const SubscribeForm = () => {
         <StyledForm>
           <div>Join the email list and never miss a post.</div>
           <div>
-            <div>
-              <TextInput
-                name="firstName"
-                type="text"
-                placeholder="Kanye"
-                className="input"
-              />
-              <TextInput
-                name="email"
-                type="email"
-                placeholder="kanye@yeezy.com"
-                className="input"
-              />
-            </div>
+            <TextInput name="firstName" type="text" placeholder="Kanye" />
+            <TextInput
+              name="email"
+              type="email"
+              placeholder="kanye@yeezy.com"
+            />
             <Button type="submit" title={isSubmitting ? "Joining" : "Join"} />
           </div>
         </StyledForm>

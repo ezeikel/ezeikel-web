@@ -12,6 +12,7 @@ const Wrapper = styled.div`
 
 const Heading = styled.h1`
   font-size: 6.1rem;
+  line-height: 54px;
   font-family: var(--font-family-tertiary);
   font-weight: 500;
   text-align: center;

@@ -44,7 +44,7 @@ module.exports = {
     title: `Ezeikel - Software Engineer`,
     description: ``,
     author: `@ezeikel`,
-    siteUrl: `https://ezeikel.dev`,
+    siteUrl: `https://ezeikel.com`,
   },
   plugins: [
     {

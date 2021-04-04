@@ -49,7 +49,10 @@ const SocialLinks = ({ className, size, fill }) => {
         </OutboundLink>
       </li>
       <li>
-        <OutboundLink href="https://www.linkedin.com/in/ezeikel-pemberton-5bb53728/">
+        <OutboundLink
+          href="https://www.linkedin.com/in/ezeikel-pemberton-5bb53728/"
+          target="_blank"
+        >
           <FontAwesomeIcon
             icon={["fab", "linkedin-in"]}
             color={fill}

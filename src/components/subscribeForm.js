@@ -77,13 +77,18 @@ const SubscribeForm = () => {
         { fullName, email },
         { setSubmitting, setErrors, resetForm }
       ) => {
-        // TODO: add first name here
-        const listData = {};
+        const [firstName, lastName] = fullName.trim().split(" ");
+
+        const listData = {
+          FNAME: firstName,
+          LNAME: lastName,
+        };
 
         try {
-          const result = await addToMailchimp(email, listData);
-
-          console.log({ result });
+          const result = await addToMailchimp(
+            email.toLocaleLowerCase(),
+            listData
+          );
 
           if (result.result === "error") {
             // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
@@ -104,12 +109,6 @@ const SubscribeForm = () => {
           }
         } catch (error) {
           console.error({ error });
-
-          typeof window !== "undefined" &&
-            window.gtag("event", "email_list_signup_fail", {
-              fullName,
-              email,
-            });
 
           if (error.message === "Timeout") {
             // TODO: should be generic error instead of email

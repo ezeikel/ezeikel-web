@@ -6,7 +6,7 @@ import Contact from "../components/contact";
 
 const IndexPage = () => {
   return (
-    <Layout pageTitle="Home">
+    <Layout pageTitle="">
       <Hero />
       <LatestPosts />
       <Contact />

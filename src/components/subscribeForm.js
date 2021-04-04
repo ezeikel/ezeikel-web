@@ -7,7 +7,7 @@ import addToMailchimp from "gatsby-plugin-mailchimp";
 import Button from "./button";
 
 const subsribeFormSchema = Yup.object().shape({
-  firstName: Yup.string().required(),
+  fullName: Yup.string().required(),
   email: Yup.string().email().required(),
 });
 
@@ -71,10 +71,10 @@ const StyledForm = styled(Form)`
 const SubscribeForm = () => {
   return (
     <Formik
-      initialValues={{ firstName: "", email: "" }}
+      initialValues={{ fullName: "", email: "" }}
       validationSchema={subsribeFormSchema}
       onSubmit={async (
-        { firstName, email },
+        { fullName, email },
         { setSubmitting, setErrors, resetForm }
       ) => {
         // TODO: add first name here
@@ -89,14 +89,14 @@ const SubscribeForm = () => {
             // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
             typeof window !== "undefined" &&
               window.gtag("event", "email_list_signup_fail", {
-                firstName,
+                fullName,
                 email,
               });
           } else {
             // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
             typeof window !== "undefined" &&
               window.gtag("event", "email_list_signup_success", {
-                firstName,
+                fullName,
                 email,
               });
 
@@ -107,7 +107,7 @@ const SubscribeForm = () => {
 
           typeof window !== "undefined" &&
             window.gtag("event", "email_list_signup_fail", {
-              firstName,
+              fullName,
               email,
             });
 
@@ -127,7 +127,7 @@ const SubscribeForm = () => {
         <StyledForm>
           <div>Join the email list and never miss a post.</div>
           <div>
-            <TextInput name="firstName" type="text" placeholder="Kanye" />
+            <TextInput name="fullName" type="text" placeholder="Kanye West" />
             <TextInput
               name="email"
               type="email"

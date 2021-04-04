@@ -10,7 +10,7 @@ const Wrapper = styled.header`
   padding: 0 var(--spacing-large);
   margin-bottom: var(--spacing-huge);
   a {
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #777c9b;
   }
 `;

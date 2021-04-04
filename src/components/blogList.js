@@ -1,5 +1,6 @@
 import React from "react";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { Link } from "gatsby";
+import { GatsbyImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 
 const Wrapper = styled.ul`
@@ -38,7 +39,7 @@ const BlogList = ({ posts }) => {
     <Wrapper>
       {posts.map((post) => (
         <li>
-          <div>
+          <Link to={post.slug}>
             <ImageWrapper>
               <GatsbyImage
                 image={post.heroImage}
@@ -53,7 +54,7 @@ const BlogList = ({ posts }) => {
               <h3>{post.title}</h3>
               <p>{post.description}</p>
             </div>
-          </div>
+          </Link>
         </li>
       ))}
     </Wrapper>

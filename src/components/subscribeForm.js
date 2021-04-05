@@ -84,6 +84,11 @@ const SubscribeForm = () => {
           LNAME: lastName,
         };
 
+        // remove undefined properties
+        Object.keys(listData).forEach((key) =>
+          listData[key] === undefined ? delete listData[key] : {}
+        );
+
         try {
           const result = await addToMailchimp(
             email.toLocaleLowerCase(),

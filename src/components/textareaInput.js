@@ -1,4 +1,3 @@
-import React from "react";
 import { useField } from "formik";
 import styled from "styled-components";
 import TextareaAutosize from "react-textarea-autosize";
@@ -26,11 +25,12 @@ const Label = styled.label`
 `;
 
 const TextInput = ({ label, className, ...props }) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
 
   return (
-    <Wrapper className={className + " input"}>
+    <Wrapper className={`input ${className}`}>
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       <TextareaAutosize {...field} {...props} minRows={4} />
     </Wrapper>
   );

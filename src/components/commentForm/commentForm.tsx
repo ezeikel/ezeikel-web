@@ -1,29 +1,11 @@
-import React from "react";
-import styled from "styled-components";
-import { Formik, Form } from "formik";
+import { Formik } from "formik";
 import * as Yup from "yup";
-import TextInput from "./textInput";
+import TextInput from "../textInput";
+import { StyledForm } from "./commentForm.styled";
 
 const commentFormSchema = Yup.object().shape({
   text: Yup.string(),
 });
-
-const StyledForm = styled(Form)`
-  .text-input {
-    border: 1px solid #dbdbdb;
-    border-bottom-left-radius: var(--border-radius);
-    border-bottom-right-radius: var(--border-radius);
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 0;
-    padding: var(--spacing-medium);
-    input {
-      font-size: 1.6rem;
-      border: 0;
-      padding: 0;
-    }
-  }
-`;
 
 const CommentForm = () => {
   return (
@@ -32,7 +14,7 @@ const CommentForm = () => {
       validationSchema={commentFormSchema}
       onSubmit={({ text }, { resetForm }) => {
         // TODO: take text put it inside message input in contact form
-        console.log({ text });
+        console.log({ text }); // eslint-disable-line
 
         resetForm();
       }}

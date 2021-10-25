@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { OutboundLink } from "gatsby-plugin-google-gtag";

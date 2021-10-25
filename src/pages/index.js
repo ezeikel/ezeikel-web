@@ -1,8 +1,7 @@
-import React from "react";
 import Layout from "../components/layout";
-import Hero from "../components/hero";
+import Hero from "../components/hero/hero";
 import LatestPosts from "../components/latestPosts";
-import Contact from "../components/contact";
+import Contact from "../components/contact/contact";
 
 const IndexPage = () => {
   return (

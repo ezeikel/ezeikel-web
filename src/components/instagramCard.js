@@ -1,22 +1,14 @@
-import React, { useState } from "react";
-// import { navigate } from "gatsby";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StaticImage } from "gatsby-plugin-image";
 import { OutboundLink } from "gatsby-plugin-google-gtag";
-import CommentForm from "./commentForm";
+import CommentForm from "./commentForm/commentForm";
 
 const Wrapper = styled.div`
   background-color: var(--color-white);
   border-radius: var(--border-radius);
   border: 1px solid #dbdbdb;
-  /* box-shadow:
-    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
-    0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
-    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-    0 100px 80px rgba(0, 0, 0, 0.12) */
 `;
 
 const Header = styled.header`
@@ -114,10 +106,18 @@ const Footer = styled.footer`
   padding: var(--spacing-medium);
 `;
 
-export const InstagramCard = ({ className }) => {
+const InstagramCard = ({ className }) => {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const [likes, setLikes] = useState(87267);
+
+  useEffect(() => {
+    if (liked) {
+      setLikes((currentlikes) => currentlikes - 1);
+    } else {
+      setLikes((currentlikes) => currentlikes + 1);
+    }
+  }, [liked]);
 
   return (
     <Wrapper className={className}>
@@ -178,14 +178,7 @@ export const InstagramCard = ({ className }) => {
               icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
               color={`var(--color-${liked ? "like" : "black"})`}
               size="2x"
-              onClick={() => {
-                setLiked((liked) => !liked);
-                if (liked) {
-                  setLikes((likes) => likes - 1);
-                } else {
-                  setLikes((likes) => likes + 1);
-                }
-              }}
+              onClick={() => setLiked((currentLiked) => !currentLiked)}
             />
             <FontAwesomeIcon
               icon={["fal", "comment"]}
@@ -203,7 +196,9 @@ export const InstagramCard = ({ className }) => {
             icon={bookmarked ? ["fas", "bookmark"] : ["fal", "bookmark"]}
             color="var(--color-black)"
             size="2x"
-            onClick={() => setBookmarked((bookmarked) => !bookmarked)}
+            onClick={() =>
+              setBookmarked((currentBookmarked) => !currentBookmarked)
+            }
           />
         </Actions>
         <div>

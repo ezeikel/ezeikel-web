@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+/* eslint-disable import/prefer-default-export */
+
 import styled from "styled-components";
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -63,17 +64,3 @@ const Wrapper = styled.div`
     }};
   }
 `;
-
-const Hamburger = () => {
-  const [active, setActive] = useState(false);
-
-  return (
-    <Wrapper onClick={() => setActive(!active)} active={active}>
-      <span></span>
-      <span></span>
-      <span></span>
-    </Wrapper>
-  );
-};
-
-export default Hamburger;

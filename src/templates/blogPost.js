@@ -1,4 +1,3 @@
-import React from "react";
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Helmet } from "react-helmet";
@@ -76,13 +75,13 @@ const Body = styled.div`
 `;
 
 const BlogPost = ({ data }) => {
-  console.log({ data });
-
-  const title = data.contentfulBlogPost.title;
-  const body = data.contentfulBlogPost.body.childMarkdownRemark.html;
+  const {
+    title,
+    body: {
+      childMarkdownRemark: { html: body },
+    },
+  } = data.contentfulBlogPost;
   const heroImage = getImage(data.contentfulBlogPost.heroImage);
-  // const publishDate = data.contentfulBlogPost.publishDate;
-  // const tags = data.contentfulBlogPost.tags;
 
   return (
     <Layout>

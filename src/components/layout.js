@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -31,8 +30,8 @@ import {
 } from "@fortawesome/pro-regular-svg-icons";
 import GlobalStyle from "../GlobalStyle";
 import SEO from "./seo";
-import Header from "./header";
-import Footer from "./footer";
+import Header from "./header/header";
+import Footer from "./footer/footer";
 
 library.add(
   faLinkedinIn,
@@ -53,7 +52,7 @@ library.add(
   falBookmark,
   faSmile,
   faBadgeCheck,
-  faLongArrowRight
+  faLongArrowRight,
 );
 
 const Wrapper = styled.div`

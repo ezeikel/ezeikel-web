@@ -1,9 +1,6 @@
-import React from "react";
 import styled from "styled-components";
-import SubscribeForm from "./subscribeForm";
-import SocialLinks from "./socialLinks";
 
-const Wrapper = styled.footer`
+export const Wrapper = styled.footer`
   display: flex;
   flex-direction: column;
   background-color: #333333;
@@ -23,14 +20,14 @@ const Wrapper = styled.footer`
   }
 `;
 
-const Follow = styled.section`
+export const Follow = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: var(--spacing-large);
 `;
 
-const Copyright = styled.section`
+export const Copyright = styled.section`
   display: flex;
   justify-content: space-between;
   font-size: 1.6rem;
@@ -42,23 +39,3 @@ const Copyright = styled.section`
     }
   }
 `;
-
-const Footer = () => {
-  return (
-    <Wrapper>
-      <h1>Ezeikel.</h1>
-      <SubscribeForm />
-      <Follow>
-        <SocialLinks size="3x" fill="#9B9B9B" />
-      </Follow>
-      <Copyright>
-        <div>&copy; {new Date().getFullYear()} Ezeikel.</div>
-        <div>
-          Made with <span>♡</span> in South London.
-        </div>
-      </Copyright>
-    </Wrapper>
-  );
-};
-
-export default Footer;

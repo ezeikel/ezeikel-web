@@ -35,7 +35,7 @@ const { spaceId, accessToken } = contentfulConfig;
 
 if (!spaceId || !accessToken) {
   throw new Error(
-    "Contentful spaceId and the access token need to be provided."
+    "Contentful spaceId and the access token need to be provided.",
   );
 }
 
@@ -129,5 +129,13 @@ module.exports = {
       options: sentryConfig,
     },
     `gatsby-remark-reading-time`,
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
   ],
 };

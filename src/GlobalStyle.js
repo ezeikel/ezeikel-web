@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import styledNormalize from "styled-normalize";
 import { config, dom } from "@fortawesome/fontawesome-svg-core";
+
 config.autoAddCss = false;
 
 export default createGlobalStyle`

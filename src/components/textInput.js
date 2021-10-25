@@ -1,4 +1,3 @@
-import React from "react";
 import { useField } from "formik";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -33,10 +32,10 @@ const Label = styled.label`
 `;
 
 const TextInput = ({ label, leftIcon, rightIcon, className, ...props }) => {
-  const [field, meta] = useField(props);
+  const [field] = useField(props);
 
   return (
-    <Wrapper className={className + " input"}>
+    <Wrapper className={`input ${className}`}>
       {label && <Label htmlFor={props.id || props.name}>{label}</Label>}
       <div>
         {leftIcon && (
@@ -47,6 +46,7 @@ const TextInput = ({ label, leftIcon, rightIcon, className, ...props }) => {
             onClick={() => null}
           />
         )}
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <input {...field} {...props} />
       </div>
     </Wrapper>

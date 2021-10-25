@@ -1,7 +1,6 @@
-import React from "react";
 import styled from "styled-components";
 
-const Default = styled.button`
+export const Default = styled.button`
   border: none;
   cursor: pointer;
   background-color: var(--color-primary);
@@ -12,7 +11,7 @@ const Default = styled.button`
   font-weight: 500;
 `;
 
-const Outline = styled.button`
+export const Outline = styled.button`
   border: 2px solid var(--color-primary);
   cursor: pointer;
   background-color: var(--color-white);
@@ -22,12 +21,3 @@ const Outline = styled.button`
   font-size: 2rem;
   font-weight: 500;
 `;
-
-const Button = ({ title, variant, className }) =>
-  variant === "outline" ? (
-    <Outline className={className}>{title}</Outline>
-  ) : (
-    <Default className={className}>{title}</Default>
-  );
-
-export default Button;

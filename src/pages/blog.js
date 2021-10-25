@@ -1,9 +1,8 @@
-import React from "react";
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import styled from "styled-components";
 import Layout from "../components/layout";
-import BlogList from "../components/blogList";
+import BlogList from "../components/blogList/blogList";
 
 const Heading = styled.h1`
   font-size: 7.279rem;
@@ -22,13 +21,15 @@ const Subheading = styled.h2`
 
 const BlogPage = ({ data }) => {
   const posts = data.allContentfulBlogPost.edges.map(({ node }) => {
-    const excerpt = node.body.childMarkdownRemark.excerpt;
-    const description = node.description.childMarkdownRemark.rawMarkdownBody;
-    const readingTime = node.body.childMarkdownRemark.fields.readingTime.text;
+    const {
+      excerpt,
+      rawMarkdownBody: description,
+      fields: {
+        readingTime: { text: readingTime },
+      },
+    } = node.body.childMarkdownRemark;
     const heroImage = getImage(node.heroImage);
-    const slug = node.slug;
-    const tags = node.tags;
-    const title = node.title;
+    const { slug, tags, title } = node;
 
     return {
       title,

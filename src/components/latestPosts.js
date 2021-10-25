@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
-import React from "react";
 import styled from "styled-components";
-import useLatesPosts from "../hooks/use-latest-posts";
+import useLatesPosts from "../hooks/useLatestPosts";
 import PostPreview from "./postPreview";
 
 const Wrapper = styled.div`

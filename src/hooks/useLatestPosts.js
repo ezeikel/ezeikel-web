@@ -33,7 +33,7 @@ const useLatesPosts = () => {
           }
         }
       }
-    `
+    `,
   );
 
   return allContentfulBlogPost.edges.map((edge) => ({

@@ -1,4 +1,11 @@
-.cache
+dist/
+.vscode/
+.gitignore
+*.yaml
+*.html
+*.log
+yarn.lock
 package.json
-package-lock.json
-public
+.eslintrc.js
+node_modules
+README.md

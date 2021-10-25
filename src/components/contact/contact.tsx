@@ -1,11 +1,10 @@
-import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import styled from "styled-components";
 import axios from "axios";
-import TextInput from "./textInput";
-import TextareaInput from "./textareaInput";
-import Button from "./button";
+import TextInput from "../textInput";
+import TextareaInput from "../textareaInput";
+import Button from "../button/button";
+import { Wrapper, Title } from "./contact.styled";
 
 const contactFormSchema = Yup.object().shape({
   fullName: Yup.string().required(),
@@ -13,71 +12,39 @@ const contactFormSchema = Yup.object().shape({
   message: Yup.string().required(),
 });
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  /* padding: 0 var(--spacing-large); */
-
-  form {
-    display: flex;
-    flex-direction: column;
-    max-width: 874px;
-    padding: var(--spacing-large);
-    box-shadow: var(--box-shadow);
-    border-radius: var(--border-radius);
-    > div {
-      margin-bottom: var(--spacing-huge);
-
-      .input + .input {
-        margin-top: var(--spacing-medium);
-      }
-    }
-    button {
-      max-width: 154px;
-    }
-  }
-`;
-
-const Title = styled.h2`
-  font-size: 7.279rem;
-  font-family: var(--font-family-secondary);
-  color: var(--color-primary);
-  margin: 0 0 var(--spacing-huge);
-`;
-
 const Contact = () => {
   return (
     <Wrapper>
-      <Title>Let's talk</Title>
+      <Title>Let&apo;s talk</Title>
       {/* <p>If you think I could help solve a problem or even if you just want to chat, feel free to shoot me a message.</p> */}
       <Formik
         initialValues={{ fullName: "", email: "", message: "" }}
         validationSchema={contactFormSchema}
         onSubmit={async ({ fullName, email, message }, { resetForm }) => {
           try {
-            const response = await axios.post("/.netlify/functions/contact", {
+            await axios.post("/.netlify/functions/contact", {
               fullName,
               email,
               message,
             });
 
-            console.log({ response });
+            if (typeof window === "undefined") {
+              return;
+            }
 
-            typeof window !== "undefined" &&
-              window.gtag("event", "contact_form_submit_success", {
-                fullName,
-                email,
-                message,
-              });
+            window.gtag("event", "contact_form_submit_success", {
+              fullName,
+              email,
+              message,
+            });
           } catch (error) {
             console.error({ error });
 
-            typeof window !== "undefined" &&
-              window.gtag("event", "contact_form_submit_fail", {
-                fullName,
-                email,
-                message,
-              });
+            window.gtag("event", "contact_form_submit_fail", {
+              fullName,
+              email,
+              message,
+            });
           }
 
           resetForm();

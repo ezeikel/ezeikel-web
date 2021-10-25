@@ -1,30 +1,5 @@
-import React from "react";
 import { Link } from "gatsby";
-import styled from "styled-components";
-
-const Wrapper = styled.header`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: var(--header-height);
-  padding: 0 var(--spacing-large);
-  margin-bottom: var(--spacing-huge);
-  a {
-    font-size: 2rem;
-    color: #777c9b;
-  }
-`;
-
-const Nav = styled.nav`
-  ul {
-    display: flex;
-    li {
-      & + li {
-        margin-left: var(--spacing-large);
-      }
-    }
-  }
-`;
+import { Wrapper, Nav } from "./header.styled";
 
 const Header = () => (
   <Wrapper>

@@ -1,10 +1,9 @@
-import React from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
-import TextInput from "./textInput";
 import addToMailchimp from "gatsby-plugin-mailchimp";
-import Button from "./button";
+import TextInput from "./textInput";
+import Button from "./button/button";
 
 const subsribeFormSchema = Yup.object().shape({
   fullName: Yup.string().required(),
@@ -42,20 +41,6 @@ const StyledForm = styled(Form)`
       > button {
         flex: 1 0 auto;
       }
-      /* > div {
-        flex: 1;
-        display: flex;
-        flex-wrap: wrap;
-        .input {
-          flex: 1;
-          max-width: 432px;
-          box-shadow: var(--box-shadow);
-
-          & + .input {
-            margin-left: var(--spacing-medium);
-          }
-        }
-      } */
     }
   }
   button {
@@ -75,7 +60,7 @@ const SubscribeForm = () => {
       validationSchema={subsribeFormSchema}
       onSubmit={async (
         { fullName, email },
-        { setSubmitting, setErrors, resetForm }
+        { setSubmitting, setErrors, resetForm },
       ) => {
         const [firstName, lastName] = fullName.trim().split(" ");
 
@@ -86,29 +71,31 @@ const SubscribeForm = () => {
 
         // remove undefined properties
         Object.keys(listData).forEach((key) =>
-          listData[key] === undefined ? delete listData[key] : {}
+          listData[key] === undefined ? delete listData[key] : {},
         );
 
         try {
           const result = await addToMailchimp(
             email.toLocaleLowerCase(),
-            listData
+            listData,
           );
+
+          if (typeof window === "undefined") {
+            return;
+          }
 
           if (result.result === "error") {
             // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
-            typeof window !== "undefined" &&
-              window.gtag("event", "email_list_signup_fail", {
-                fullName,
-                email,
-              });
+            window.gtag("event", "email_list_signup_fail", {
+              fullName,
+              email,
+            });
           } else {
             // track custom event - https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-google-analytics/src/index.js
-            typeof window !== "undefined" &&
-              window.gtag("event", "email_list_signup_success", {
-                fullName,
-                email,
-              });
+            window.gtag("event", "email_list_signup_success", {
+              fullName,
+              email,
+            });
 
             resetForm();
           }
@@ -127,7 +114,7 @@ const SubscribeForm = () => {
         }
       }}
     >
-      {({ isSubmitting, errors }) => (
+      {({ isSubmitting }) => (
         <StyledForm>
           <div>Join the email list and never miss a post.</div>
           <div>

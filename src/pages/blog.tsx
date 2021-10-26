@@ -1,8 +1,8 @@
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/layout";
+import BlogHeading from "../components/blogHeading/blogHeading";
 import BlogList from "../components/blogList/blogList";
-import { Heading, Subheading } from "./blog.styled";
 
 const BlogPage = ({ data }) => {
   const posts = data.allContentfulBlogPost.edges.map(({ node }) => {
@@ -35,10 +35,7 @@ const BlogPage = ({ data }) => {
 
   return (
     <Layout pageTitle="Blog">
-      <div>
-        <Heading>Writing</Heading>
-        <Subheading>A collection of my thoughts and blog posts.</Subheading>
-      </div>
+      <BlogHeading />
       <BlogList posts={posts} />
     </Layout>
   );

@@ -101,7 +101,23 @@ export default createGlobalStyle`
   .wf-loading {
     visibility: hidden;
   }
-  textarea {
-    resize: none;
+  .input-wrapper {
+    input, textarea {
+      font-size: 1.6rem;
+      padding: var(--spacing-medium);
+      border-radius: var(--border-radius);
+      border: 1px solid #efefef;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      outline: 0;
+    }
+    textarea {
+      resize: none;
+    }
+    & + .input-wrapper {
+      margin-top: var(--spacing-medium);
+    }
   }
-  `;
+`;

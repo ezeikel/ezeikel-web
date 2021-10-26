@@ -1,6 +1,6 @@
 import { OutboundLink } from "gatsby-plugin-google-gtag";
 import Button from "../button/button";
-import InstagramCard from "../instagramCard";
+import InstagramCard from "../instagramCard/instagramCard";
 import { Wrapper, ButtonsWrapper } from "./hero.styled";
 
 const Hero = () => {

@@ -1,5 +1,5 @@
-import SubscribeForm from "../subscribeForm";
-import SocialLinks from "../socialLinks";
+import SubscribeForm from "../subscribeForm/subscribeForm";
+import SocialLinks from "../socialLinks/socialLinks";
 import { Wrapper, Follow, Copyright } from "./footer.styled";
 
 const Footer = () => {

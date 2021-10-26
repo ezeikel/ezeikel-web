@@ -1,4 +1,4 @@
-import Layout from "../components/layout";
+import Layout from "../components/layout/layout";
 
 const NotFoundPage = () => (
   <Layout pageTitle="404: Not found">

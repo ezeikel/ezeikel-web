@@ -1,9 +1,6 @@
-import { Link } from "gatsby";
 import styled from "styled-components";
-import useLatesPosts from "../hooks/useLatestPosts";
-import PostPreview from "./postPreview";
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -23,29 +20,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const Title = styled.h2`
+export const Title = styled.h2`
   font-size: 7.279rem;
   font-family: var(--font-family-secondary);
   color: var(--color-primary);
   margin: 0 0 var(--spacing-huge);
 `;
-
-const LatestPosts = () => {
-  const posts = useLatesPosts();
-
-  return (
-    <Wrapper>
-      <Title>Posts</Title>
-      <ul>
-        {posts.map((post) => (
-          <li key={post.slug}>
-            <PostPreview post={post} />
-          </li>
-        ))}
-      </ul>
-      <Link to="/blog">All posts</Link>
-    </Wrapper>
-  );
-};
-
-export default LatestPosts;

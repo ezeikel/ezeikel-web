@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import styled from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faLinkedinIn,
@@ -28,10 +27,11 @@ import {
   faSmile,
   faLongArrowRight,
 } from "@fortawesome/pro-regular-svg-icons";
-import GlobalStyle from "../GlobalStyle";
-import SEO from "./seo";
-import Header from "./header/header";
-import Footer from "./footer/footer";
+import GlobalStyle from "../../GlobalStyle";
+import SEO from "../seo/seo";
+import Header from "../header/header";
+import Footer from "../footer/footer";
+import { Wrapper, Main } from "./layout.styled";
 
 library.add(
   faLinkedinIn,
@@ -54,26 +54,6 @@ library.add(
   faBadgeCheck,
   faLongArrowRight,
 );
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-`;
-
-const Main = styled.main`
-  flex: 1;
-  display: grid;
-  grid-template-columns: var(--spacing-large) 1fr var(--spacing-large);
-  grid-template-rows: 1fr;
-  grid-row-gap: var(--spacing-huge);
-  > * {
-    grid-column: 2 / -2;
-  }
-  > .full-width {
-    grid-column: 1 / -1;
-  }
-`;
 
 const Layout = ({ pageTitle, children }) => {
   return (

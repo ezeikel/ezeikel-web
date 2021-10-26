@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  /* padding: 0 var(--spacing-large); */
 
   form {
     display: flex;
@@ -14,10 +13,6 @@ export const Wrapper = styled.div`
     border-radius: var(--border-radius);
     > div {
       margin-bottom: var(--spacing-huge);
-
-      .input + .input {
-        margin-top: var(--spacing-medium);
-      }
     }
     button {
       max-width: 154px;

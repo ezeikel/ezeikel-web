@@ -1,8 +1,8 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
-import TextInput from "../textInput";
-import TextareaInput from "../textareaInput";
+import TextInput from "../textInput/textInput";
+import TextareaInput from "../textareaInput/textareaInput";
 import Button from "../button/button";
 import { Wrapper, Title } from "./contact.styled";
 
@@ -15,7 +15,7 @@ const contactFormSchema = Yup.object().shape({
 const Contact = () => {
   return (
     <Wrapper>
-      <Title>Let&apo;s talk</Title>
+      <Title>Let&apos;s talk</Title>
       {/* <p>If you think I could help solve a problem or even if you just want to chat, feel free to shoot me a message.</p> */}
       <Formik
         initialValues={{ fullName: "", email: "", message: "" }}

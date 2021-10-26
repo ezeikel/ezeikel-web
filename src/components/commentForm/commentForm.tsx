@@ -1,6 +1,6 @@
 import { Formik } from "formik";
 import * as Yup from "yup";
-import TextInput from "../textInput";
+import TextInput from "../textInput/textInput";
 import { StyledForm } from "./commentForm.styled";
 
 const commentFormSchema = Yup.object().shape({

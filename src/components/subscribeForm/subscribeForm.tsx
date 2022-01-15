@@ -1,9 +1,8 @@
-import { Formik } from "formik";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
 import addToMailchimp from "gatsby-plugin-mailchimp";
 import TextInput from "../textInput/textInput";
 import Button from "../button/button";
-import { StyledForm } from "./subscribeForm.styled";
 
 const subsribeFormSchema = Yup.object().shape({
   fullName: Yup.string().required(),
@@ -72,18 +71,30 @@ const SubscribeForm = () => {
       }}
     >
       {({ isSubmitting }) => (
-        <StyledForm>
-          <div>Join the email list and never miss a post.</div>
-          <div>
-            <TextInput name="fullName" type="text" placeholder="Kanye West" />
+        <Form className="flex flex-col w-full max-w-4xl self-center mb-8">
+          <div className="text-xl font-normal text-center mb-8">
+            Join the email list and never miss a post.
+          </div>
+          <div className="flex flex-wrap justify-center items-center ml-[calc(-1*16px)] mt-[calc(-1*16px)]">
+            <TextInput
+              name="fullName"
+              type="text"
+              placeholder="Kanye West"
+              className="ml-4 mt-4 shrink-0 grow-[2]"
+            />
             <TextInput
               name="email"
               type="email"
               placeholder="kanye@yeezy.com"
+              className="ml-4 mt-4 shrink-0 grow-[2]"
             />
-            <Button type="submit" title={isSubmitting ? "Joining" : "Join"} />
+            <Button
+              className="max-w-xs ml-4 mt-4 shadow-md md:flex-1 shrink-0 grow-[1]"
+              type="submit"
+              title={isSubmitting ? "Joining" : "Join"}
+            />
           </div>
-        </StyledForm>
+        </Form>
       )}
     </Formik>
   );

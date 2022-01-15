@@ -2,7 +2,6 @@ import { ReactElement, InputHTMLAttributes, useEffect, useRef } from "react";
 import { useField } from "formik";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { IconName } from "@fortawesome/fontawesome-svg-core";
-import { Wrapper, Label } from "./textInput.styled";
 
 type TextInputProps = InputHTMLAttributes<HTMLInputElement> & {
   label?: string;
@@ -29,21 +28,31 @@ const TextInput = ({
   }, []);
 
   return (
-    <Wrapper className={`input-wrapper input-wrapper--text ${className}`}>
-      {label && <Label htmlFor={name}>{label}</Label>}
-      <div>
+    <div className={`flex flex-col bg-white rounded ${className}`}>
+      {label && (
+        <label htmlFor={name} className="flex mb-2 text-base">
+          {label}
+        </label>
+      )}
+      <div className="flex border border-gray-200 rounded p-4">
         {leftIcon && (
           <FontAwesomeIcon
             icon={["far", leftIcon]}
-            color="var(--color-black)"
-            size="2x"
+            size="lg"
             onClick={() => null}
+            className="mr-2 cursor-pointer text-black"
           />
         )}
-        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
-        <input {...field} {...props} ref={inputEl} />
+        <input
+          className="text-base text-black border-0 p-0 appearance-none w-full outline-0"
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...field}
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          {...props}
+          ref={inputEl}
+        />
       </div>
-    </Wrapper>
+    </div>
   );
 };
 

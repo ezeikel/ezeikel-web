@@ -1,28 +1,22 @@
 import { Link } from "gatsby";
-import { Wrapper, Nav } from "./header.styled";
 
 const Header = () => (
-  <Wrapper>
+  <header className="flex justify-between items-center h-20 px-8 mb-16">
     <div>
-      <Link to="/">Hello</Link>
+      <Link to="/" className="text-xl text-waterloo">
+        Hello
+      </Link>
     </div>
-    <Nav>
+    <nav>
       <ul>
-        {/* <li>
-          <Link to="/work">Work</Link>
-        </li> */}
-        {/* <li>
-          <Link to="/about">About</Link>
-        </li> */}
         <li>
-          <Link to="/blog">Blog</Link>
+          <Link to="/blog" className="text-xl text-waterloo">
+            Blog
+          </Link>
         </li>
-        {/* <li>
-          <Link to="/speaking">Speaking</Link>
-        </li> */}
       </ul>
-    </Nav>
-  </Wrapper>
+    </nav>
+  </header>
 );
 
 export default Header;

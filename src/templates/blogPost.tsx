@@ -2,7 +2,6 @@ import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { Helmet } from "react-helmet";
 import Layout from "../components/layout/layout";
-import { Wrapper, Heading, ImageWrapper, Body } from "./blogPost.styled";
 
 const BlogPost = ({ data }) => {
   const {
@@ -15,10 +14,12 @@ const BlogPost = ({ data }) => {
 
   return (
     <Layout>
-      <Wrapper>
+      <div className="flex flex-col">
         <Helmet title={title} />
-        <Heading>{title}</Heading>
-        <ImageWrapper>
+        <h1 className="text-6xl font-medium text-center text-navy-blue mb-16 font-blog">
+          {title}
+        </h1>
+        <div className="flex flex-col max-h-[472px] mb-16">
           <GatsbyImage
             image={heroImage}
             alt="hero image"
@@ -28,13 +29,14 @@ const BlogPost = ({ data }) => {
             objectPosition="center top"
             style={{}}
           />
-        </ImageWrapper>
-        <Body
+        </div>
+        <div
+          className="blog-post-body"
           dangerouslySetInnerHTML={{
             __html: body,
           }}
         />
-      </Wrapper>
+      </div>
     </Layout>
   );
 };

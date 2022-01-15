@@ -1,7 +1,6 @@
 import { graphql } from "gatsby";
 import { getImage } from "gatsby-plugin-image";
 import Layout from "../components/layout/layout";
-import BlogHeading from "../components/blogHeading/blogHeading";
 import BlogList from "../components/blogList/blogList";
 
 const BlogPage = ({ data }) => {
@@ -35,7 +34,14 @@ const BlogPage = ({ data }) => {
 
   return (
     <Layout pageTitle="Blog">
-      <BlogHeading />
+      <div>
+        <h1 className="font-display font-bold text-navy-blue mb-8 text-7xl">
+          Writing
+        </h1>
+        <h2 className="text-navy-blue mb-8 font-normal text-3xl">
+          A collection of my thoughts and blog posts.
+        </h2>
+      </div>
       <BlogList posts={posts} />
     </Layout>
   );

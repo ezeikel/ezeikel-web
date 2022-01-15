@@ -2,20 +2,10 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { StaticImage } from "gatsby-plugin-image";
 import { OutboundLink } from "gatsby-plugin-google-gtag";
+import classNames from "classnames";
 import CommentForm from "../commentForm/commentForm";
-import {
-  Wrapper,
-  Header,
-  Details,
-  Actions,
-  Likes,
-  Caption,
-  Comments,
-  Comment,
-  Footer,
-} from "./instagramCard.styled";
 
-const InstagramCard = ({ className }) => {
+const InstagramCard = () => {
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
   const [likes, setLikes] = useState(87267);
@@ -28,9 +18,14 @@ const InstagramCard = ({ className }) => {
     }
   }, [liked]);
 
+  const heartIconClass = classNames("cursor-pointer", {
+    "text-red-500": liked,
+    "text-black": !liked,
+  });
+
   return (
-    <Wrapper className={className}>
-      <Header>
+    <div className="bg-white rounded border border-gray-200">
+      <header className="flex items-center p-4">
         <StaticImage
           src="../../images/ezeikel.png"
           alt="avatar"
@@ -38,35 +33,32 @@ const InstagramCard = ({ className }) => {
           layout="fullWidth"
           objectFit="cover"
           objectPosition="center top"
-          style={{
-            width: "32px",
-            height: "32px",
-            marginRight: "var(--spacing-small)",
-          }}
+          className="w-8 h-8 mr-2"
           imgStyle={{
             borderRadius: "50%",
           }}
         />
-        <Details>
-          <span>
+        <div>
+          <span className="flex flex-row items-center font-medium text-sm">
             ezeikel
             <FontAwesomeIcon
               icon={["fas", "badge-check"]}
-              color="var(--color-primary)"
-              size="5x"
+              size="sm"
+              className="ml-1 text-navy-blue"
             />
           </span>
-          <span>
+          <span className="flex flex-row text-xs">
             <OutboundLink
               href="http://www.eggslut.com/"
               target="_blank"
               rel="noreferrer"
+              className="text-black leading-3"
             >
               Eggslut
             </OutboundLink>
           </span>
-        </Details>
-      </Header>
+        </div>
+      </header>
       <section>
         <StaticImage
           src="../../images/eggslut.jpg"
@@ -75,62 +67,67 @@ const InstagramCard = ({ className }) => {
           layout="fullWidth"
           objectFit="cover"
           objectPosition="center top"
-          style={{
-            maxHeight: "250px",
-          }}
+          className="max-h-60"
         />
       </section>
-      <Footer>
-        <Actions>
+      <footer className="p-4">
+        <div className="flex justify-between mb-4">
           <div>
             <FontAwesomeIcon
               icon={liked ? ["fas", "heart"] : ["fal", "heart"]}
-              color={`var(--color-${liked ? "like" : "black"})`}
-              size="2x"
+              size="lg"
               onClick={() => setLiked((currentLiked) => !currentLiked)}
+              className={heartIconClass}
             />
             <FontAwesomeIcon
               icon={["fal", "comment"]}
-              color="var(--color-black)"
-              size="2x"
+              size="lg"
+              className="cursor-pointer ml-4 text-black"
             />
             <FontAwesomeIcon
               icon={["fal", "paper-plane"]}
-              color="var(--color-black)"
-              size="2x"
+              size="lg"
+              className="cursor-pointer ml-4 text-black"
             />
           </div>
           <FontAwesomeIcon
             icon={bookmarked ? ["fas", "bookmark"] : ["fal", "bookmark"]}
-            color="var(--color-black)"
-            size="2x"
+            size="lg"
             onClick={() =>
               setBookmarked((currentBookmarked) => !currentBookmarked)
             }
+            className="cursor-pointer text-black"
           />
-        </Actions>
-        <div>
-          <Likes>{likes.toLocaleString()} likes</Likes>
-          <Caption>
-            <span>ezeikel</span>
-            <span>Literally the best Front End Developer ever.</span>
-          </Caption>
-          <Comments>
-            <Comment>
-              <span>apple</span>
-              <span>We need to hire this guy!</span>
-            </Comment>
-            <Comment>
-              <span>facebook</span>
-              <span>
-                Move over <span>@apple</span>
-              </span>
-            </Comment>
-          </Comments>
         </div>
-      </Footer>
+        <div>
+          <div className="text-sm mb-2 font-medium">
+            {likes.toLocaleString()} likes
+          </div>
+          <div className="text-sm mb-2">
+            <span className="font-medium">ezeikel</span>
+            <span className="ml-2">
+              Literally the best Front End Developer ever.
+            </span>
+          </div>
+          <div className="text-sm">
+            <div>
+              <span className="text-medium">apple</span>
+              <span className="ml-2">We need to hire this guy!</span>
+            </div>
+            <div className="text-sm mt-2">
+              <span className="text-medium">facebook</span>
+              <span className="ml-2">
+                Move over{" "}
+                <span className="cursor-pointer font-normal text-navy-blue">
+                  @apple
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
       <CommentForm />
-    </Wrapper>
+    </div>
   );
 };
 

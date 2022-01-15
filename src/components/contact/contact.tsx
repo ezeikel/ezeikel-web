@@ -4,7 +4,6 @@ import axios from "axios";
 import TextInput from "../textInput/textInput";
 import TextareaInput from "../textareaInput/textareaInput";
 import Button from "../button/button";
-import { Wrapper, Title } from "./contact.styled";
 
 const contactFormSchema = Yup.object().shape({
   fullName: Yup.string().required(),
@@ -14,8 +13,10 @@ const contactFormSchema = Yup.object().shape({
 
 const Contact = () => {
   return (
-    <Wrapper>
-      <Title>Let&apos;s talk</Title>
+    <div className="flex flex-col">
+      <h2 className="font-display font-bold text-7xl text-navy-blue mb-16">
+        Let&apos;s talk
+      </h2>
       {/* <p>If you think I could help solve a problem or even if you just want to chat, feel free to shoot me a message.</p> */}
       <Formik
         initialValues={{ fullName: "", email: "", message: "" }}
@@ -51,8 +52,8 @@ const Contact = () => {
         }}
       >
         {() => (
-          <Form>
-            <div>
+          <Form className="flex flex-col max-w-4xl p-8 shadow-lg rounded">
+            <div className="mb-16 space-y-4">
               <TextInput
                 id="fullName"
                 name="fullName"
@@ -74,11 +75,11 @@ const Contact = () => {
                 label="Message"
               />
             </div>
-            <Button type="submit" title="Send" />
+            <Button type="submit" title="Send" className="max-w-xs" />
           </Form>
         )}
       </Formik>
-    </Wrapper>
+    </div>
   );
 };
 

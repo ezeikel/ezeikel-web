@@ -1,13 +1,17 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { OutboundLink } from "gatsby-plugin-google-gtag";
-import { Wrapper } from "./socialLinks.styled";
 
-const SocialLinks = ({ className, size, fill }) => {
+const SocialLinks = () => {
   return (
-    <Wrapper className={className}>
+    <ul className="flex justify-center space-x-8">
       <li>
         <OutboundLink href="https://twitter.com/ezeikel_" target="_blank">
-          <FontAwesomeIcon icon={["fab", "twitter"]} color={fill} size={size} />
+          <FontAwesomeIcon
+            icon={["fab", "twitter"]}
+            color="#9B9B9B"
+            fill="red"
+            size="2x"
+          />
         </OutboundLink>
       </li>
       <li>
@@ -15,15 +19,19 @@ const SocialLinks = ({ className, size, fill }) => {
           href="https://www.youtube.com/channel/UCOLX7OP--O7XnLS9Vpvr76g"
           target="_blank"
         >
-          <FontAwesomeIcon icon={["fab", "youtube"]} color={fill} size={size} />
+          <FontAwesomeIcon
+            icon={["fab", "youtube"]}
+            color="#9B9B9B"
+            size="2x"
+          />
         </OutboundLink>
       </li>
       <li>
         <OutboundLink href="https://www.instagram.com/ezeikel_" target="_blank">
           <FontAwesomeIcon
             icon={["fab", "instagram"]}
-            color={fill}
-            size={size}
+            color="#9B9B9B"
+            size="2x"
           />
         </OutboundLink>
       </li>
@@ -34,17 +42,17 @@ const SocialLinks = ({ className, size, fill }) => {
         >
           <FontAwesomeIcon
             icon={["fab", "linkedin-in"]}
-            color={fill}
-            size={size}
+            color="#9B9B9B"
+            size="2x"
           />
         </OutboundLink>
       </li>
       <li>
         <OutboundLink href="https://github.com/ezeikel" target="_blank">
-          <FontAwesomeIcon icon={["fab", "github"]} color={fill} size={size} />
+          <FontAwesomeIcon icon={["fab", "github"]} color="#9B9B9B" size="2x" />
         </OutboundLink>
       </li>
-    </Wrapper>
+    </ul>
   );
 };
 

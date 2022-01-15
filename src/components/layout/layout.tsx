@@ -27,11 +27,9 @@ import {
   faSmile,
   faLongArrowRight,
 } from "@fortawesome/pro-regular-svg-icons";
-import GlobalStyle from "../../GlobalStyle";
 import SEO from "../seo/seo";
 import Header from "../header/header";
 import Footer from "../footer/footer";
-import { Wrapper, Main } from "./layout.styled";
 
 library.add(
   faLinkedinIn,
@@ -59,12 +57,13 @@ const Layout = ({ pageTitle, children }) => {
   return (
     <>
       <SEO title={pageTitle} />
-      <GlobalStyle />
-      <Wrapper>
+      <div className="flex flex-col min-h-screen">
         <Header />
-        <Main>{children}</Main>
+        <main className="flex-1 grid grid-cols-[32px_1fr_32px] gap-y-16 main">
+          {children}
+        </main>
         <Footer />
-      </Wrapper>
+      </div>
     </>
   );
 };

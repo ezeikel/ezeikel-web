@@ -1,7 +1,6 @@
-import { Formik } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import TextInput from "../textInput/textInput";
-import { StyledForm } from "./commentForm.styled";
 
 const commentFormSchema = Yup.object().shape({
   text: Yup.string(),
@@ -20,15 +19,15 @@ const CommentForm = () => {
       }}
     >
       {({ handleSubmit }) => (
-        <StyledForm onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit}>
           <TextInput
             name="text"
             type="text"
             placeholder="Add a comment..."
             leftIcon="smile"
-            className="text-input"
+            className="border-x-0 border-b-0 border-t rounded-none rounded-b"
           />
-        </StyledForm>
+        </Form>
       )}
     </Formik>
   );

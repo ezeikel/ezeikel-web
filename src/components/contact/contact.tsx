@@ -23,7 +23,7 @@ const Contact = () => {
         validationSchema={contactFormSchema}
         onSubmit={async ({ fullName, email, message }, { resetForm }) => {
           try {
-            await axios.post("/.netlify/functions/contact", {
+            await axios.post("https://api.ezeikel.com/contact", {
               fullName,
               email,
               message,

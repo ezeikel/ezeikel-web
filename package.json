@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "gatsby develop",
     "start": "yarn develop",
-    "build": "yarn check-types && yarn preload-fonts && gatsby build",
+    "build": "yarn check-types && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",

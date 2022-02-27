@@ -1,7 +1,7 @@
 import { Link } from "gatsby";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const PostPreview = ({ post }) => (
+const PostPreview = ({ post }: { post: any }) => (
   <div className="flex flex-col p-4">
     <h4 className="font-medium mb-2 text-navy-blue text-3xl font-display">
       {post.title}

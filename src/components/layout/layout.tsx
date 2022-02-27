@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { ReactNode } from "react";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faLinkedinIn,
@@ -53,7 +53,13 @@ library.add(
   faLongArrowRight,
 );
 
-const Layout = ({ pageTitle, children }) => {
+const Layout = ({
+  pageTitle,
+  children,
+}: {
+  pageTitle: string;
+  children: ReactNode;
+}) => {
   return (
     <>
       <SEO title={pageTitle} />
@@ -66,10 +72,6 @@ const Layout = ({ pageTitle, children }) => {
       </div>
     </>
   );
-};
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 export default Layout;

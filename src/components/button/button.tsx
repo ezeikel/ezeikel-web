@@ -17,6 +17,7 @@ const Button = ({
   if (variant === "outline") {
     return (
       <button
+        // eslint-disable-next-line react/button-has-type
         type={type}
         className={`${baseButtonClasses} bg-transparent text-navy-blue ${className}`}
       >
@@ -26,6 +27,7 @@ const Button = ({
   }
 
   return (
+    // eslint-disable-next-line react/button-has-type
     <button type={type} className={`${baseButtonClasses} ${className}`}>
       {title}
     </button>

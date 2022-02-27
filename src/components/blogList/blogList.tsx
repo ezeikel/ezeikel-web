@@ -1,19 +1,16 @@
 import { Link } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
 
-const BlogList = ({ posts }) => (
+const BlogList = ({ posts }: { posts: any }) => (
   <ul className="flex flex-wrap gap-8">
-    {posts.map((post) => (
+    {posts.map((post: any) => (
       <li className="basis-80 flex-1 flex-shrink-0 p-8 border border-gray-100 rounded">
         <Link to={post.slug}>
           <div className="mb-4">
             <GatsbyImage
               image={post.heroImage}
               alt="hero image"
-              placeholder="blurred"
-              layout="fullWidth"
-              objectFit="cover"
-              objectPosition="center top"
+              className="object-cover object-top"
             />
           </div>
           <div>

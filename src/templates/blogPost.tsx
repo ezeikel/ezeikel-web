@@ -1,6 +1,5 @@
 import { graphql } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import { Helmet } from "react-helmet";
 import Layout from "../components/layout/layout";
 
 const BlogPost = ({ data }) => {
@@ -13,9 +12,8 @@ const BlogPost = ({ data }) => {
   const heroImage = getImage(data.contentfulBlogPost.heroImage);
 
   return (
-    <Layout>
+    <Layout pageTitle={title}>
       <div className="flex flex-col">
-        <Helmet title={title} />
         <h1 className="text-6xl font-medium text-center text-navy-blue mb-16 font-blog">
           {title}
         </h1>
@@ -23,15 +21,12 @@ const BlogPost = ({ data }) => {
           <GatsbyImage
             image={heroImage}
             alt="hero image"
-            placeholder="blurred"
-            layout="fullWidth"
-            objectFit="cover"
-            objectPosition="center top"
-            style={{}}
+            className="object-cover object-top"
           />
         </div>
         <div
           className="blog-post-body"
+          // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{
             __html: body,
           }}

@@ -70,7 +70,7 @@
     "gatsby-remark-reading-time": "^1.1.0",
     "gatsby-source-contentful": "^6.0.0",
     "gatsby-source-filesystem": "^4.5.1",
-    "gatsby-transformer-remark": "^5.5.1",
+    "gatsby-transformer-remark": "^5.25.1",
     "gatsby-transformer-sharp": "^4.5.0",
     "lodash": "^4.17.21",
     "postmark": "^2.8.1",

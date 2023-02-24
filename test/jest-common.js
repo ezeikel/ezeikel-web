@@ -1,10 +1,12 @@
-module.exports = {
-  moduleNameMapper: {
-    "\\.css$": require.resolve("./style-mock.js"),
-  },
+const path = require('path');
+
+const config = {
+  rootDir: path.join(__dirname, '..'),
   watchPlugins: [
-    "jest-watch-select-projects",
-    "jest-watch-typeahead/filename",
-    "jest-watch-typeahead/testname",
+    'jest-watch-select-projects',
+    'jest-watch-typeahead/filename',
+    'jest-watch-typeahead/testname',
   ],
 };
+
+module.exports = config;

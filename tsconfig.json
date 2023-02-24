@@ -1,19 +1,32 @@
 {
+  "ts-files": {
+    "files": true
+  },
   "compilerOptions": {
-    "target": "esnext",
+    "target": "es5",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["dom", "es2017"],
+    "resolveJsonModule": true,
+    "isolatedModules": true,
     "jsx": "preserve",
-    "strict": false, // TODO: enable this
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noEmit": true,
-    "skipLibCheck": true,
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "include": ["./**/*.ts", "./**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

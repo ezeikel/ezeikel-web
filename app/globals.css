@@ -1,0 +1,9 @@
+@import url("https://use.typekit.net/mxg4qkx.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply font-body;
+}

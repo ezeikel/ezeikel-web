@@ -17,7 +17,7 @@ const Button = ({
   disabled = false,
 }: ButtonProps) => {
   const buttonClasses = classNames(
-    'border border-navy-blue cursor-pointer bg-navy-blue rounded text-white py-4 p-8 text-xl font-medium',
+    'border border-navy-blue cursor-pointer bg-navy-blue rounded text-white py-4 p-8 text-xl font-medium disabled:opacity-50 disabled:cursor-not-allowed ',
     {
       'bg-transparent text-navy-blue': variant === 'outline',
       [className as string]: !!className,

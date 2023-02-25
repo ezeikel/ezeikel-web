@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'path';
 
-const config = {
+export default {
   rootDir: path.join(__dirname, '..'),
   watchPlugins: [
     'jest-watch-select-projects',
@@ -8,5 +8,3 @@ const config = {
     'jest-watch-typeahead/testname',
   ],
 };
-
-module.exports = config;

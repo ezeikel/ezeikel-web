@@ -14,7 +14,7 @@ const SOCIAL_LINKS = [
     icon: faTwitter,
   },
   {
-    href: 'https://www.youtube.com/channel/UCOLX7OP--O7XnLS9Vpvr76g',
+    href: 'https://www.youtube.com/@ezeikel',
     icon: faYoutube,
   },
   {

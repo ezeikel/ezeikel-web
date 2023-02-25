@@ -36,7 +36,7 @@ const ContactForm = () => {
         resetForm();
       }}
     >
-      {() => (
+      {({ values, isSubmitting }) => (
         <Form className="flex flex-col max-w-4xl p-8 shadow-lg rounded">
           <div className="mb-16 space-y-4">
             <TextInput
@@ -60,7 +60,11 @@ const ContactForm = () => {
               label="Message"
             />
           </div>
-          <Button type="submit" className="max-w-xs">
+          <Button
+            type="submit"
+            className="max-w-xs"
+            disabled={values.email === '' || isSubmitting}
+          >
             Send
           </Button>
         </Form>

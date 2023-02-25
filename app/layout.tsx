@@ -4,12 +4,13 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import './globals.css';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+
+config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: 'Ezeikel - London based Software Engineer',
 };
-
-config.autoAddCss = false;
 
 export default function RootLayout({
   children,

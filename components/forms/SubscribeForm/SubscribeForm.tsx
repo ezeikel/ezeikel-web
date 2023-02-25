@@ -40,7 +40,7 @@ const SubscribeForm = () => (
             className="ml-4 mt-4 shrink-0 grow-[2]"
           />
           <Button
-            className="max-w-xs ml-4 mt-4 shadow-md md:flex-1 shrink-0 grow-[1] disabled:opacity-50"
+            className="max-w-xs ml-4 mt-4 shadow-md md:flex-1 shrink-0 grow-[1]"
             type="submit"
             disabled={values.email === '' || isSubmitting}
           >

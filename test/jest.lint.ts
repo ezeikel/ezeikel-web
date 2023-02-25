@@ -1,6 +1,6 @@
-const path = require('path');
+import path from 'path';
 
-module.exports = {
+export default {
   rootDir: path.join(__dirname, '..'),
   displayName: 'lint',
   runner: 'jest-runner-eslint',

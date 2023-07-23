@@ -1,3 +1,5 @@
+// TODO: move to app/subscribe/route.tsx
+
 import mailchimp from '@mailchimp/mailchimp_marketing';
 import { NextApiRequest, NextApiResponse } from 'next';
 

@@ -28,13 +28,16 @@ yarn-error.log*
 # local env files
 .env*.local
 .env
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
+next-env.d.ts
+
 # Sentry
 .sentryclirc
 
-# Sentry
-next.config.original.js
+# contentlayer
+.contentlayer

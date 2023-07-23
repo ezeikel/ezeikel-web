@@ -1,17 +1,16 @@
 const { withSentryConfig } = require('@sentry/nextjs');
 const { withContentlayer } = require('next-contentlayer');
-const withMDX = require('@next/mdx')();
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-    mdxRs: true,
+  images: {
+    remotePatterns: [
+      { protocol: 'https', hostname: 'pbs.twimg.com' },
+      { protocol: 'https', hostname: 'abs.twimg.com' },
+    ],
   },
 };
 
-module.exports = withMDX(
-  withContentlayer(
-    withSentryConfig(nextConfig, { silent: true }, { hideSourcemaps: true }),
-  ),
+module.exports = withContentlayer(
+  withSentryConfig(nextConfig, { silent: true }, { hideSourcemaps: true }),
 );

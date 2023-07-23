@@ -18,7 +18,8 @@ dolore dolor reprehenderit aliquip. Reprehenderit cillum mollit eiusmod
 excepteur elit ipsum aute pariatur in. Cupidatat ex culpa velit culpa ad non
 labore exercitation irure laborum.
 
-<Card>
-  ### This Card is a **custom component**. Markdown **can** be used *inside*
-  custom components.
-</Card>
+```jsx
+import { createClient } from '@supabase/supabase-js';
+let supabase = createClient('https://<project>.supabase.co', '<your-anon-key>');
+let { data } = await supabase.from('countries').select();
+```

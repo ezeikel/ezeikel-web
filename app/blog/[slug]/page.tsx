@@ -1,8 +1,13 @@
 import type { Metadata } from 'next';
+import type { MDXComponents } from 'mdx/types';
+import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Balancer from 'react-wrap-balancer';
 import { allPosts } from 'contentlayer/generated';
-// import { useMDXComponent } from 'next-contentlayer/hooks';
+import { getMDXComponent } from 'next-contentlayer/hooks';
+import Balancer from 'react-wrap-balancer';
+import { format, formatDistanceToNow } from 'date-fns';
+import { Tweet } from 'react-tweet';
+import components from '../../../lib/tweet-components';
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -28,6 +33,7 @@ export async function generateMetadata({
     image,
     slug,
   } = post;
+
   const ogImage = image
     ? `https://ezeikel.com${image}`
     : `https://ezeikel.com/api/og?title=${title}`;
@@ -56,35 +62,39 @@ export async function generateMetadata({
   };
 }
 
-export default async function Blog({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+// custom MDX components
+const mdxComponents: MDXComponents = {
+  // override the default <a> element to use the next/link component.
+  a: ({ href, children }) => <Link href={href as string}>{children}</Link>,
+  // TODO: render StaticTweet components in MDX
+  // StaticTweet: () => <Tweet />,
+  Tweet: ({ id }) => <Tweet id={id} components={components} />,
+};
 
-  const post = allPosts.find((p) => p.slug === slug);
+export default async function Page({ params }: { params: { slug: string } }) {
+  // Find the post for the current page.
+  const post = allPosts.find((p) => p.slug === params.slug);
 
-  if (!post) {
-    notFound();
-  }
+  // 404 if the post does not exist.
+  if (!post) notFound();
 
-  // BUG: using useMDXComponent from next-contentlayer/hooks doesn't seem to work
-  // const MDXContent = useMDXComponent(post.body.code);
+  // Parse the MDX file via the useMDXComponent hook.
+  // FIX: async server component + useMDXComponenr hook - https://github.com/vercel/next.js/issues/49267#issuecomment-1535932088
+  const MDXContent = getMDXComponent(post.body.code);
 
   return (
-    <section>
-      <h1 className="font-bold text-3xl font-serif max-w-[650px]">
+    <article className="prose prose-quoteless prose-neutral dark:prose-invert mx-0 md:mx-auto ">
+      <h1 className="font-bold font-display text-3xl">
         <Balancer>{post.title}</Balancer>
       </h1>
-      <div className="grid grid-cols-[auto_1fr_auto] items-center mt-4 mb-8 font-mono text-sm max-w-[650px]">
-        <div className="bg-neutral-100 dark:bg-neutral-800 rounded-md px-2 py-1 tracking-tighter">
-          {post.publishedAt}
-        </div>
-        <div className="h-[0.2em] bg-neutral-50 dark:bg-neutral-800 mx-2" />
+      <div>
+        {`${format(
+          new Date(post.publishedAt),
+          'MMMM d, yyyy',
+        )} (${formatDistanceToNow(new Date(post.publishedAt))} ago)`}
       </div>
-      {/* <MDXContent /> */}
-      <div
-        className="cl-post-body"
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: post.body.html }}
-      />
-    </section>
+      <MDXContent components={mdxComponents} />
+      <div> {post.readingTime.text}</div>
+    </article>
   );
 }

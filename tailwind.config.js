@@ -12,6 +12,14 @@ module.exports = {
       blog: ['freight-text-pro', 'serif'],
     },
     extend: {
+      typography: {
+        quoteless: {
+          css: {
+            'blockquote p:first-of-type::before': { content: 'none' },
+            'blockquote p:first-of-type::after': { content: 'none' },
+          },
+        },
+      },
       colors: {
         'navy-blue': '#233044',
         'cornflower-blue': '#545977',
@@ -19,5 +27,6 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
+  plugins: [require('@tailwindcss/typography')],
 };

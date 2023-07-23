@@ -21,7 +21,6 @@ export type Post = {
   body: MDX
   readingTime: json
   slug: string
-  tweetIds: array
   structuredData: object
 }  
 

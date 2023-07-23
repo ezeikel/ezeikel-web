@@ -16,15 +16,6 @@ const computedFields = {
     // eslint-disable-next-line no-underscore-dangle
     resolve: (doc) => doc._raw.flattenedPath,
   },
-  tweetIds: {
-    type: 'array',
-    resolve: (doc) => {
-      const tweetMatches = doc.body.raw.match(
-        /<StaticTweet\sid="[0-9]+"\s\/>/g,
-      );
-      return tweetMatches?.map((tweet) => tweet.match(/[0-9]+/g)[0]) || [];
-    },
-  },
   structuredData: {
     type: 'object',
     resolve: (doc) => ({
@@ -35,10 +26,10 @@ const computedFields = {
       dateModified: doc.publishedAt,
       description: doc.summary,
       image: doc.image
-        ? `https://ezeikel.com${doc.image}`
-        : `https://ezeikel.com/api/og?title=${doc.title}`,
+        ? `https://develop.ezeikel.com${doc.image}`
+        : `https://develop.ezeikel.com/api/og?title=${doc.title}`,
       // eslint-disable-next-line no-underscore-dangle
-      url: `https://ezeikel.com/blog/${doc._raw.flattenedPath}`,
+      url: `https://develop.ezeikel.com/blog/${doc._raw.flattenedPath}`,
       author: {
         '@type': 'Person',
         name: 'Ezeikel Pemberton',

@@ -35,8 +35,8 @@ export async function generateMetadata({
   } = post;
 
   const ogImage = image
-    ? `https://ezeikel.com${image}`
-    : `https://ezeikel.com/api/og?title=${title}`;
+    ? `https://develop.ezeikel.com${image}`
+    : `https://develop.ezeikel.com/og?title=${title}`;
 
   return {
     title,
@@ -46,7 +46,7 @@ export async function generateMetadata({
       description,
       type: 'article',
       publishedTime,
-      url: `https://ezeikel.com/blog/${slug}`,
+      url: `https://develop.ezeikel.com/blog/${slug}`,
       images: [
         {
           url: ogImage,
@@ -66,9 +66,27 @@ export async function generateMetadata({
 const mdxComponents: MDXComponents = {
   // override the default <a> element to use the next/link component.
   a: ({ href, children }) => <Link href={href as string}>{children}</Link>,
-  // TODO: render StaticTweet components in MDX
-  // StaticTweet: () => <Tweet />,
   Tweet: ({ id }) => <Tweet id={id} components={components} />,
+  CustomLink: (props) => {
+    const { href, children } = props;
+
+    if (href.startsWith('/')) {
+      return (
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        <Link href={href} {...props}>
+          {children}
+        </Link>
+      );
+    }
+
+    if (href.startsWith('#')) {
+      // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-props-no-spreading
+      return <a {...props} />;
+    }
+
+    // eslint-disable-next-line jsx-a11y/anchor-has-content, react/jsx-props-no-spreading
+    return <a target="_blank" rel="noopener noreferrer" {...props} />;
+  },
 };
 
 export default async function Page({ params }: { params: { slug: string } }) {
@@ -84,6 +102,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   return (
     <article className="prose prose-quoteless prose-neutral dark:prose-invert mx-0 md:mx-auto ">
+      <script type="application/ld+json" suppressHydrationWarning>
+        {JSON.stringify(post.structuredData)}
+      </script>
       <h1 className="font-bold font-display text-3xl">
         <Balancer>{post.title}</Balancer>
       </h1>

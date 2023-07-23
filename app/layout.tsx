@@ -10,6 +10,7 @@ config.autoAddCss = false;
 
 export const metadata: Metadata = {
   title: 'Ezeikel - London based Software Engineer',
+  description: 'Developer, writer, and creator based in London, UK.',
 };
 
 export default function RootLayout({

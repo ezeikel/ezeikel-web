@@ -1,5 +1,5 @@
 module.exports = {
-  extends: ['next/core-web-vitals', 'airbnb', 'plugin:prettier/recommended'],
+  extends: ['next', 'airbnb', 'plugin:prettier/recommended'],
   env: {
     browser: true,
     node: true,
@@ -40,10 +40,15 @@ module.exports = {
           'error',
           {
             devDependencies: [
-              './components/**/*.test.tsx',
-              './app/**/*.test.tsx',
-              './components/**/*.stories.tsx',
-              './app/**/*.stories.tsx',
+              './jest.config.ts',
+              './test/jest.common.ts',
+              './test/jest.client.ts',
+              './test/jest.lint.ts',
+              './test/jest.setup.ts',
+              '**/*.test.ts',
+              '**/*.test.tsx',
+              '**/*.stories.tsx',
+              '**/*.stories.tsx',
             ],
           },
         ],

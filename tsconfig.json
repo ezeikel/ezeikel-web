@@ -1,9 +1,6 @@
 {
-  "ts-files": {
-    "files": true
-  },
   "compilerOptions": {
-    "target": "es5",
+    "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -17,23 +14,29 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "plugins": [
-      {
-        "name": "next"
-      }
-    ],
+    "strictNullChecks": true,
     "baseUrl": ".",
     "paths": {
       "@/*": ["./*"],
-      "contentlayer/generated": ["./.contentlayer/generated"]
-    }
+      "contentlayer/generated": ["./.contentlayer/generated"],
+    },
+    "plugins": [
+      {
+        "name": "next",
+      },
+    ],
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    ".contentlayer/generated"
+    ".contentlayer/generated",
+    "jest.config.ts",
+    "test/jest.common.ts",
+    "test/jest.setup.ts",
+    "./test/jest.client.ts",
+    "./test/jest.lint.ts",
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
 }

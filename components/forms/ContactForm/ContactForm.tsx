@@ -20,15 +20,11 @@ const ContactForm = () => {
       validationSchema={contactFormSchema}
       onSubmit={async ({ fullName, email, message }, { resetForm }) => {
         try {
-          await axios.post('https://api.ezeikel.com/contact', {
+          await axios.post('/api/email/contact', {
             fullName,
             email,
             message,
           });
-
-          if (typeof window === 'undefined') {
-            return;
-          }
         } catch (error) {
           console.error({ error });
         }

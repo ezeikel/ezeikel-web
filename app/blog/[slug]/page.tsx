@@ -7,6 +7,7 @@ import { getMDXComponent } from 'next-contentlayer/hooks';
 import Balancer from 'react-wrap-balancer';
 import { format, formatDistanceToNow } from 'date-fns';
 import { Tweet } from 'react-tweet';
+import PageWrap from '@/components/PageWrap/PageWrap';
 import components from '../../../lib/tweet-components';
 
 export async function generateStaticParams() {
@@ -62,6 +63,10 @@ export async function generateMetadata({
   };
 }
 
+type BlogPageProps = {
+  params: { slug: string };
+};
+
 // custom MDX components
 const mdxComponents: MDXComponents = {
   // override the default <a> element to use the next/link component.
@@ -89,7 +94,7 @@ const mdxComponents: MDXComponents = {
   },
 };
 
-export default async function Page({ params }: { params: { slug: string } }) {
+const BlogPage = async ({ params }: BlogPageProps) => {
   // Find the post for the current page.
   const post = allPosts.find((p) => p.slug === params.slug);
 
@@ -101,21 +106,25 @@ export default async function Page({ params }: { params: { slug: string } }) {
   const MDXContent = getMDXComponent(post.body.code);
 
   return (
-    <article className="prose prose-quoteless prose-neutral dark:prose-invert mx-0 md:mx-auto ">
-      <script type="application/ld+json" suppressHydrationWarning>
-        {JSON.stringify(post.structuredData)}
-      </script>
-      <h1 className="font-bold font-display text-3xl">
-        <Balancer>{post.title}</Balancer>
-      </h1>
-      <div>
-        {`${format(
-          new Date(post.publishedAt),
-          'MMMM d, yyyy',
-        )} (${formatDistanceToNow(new Date(post.publishedAt))} ago)`}
-      </div>
-      <MDXContent components={mdxComponents} />
-      <div> {post.readingTime.text}</div>
-    </article>
+    <PageWrap>
+      <article className="prose prose-quoteless prose-neutral dark:prose-invert mx-0 md:mx-auto ">
+        <script type="application/ld+json" suppressHydrationWarning>
+          {JSON.stringify(post.structuredData)}
+        </script>
+        <h1 className="font-bold font-display text-3xl">
+          <Balancer>{post.title}</Balancer>
+        </h1>
+        <div>
+          {`${format(
+            new Date(post.publishedAt),
+            'MMMM d, yyyy',
+          )} (${formatDistanceToNow(new Date(post.publishedAt))} ago)`}
+        </div>
+        <MDXContent components={mdxComponents} />
+        <div> {post.readingTime.text}</div>
+      </article>
+    </PageWrap>
   );
-}
+};
+
+export default BlogPage;

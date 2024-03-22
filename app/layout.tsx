@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
 import Script from 'next/script';
+import { Analytics } from '@vercel/analytics/react';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
+import HeaderHeightMeasurer from '@/components/HeaderMeasurer/HeaderMeasurer';
 import './globals.css';
-import '@fortawesome/fontawesome-svg-core/styles.css';
+import Providers from './providers';
 
 config.autoAddCss = false;
 
@@ -22,11 +25,13 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
-        <div className="flex flex-col min-h-screen">
+        <Providers>
+          <HeaderHeightMeasurer />
           <Header />
           <main className="flex-1 p-8">{children}</main>
           <Footer />
-        </div>
+        </Providers>
+        <Analytics />
         {/* <!-- Google Tag Manager --> */}
         <Script
           id="gooogle-tag-manager"

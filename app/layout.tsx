@@ -6,7 +6,7 @@ import { config } from '@fortawesome/fontawesome-svg-core';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import HeaderHeightMeasurer from '@/components/HeaderMeasurer/HeaderMeasurer';
-import './globals.css';
+import '@/global.css';
 import Providers from './providers';
 
 config.autoAddCss = false;

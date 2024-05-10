@@ -6,7 +6,6 @@ import {
   useState,
 } from 'react';
 
-// TODO: MOVE MENU RELATED CONTEXTS TO A NEW MENU CONTEXTS
 type UIContextArgs = {
   headerHeight: number;
   setHeaderHeight: Dispatch<SetStateAction<number>>;

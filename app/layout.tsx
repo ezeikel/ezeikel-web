@@ -3,6 +3,7 @@ import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { config } from '@fortawesome/fontawesome-svg-core';
+import PlausibleProvider from 'next-plausible';
 import Footer from '@/components/Footer/Footer';
 import Header from '@/components/Header/Header';
 import HeaderHeightMeasurer from '@/components/HeaderMeasurer/HeaderMeasurer';
@@ -12,8 +13,8 @@ import Providers from './providers';
 config.autoAddCss = false;
 
 export const metadata: Metadata = {
-  title: 'Ezeikel - London based Software Engineer',
-  description: 'Developer, writer, and creator based in London, UK.',
+  title: 'Ezeikel - London based Fullstack JavaScript Developer',
+  description: 'Software Engineer, writer, and creator based in London, UK.',
 };
 
 export default function RootLayout({
@@ -23,7 +24,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head />
+      <head>
+        <PlausibleProvider domain="ezeikel.com" />
+      </head>
       <body>
         <Providers>
           <HeaderHeightMeasurer />

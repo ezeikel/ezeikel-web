@@ -1,5 +1,6 @@
 import { withSentryConfig } from '@sentry/nextjs';
 import { withContentlayer } from 'next-contentlayer';
+import { withPlausibleProxy } from 'next-plausible';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -29,4 +30,6 @@ const configWithSentry = withSentryConfig(nextConfig, sentryOptions);
 
 const configWithContentlayer = withContentlayer(configWithSentry);
 
-export default configWithContentlayer;
+const configWithPlausible = withPlausibleProxy(configWithContentlayer);
+
+export default configWithPlausible;

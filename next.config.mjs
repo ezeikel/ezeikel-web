@@ -28,8 +28,8 @@ const sentryOptions = {
 
 const configWithSentry = withSentryConfig(nextConfig, sentryOptions);
 
-const configWithContentlayer = withContentlayer(configWithSentry);
+const configWithPlausible = withPlausibleProxy(configWithSentry);
 
-const configWithPlausible = withPlausibleProxy(configWithContentlayer);
+const configWithContentlayer = withContentlayer(configWithPlausible);
 
-export default configWithPlausible;
+export default configWithContentlayer;

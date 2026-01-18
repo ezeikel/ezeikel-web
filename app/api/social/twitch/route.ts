@@ -17,7 +17,8 @@ export async function GET() {
       {
         success: false,
         isLive: false,
-        error: error instanceof Error ? error.message : 'Failed to fetch status',
+        error:
+          error instanceof Error ? error.message : 'Failed to fetch status',
       },
       { status: 500 },
     );

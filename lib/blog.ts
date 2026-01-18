@@ -1,25 +1,25 @@
 export type BlogPost = {
-  id: string
-  slug: string
-  title: string
-  excerpt: string
-  content: string
-  category: "Dev" | "Product" | "Indie Hacking" | "Creator Life" | "Case Study"
-  author: string
-  date: string
-  readTime: string
-  image?: string
-  tags: string[]
-  featured?: boolean
-}
+  id: string;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  category: 'Dev' | 'Product' | 'Indie Hacking' | 'Creator Life' | 'Case Study';
+  author: string;
+  date: string;
+  readTime: string;
+  image?: string;
+  tags: string[];
+  featured?: boolean;
+};
 
 export const blogPosts: BlogPost[] = [
   {
-    id: "1",
-    slug: "chunky-crayon-launch",
-    title: "How I Built and Launched Chunky Crayon in 3 Months",
+    id: '1',
+    slug: 'chunky-crayon-launch',
+    title: 'How I Built and Launched Chunky Crayon in 3 Months',
     excerpt:
-      "The complete story of building a kids colouring app as a solo developer, from initial idea to getting featured on the App Store.",
+      'The complete story of building a kids colouring app as a solo developer, from initial idea to getting featured on the App Store.',
     content: `
 # How I Built and Launched Chunky Crayon in 3 Months
 
@@ -67,20 +67,20 @@ After 3 months on the App Store:
 
 The biggest lesson was the importance of user testing with actual children. What seemed intuitive to me as an adult was often confusing for a 3-year-old. I did dozens of testing sessions with kids before finalising the UI.
     `,
-    category: "Case Study",
-    author: "Ezeikel Pemberton",
-    date: "Jan 10, 2026",
-    readTime: "8 min read",
-    image: "/blog-chunky-crayon.jpg",
-    tags: ["React Native", "Expo", "App Store", "Indie Apps"],
+    category: 'Case Study',
+    author: 'Ezeikel Pemberton',
+    date: 'Jan 10, 2026',
+    readTime: '8 min read',
+    image: '/blog-chunky-crayon.jpg',
+    tags: ['React Native', 'Expo', 'App Store', 'Indie Apps'],
     featured: true,
   },
   {
-    id: "2",
-    slug: "tech-stack-2026",
-    title: "My Tech Stack for Indie Apps in 2026",
+    id: '2',
+    slug: 'tech-stack-2026',
+    title: 'My Tech Stack for Indie Apps in 2026',
     excerpt:
-      "Why I chose React Native, Expo, TypeScript, and Postgres for my indie projects, and how this stack has served me well.",
+      'Why I chose React Native, Expo, TypeScript, and Postgres for my indie projects, and how this stack has served me well.',
     content: `
 # My Tech Stack for Indie Apps in 2026
 
@@ -114,18 +114,18 @@ For most indie projects, Supabase gives me everything I need:
 
 This stack lets me move fast while maintaining quality. The key is choosing tools that handle complexity for you, so you can focus on building features that matter.
     `,
-    category: "Dev",
-    author: "Ezeikel Pemberton",
-    date: "Jan 5, 2026",
-    readTime: "5 min read",
-    image: "/blog-tech-stack.jpg",
-    tags: ["Tech Stack", "React Native", "TypeScript", "Postgres"],
+    category: 'Dev',
+    author: 'Ezeikel Pemberton',
+    date: 'Jan 5, 2026',
+    readTime: '5 min read',
+    image: '/blog-tech-stack.jpg',
+    tags: ['Tech Stack', 'React Native', 'TypeScript', 'Postgres'],
     featured: true,
   },
   {
-    id: "3",
-    slug: "100k-followers",
-    title: "Growing to 100K Followers as a Dev Creator",
+    id: '3',
+    slug: '100k-followers',
+    title: 'Growing to 100K Followers as a Dev Creator',
     excerpt:
       "Lessons learned from building an audience while shipping products as an indie hacker. What worked, what didn't.",
     content: `
@@ -162,19 +162,19 @@ Building an audience has directly impacted my business:
 
 The best time to start building an audience was yesterday. The second best time is today. Just start creating and improve as you go.
     `,
-    category: "Creator Life",
-    author: "Ezeikel Pemberton",
-    date: "Dec 28, 2025",
-    readTime: "6 min read",
-    image: "/blog-100k-followers.jpg",
-    tags: ["Content Creation", "Social Media", "Indie Hacking"],
+    category: 'Creator Life',
+    author: 'Ezeikel Pemberton',
+    date: 'Dec 28, 2025',
+    readTime: '6 min read',
+    image: '/blog-100k-followers.jpg',
+    tags: ['Content Creation', 'Social Media', 'Indie Hacking'],
   },
   {
-    id: "4",
-    slug: "parking-ticket-pal-ai",
-    title: "Adding AI to Parking Ticket Pal",
+    id: '4',
+    slug: 'parking-ticket-pal-ai',
+    title: 'Adding AI to Parking Ticket Pal',
     excerpt:
-      "How I integrated OpenAI to generate appeal letters and increased the success rate of ticket appeals by 40%.",
+      'How I integrated OpenAI to generate appeal letters and increased the success rate of ticket appeals by 40%.',
     content: `
 # Adding AI to Parking Ticket Pal
 
@@ -210,18 +210,19 @@ After implementing AI-generated letters:
 
 I used a carefully crafted system prompt that includes UK parking law context and successful appeal templates as examples. This ensures the AI generates legally relevant arguments.
     `,
-    category: "Product",
-    author: "Ezeikel Pemberton",
-    date: "Dec 20, 2025",
-    readTime: "7 min read",
-    image: "/blog-ai-integration.jpg",
-    tags: ["AI", "OpenAI", "Product Development"],
+    category: 'Product',
+    author: 'Ezeikel Pemberton',
+    date: 'Dec 20, 2025',
+    readTime: '7 min read',
+    image: '/blog-ai-integration.jpg',
+    tags: ['AI', 'OpenAI', 'Product Development'],
   },
   {
-    id: "5",
-    slug: "indie-hacking-revenue-2025",
-    title: "My Indie Hacking Revenue Breakdown: 2025 Edition",
-    excerpt: "Transparent look at how much I made from indie apps, content creation, and brand deals in 2025.",
+    id: '5',
+    slug: 'indie-hacking-revenue-2025',
+    title: 'My Indie Hacking Revenue Breakdown: 2025 Edition',
+    excerpt:
+      'Transparent look at how much I made from indie apps, content creation, and brand deals in 2025.',
     content: `
 # My Indie Hacking Revenue Breakdown: 2025 Edition
 
@@ -256,24 +257,22 @@ I believe in transparency, so here's exactly how much money I made in 2025 and w
 
 I'm aiming to double this by launching 2 new apps and growing my YouTube channel to 100K subscribers.
     `,
-    category: "Indie Hacking",
-    author: "Ezeikel Pemberton",
-    date: "Dec 15, 2025",
-    readTime: "5 min read",
-    image: "/blog-revenue-breakdown.jpg",
-    tags: ["Revenue", "Indie Hacking", "Transparency"],
+    category: 'Indie Hacking',
+    author: 'Ezeikel Pemberton',
+    date: 'Dec 15, 2025',
+    readTime: '5 min read',
+    image: '/blog-revenue-breakdown.jpg',
+    tags: ['Revenue', 'Indie Hacking', 'Transparency'],
   },
-]
+];
 
-export const getBlogPostBySlug = (slug: string): BlogPost | undefined => {
-  return blogPosts.find((post) => post.slug === slug)
-}
+export const getBlogPostBySlug = (slug: string): BlogPost | undefined =>
+  blogPosts.find((post) => post.slug === slug);
 
 export const getBlogPostsByCategory = (category: string): BlogPost[] => {
-  if (category === "All") return blogPosts
-  return blogPosts.filter((post) => post.category === category)
-}
+  if (category === 'All') return blogPosts;
+  return blogPosts.filter((post) => post.category === category);
+};
 
-export const getFeaturedBlogPosts = (): BlogPost[] => {
-  return blogPosts.filter((post) => post.featured)
-}
+export const getFeaturedBlogPosts = (): BlogPost[] =>
+  blogPosts.filter((post) => post.featured);

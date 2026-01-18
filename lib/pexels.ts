@@ -83,9 +83,7 @@ export async function fetchBlogPhotosForEvaluation(
 /**
  * Fetch a single photo by ID
  */
-export async function fetchPhotoById(
-  id: number,
-): Promise<PexelsPhoto | null> {
+export async function fetchPhotoById(id: number): Promise<PexelsPhoto | null> {
   try {
     const client = getClient();
     const response = await client.photos.show({ id });
@@ -124,9 +122,7 @@ function mapPexelsPhoto(photo: Photo): PexelsPhoto {
 /**
  * Download image as buffer for uploading to Sanity
  */
-export async function downloadImageAsBuffer(
-  imageUrl: string,
-): Promise<Buffer> {
+export async function downloadImageAsBuffer(imageUrl: string): Promise<Buffer> {
   const response = await fetch(imageUrl);
   const arrayBuffer = await response.arrayBuffer();
   return Buffer.from(arrayBuffer);

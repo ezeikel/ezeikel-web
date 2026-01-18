@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
-import {
-  generateRandomBlogPost,
-  getBlogTopicStats,
-} from '@/app/actions/blog';
+import { generateRandomBlogPost, getBlogTopicStats } from '@/app/actions/blog';
 
 export const maxDuration = 300; // 5 minutes for AI generation
 
@@ -16,10 +13,7 @@ export async function GET(request: Request) {
       // Check for Vercel cron header
       const vercelCron = request.headers.get('x-vercel-cron');
       if (!vercelCron) {
-        return NextResponse.json(
-          { error: 'Unauthorized' },
-          { status: 401 },
-        );
+        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
       }
     }
 

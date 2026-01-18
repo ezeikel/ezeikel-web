@@ -24,10 +24,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!body?._type) {
-      return NextResponse.json(
-        { message: 'Bad Request' },
-        { status: 400 },
-      );
+      return NextResponse.json({ message: 'Bad Request' }, { status: 400 });
     }
 
     const revalidatedPaths: string[] = [];

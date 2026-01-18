@@ -31,7 +31,7 @@
 
 import type { AggregatedStats, PlatformStats, ContentItem } from './types';
 import { getYouTubeStats, getRecentYouTubeVideos } from './youtube';
-import { getTwitchStats, getTwitchStreamStatus } from './twitch';
+import { getTwitchStats } from './twitch';
 
 export * from './types';
 export * from './youtube';

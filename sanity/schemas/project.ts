@@ -43,7 +43,8 @@ export default defineType({
       name: 'iconBg',
       title: 'Icon Background',
       type: 'string',
-      description: 'Tailwind classes for icon background (e.g., bg-pink-100 text-pink-600)',
+      description:
+        'Tailwind classes for icon background (e.g., bg-pink-100 text-pink-600)',
     }),
     defineField({
       name: 'image',

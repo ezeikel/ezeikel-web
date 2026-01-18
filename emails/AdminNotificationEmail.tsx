@@ -34,7 +34,9 @@ export default function AdminNotificationEmail({
   return (
     <Html>
       <Head />
-      <Preview>{typeLabels[type]} from {name}</Preview>
+      <Preview>
+        {typeLabels[type]} from {name}
+      </Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={box}>
@@ -66,7 +68,8 @@ export default function AdminNotificationEmail({
             <Hr style={hr} />
 
             <Text style={footer}>
-              Received at {new Date().toLocaleString('en-GB', {
+              Received at{' '}
+              {new Date().toLocaleString('en-GB', {
                 timeZone: 'Europe/London',
               })}
             </Text>

@@ -3,9 +3,8 @@
 import { stripe, getProductById } from '@/lib/stripe';
 import { headers } from 'next/headers';
 
-const getBaseUrl = () => {
-  return process.env.NEXT_PUBLIC_BASE_URL || 'https://ezeikel.dev';
-};
+const getBaseUrl = () =>
+  process.env.NEXT_PUBLIC_BASE_URL || 'https://ezeikel.dev';
 
 export type CheckoutResult = {
   success: boolean;

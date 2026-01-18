@@ -1,36 +1,36 @@
-"use client"
+'use client';
 
-import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { motion } from "framer-motion"
+import { useState } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 const games = [
-  { title: "Call of Duty", subtitle: "Warzone / Black Ops 6" },
-  { title: "Battlefield 2042", subtitle: "Conquest" },
-  { title: "Undisputed", subtitle: "Boxing" },
-]
+  { title: 'Call of Duty', subtitle: 'Warzone / Black Ops 6' },
+  { title: 'Battlefield 2042', subtitle: 'Conquest' },
+  { title: 'Undisputed', subtitle: 'Boxing' },
+];
 
-const PSN_TAG = "YourPSNTag"
-const TWITCH_URL = "https://twitch.tv/yourusername"
+const PSN_TAG = 'YourPSNTag';
+const TWITCH_URL = 'https://twitch.tv/yourusername';
 
 // Update with your latest stream VOD
 const LATEST_STREAM = {
-  title: "Late Night Warzone Ranked Grind",
-  thumbnail: "/stream-thumbnail.jpg",
-  duration: "2:34:18",
-  date: "3 days ago",
-  url: "https://twitch.tv/yourusername/videos",
-}
+  title: 'Late Night Warzone Ranked Grind',
+  thumbnail: '/stream-thumbnail.jpg',
+  duration: '2:34:18',
+  date: '3 days ago',
+  url: 'https://twitch.tv/yourusername/videos',
+};
 
 const CurrentlyPlayingSection = () => {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
 
   const copyPSN = async () => {
-    await navigator.clipboard.writeText(PSN_TAG)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    await navigator.clipboard.writeText(PSN_TAG);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <section className="py-16 md:py-20">
@@ -38,7 +38,7 @@ const CurrentlyPlayingSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] as const }}
           className="rounded-2xl border border-border/60 bg-card overflow-hidden"
         >
@@ -51,7 +51,7 @@ const CurrentlyPlayingSection = () => {
               className="group relative aspect-video md:aspect-auto md:h-full bg-secondary"
             >
               <Image
-                src={LATEST_STREAM.thumbnail || "/placeholder.svg"}
+                src={LATEST_STREAM.thumbnail || '/placeholder.svg'}
                 alt={LATEST_STREAM.title}
                 fill
                 className="object-cover transition-transform duration-300 group-hover:scale-105"
@@ -84,19 +84,28 @@ const CurrentlyPlayingSection = () => {
                     rel="noopener noreferrer"
                     className="group"
                   >
-                    <p className="text-xs font-medium text-purple-500 mb-1">Latest Stream</p>
+                    <p className="text-xs font-medium text-purple-500 mb-1">
+                      Latest Stream
+                    </p>
                     <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
                       {LATEST_STREAM.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground">{LATEST_STREAM.date}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {LATEST_STREAM.date}
+                    </p>
                   </Link>
                 </div>
 
                 {/* Currently Playing */}
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <i className="fa-solid fa-gamepad text-muted-foreground" aria-hidden="true" />
-                    <span className="text-sm font-medium text-muted-foreground">Currently Playing</span>
+                    <i
+                      className="fa-solid fa-gamepad text-muted-foreground"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm font-medium text-muted-foreground">
+                      Currently Playing
+                    </span>
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {games.map((game) => (
@@ -104,8 +113,12 @@ const CurrentlyPlayingSection = () => {
                         key={game.title}
                         className="rounded-lg bg-secondary/70 px-3 py-2"
                       >
-                        <p className="text-sm font-medium text-foreground">{game.title}</p>
-                        <p className="text-xs text-muted-foreground">{game.subtitle}</p>
+                        <p className="text-sm font-medium text-foreground">
+                          {game.title}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          {game.subtitle}
+                        </p>
                       </div>
                     ))}
                   </div>
@@ -118,12 +131,23 @@ const CurrentlyPlayingSection = () => {
                     onClick={copyPSN}
                     className="group flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 transition-colors hover:border-primary/50"
                   >
-                    <i className="fa-brands fa-playstation text-blue-500" aria-hidden="true" />
-                    <span className="text-sm font-medium text-foreground">{PSN_TAG}</span>
+                    <i
+                      className="fa-brands fa-playstation text-blue-500"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm font-medium text-foreground">
+                      {PSN_TAG}
+                    </span>
                     {copied ? (
-                      <i className="fa-solid fa-check text-xs text-green-500" aria-hidden="true" />
+                      <i
+                        className="fa-solid fa-check text-xs text-green-500"
+                        aria-hidden="true"
+                      />
                     ) : (
-                      <i className="fa-regular fa-copy text-xs text-muted-foreground transition-colors group-hover:text-foreground" aria-hidden="true" />
+                      <i
+                        className="fa-regular fa-copy text-xs text-muted-foreground transition-colors group-hover:text-foreground"
+                        aria-hidden="true"
+                      />
                     )}
                   </button>
 
@@ -143,7 +167,7 @@ const CurrentlyPlayingSection = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default CurrentlyPlayingSection
+export default CurrentlyPlayingSection;

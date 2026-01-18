@@ -10,7 +10,10 @@ type ProjectsGridProps = {
   categories: string[];
 };
 
-export default function ProjectsGrid({ projects, categories }: ProjectsGridProps) {
+export default function ProjectsGrid({
+  projects,
+  categories,
+}: ProjectsGridProps) {
   const [activeCategory, setActiveCategory] = useState('All');
 
   const filteredProjects = useMemo(() => {

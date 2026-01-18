@@ -1,11 +1,11 @@
 import type { PlatformStats, TwitchStreamStatus } from './types';
 
-const TWITCH_CLIENT_ID = process.env.TWITCH_CLIENT_ID;
-const TWITCH_CLIENT_SECRET = process.env.TWITCH_CLIENT_SECRET;
+const { TWITCH_CLIENT_ID } = process.env;
+const { TWITCH_CLIENT_SECRET } = process.env;
 const TWITCH_USERNAME = process.env.TWITCH_USERNAME || 'ezeikel';
 
 let accessToken: string | null = null;
-let tokenExpiry: number = 0;
+let tokenExpiry = 0;
 
 async function getAccessToken(): Promise<string> {
   // Check if token is still valid
@@ -91,7 +91,9 @@ export async function getTwitchStreamStatus(): Promise<TwitchStreamStatus> {
   }
 
   try {
-    const response = await twitchFetch(`/streams?user_login=${TWITCH_USERNAME}`);
+    const response = await twitchFetch(
+      `/streams?user_login=${TWITCH_USERNAME}`,
+    );
 
     if (!response.ok) {
       throw new Error(`Twitch API error: ${response.status}`);

@@ -12,7 +12,9 @@ import AdminNotificationEmail from '@/emails/AdminNotificationEmail';
 const contactSchema = z.object({
   name: z.string().min(1, 'Name is required'),
   email: z.string().email('Please enter a valid email address'),
-  message: z.string().min(10, 'Please enter a message (at least 10 characters)'),
+  message: z
+    .string()
+    .min(10, 'Please enter a message (at least 10 characters)'),
   honeypot: z.string().max(0, 'Bot detected').optional(),
 });
 
@@ -71,7 +73,8 @@ export async function POST(request: Request) {
     console.error('Contact form error:', error);
     return NextResponse.json(
       {
-        error: error instanceof Error ? error.message : 'Failed to send message',
+        error:
+          error instanceof Error ? error.message : 'Failed to send message',
       },
       { status: 500 },
     );

@@ -57,7 +57,10 @@ export async function generateMetadata({
       images: post.featuredImage?.asset
         ? [
             {
-              url: urlFor(post.featuredImage.asset).width(1200).height(630).url(),
+              url: urlFor(post.featuredImage.asset)
+                .width(1200)
+                .height(630)
+                .url(),
               width: 1200,
               height: 630,
               alt: post.featuredImage.alt || post.title,
@@ -173,7 +176,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   <p className="text-sm font-medium text-foreground">
                     {post.author?.name || 'Ezeikel Pemberton'}
                   </p>
-                  <p className="text-xs text-muted-foreground">{formattedDate}</p>
+                  <p className="text-xs text-muted-foreground">
+                    {formattedDate}
+                  </p>
                 </div>
               </div>
             </div>

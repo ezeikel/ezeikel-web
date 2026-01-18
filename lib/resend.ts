@@ -80,20 +80,19 @@ export async function sendEmail(options: SendEmailOptions) {
     }
 
     return { id: data?.id, provider: 'resend' as const };
-  } else {
-    // Use Mailtrap for local development
-    const html = await render(options.react);
-    const mailtrapTransport = getMailtrapTransport();
-    const result = await mailtrapTransport.sendMail({
-      from: FROM_EMAIL,
-      to: options.to,
-      subject: options.subject,
-      html,
-    });
-
-    console.log('Mailtrap email sent:', result.messageId);
-    return { id: result.messageId, provider: 'mailtrap' as const };
   }
+  // Use Mailtrap for local development
+  const html = await render(options.react);
+  const mailtrapTransport = getMailtrapTransport();
+  const result = await mailtrapTransport.sendMail({
+    from: FROM_EMAIL,
+    to: options.to,
+    subject: options.subject,
+    html,
+  });
+
+  console.log('Mailtrap email sent:', result.messageId);
+  return { id: result.messageId, provider: 'mailtrap' as const };
 }
 
 /**

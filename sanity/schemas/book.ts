@@ -47,7 +47,8 @@ export default defineType({
       title: 'Key Takeaway',
       type: 'text',
       rows: 3,
-      description: 'A brief summary of what you learned or liked about this book',
+      description:
+        'A brief summary of what you learned or liked about this book',
     }),
     defineField({
       name: 'review',

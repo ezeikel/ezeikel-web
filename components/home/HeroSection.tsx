@@ -1,11 +1,16 @@
-"use client"
+'use client';
 
-import Link from "next/link"
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
-import { useRef, useState } from "react"
-import { useForm } from "@tanstack/react-form"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import Link from 'next/link';
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from 'framer-motion';
+import { useRef, useState } from 'react';
+import { useForm } from '@tanstack/react-form';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const containerVariants = {
   hidden: {},
@@ -15,7 +20,7 @@ const containerVariants = {
       delayChildren: 0.1,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -27,42 +32,53 @@ const itemVariants = {
       ease: [0.25, 0.4, 0.25, 1] as const,
     },
   },
-}
+};
 
 const HeroSection = () => {
-  const sectionRef = useRef<HTMLElement>(null)
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm({
     defaultValues: {
-      email: "",
+      email: '',
     },
     onSubmit: async ({ value }) => {
-      setIsSubmitting(true)
+      setIsSubmitting(true);
       // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000))
-      console.log("Newsletter signup:", value.email)
-      setIsSubmitting(false)
-      setIsSubmitted(true)
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+      console.log('Newsletter signup:', value.email);
+      setIsSubmitting(false);
+      setIsSubmitted(true);
     },
-  })
+  });
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start start", "end start"],
-  })
+    offset: ['start start', 'end start'],
+  });
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, 150])
-  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.3])
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95])
+  const y = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.8, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.95]);
 
   return (
-    <section ref={sectionRef} className="relative overflow-hidden pb-16 pt-12 md:pb-24 md:pt-20">
-      <motion.div style={{ y, opacity, scale }} className="mx-auto max-w-6xl px-6">
+    <section
+      ref={sectionRef}
+      className="relative overflow-hidden pb-16 pt-12 md:pb-24 md:pt-20"
+    >
+      <motion.div
+        style={{ y, opacity, scale }}
+        className="mx-auto max-w-6xl px-6"
+      >
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Content */}
-          <motion.div variants={containerVariants} initial="hidden" animate="visible" className="space-y-8">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="space-y-8"
+          >
             <div className="space-y-4">
               <motion.p
                 variants={itemVariants}
@@ -76,8 +92,12 @@ const HeroSection = () => {
               >
                 Building apps, sharing the journey.
               </motion.h1>
-              <motion.p variants={itemVariants} className="text-pretty text-lg text-muted-foreground md:text-xl">
-                Building apps, shipping products, and sharing the entire journey online. Founder of{" "}
+              <motion.p
+                variants={itemVariants}
+                className="text-pretty text-lg text-muted-foreground md:text-xl"
+              >
+                Building apps, shipping products, and sharing the entire journey
+                online. Founder of{' '}
                 <a
                   href="https://chunkycrayon.com?utm_source=ezeikel.com&utm_medium=website&utm_campaign=hero"
                   target="_blank"
@@ -85,8 +105,8 @@ const HeroSection = () => {
                   className="font-medium text-foreground underline decoration-primary/30 underline-offset-2 transition-colors hover:text-primary hover:decoration-primary"
                 >
                   Chunky Crayon
-                </a>{" "}
-                and{" "}
+                </a>{' '}
+                and{' '}
                 <a
                   href="https://parkingticketpal.com?utm_source=ezeikel.com&utm_medium=website&utm_campaign=hero"
                   target="_blank"
@@ -102,7 +122,8 @@ const HeroSection = () => {
             {/* Newsletter Form */}
             <motion.div variants={itemVariants} className="space-y-3">
               <p className="text-sm font-medium text-muted-foreground">
-                Get updates on new projects, videos, and behind-the-scenes content.
+                Get updates on new projects, videos, and behind-the-scenes
+                content.
               </p>
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
@@ -113,8 +134,13 @@ const HeroSection = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="flex items-center gap-2 rounded-lg bg-green-50 px-4 py-3 text-green-700"
                   >
-                    <i className="fa-solid fa-check-circle" aria-hidden="true" />
-                    <span className="text-sm font-medium">You&apos;re in! Check your inbox to confirm.</span>
+                    <i
+                      className="fa-solid fa-check-circle"
+                      aria-hidden="true"
+                    />
+                    <span className="text-sm font-medium">
+                      You&apos;re in! Check your inbox to confirm.
+                    </span>
                   </motion.div>
                 ) : (
                   <motion.form
@@ -123,9 +149,9 @@ const HeroSection = () => {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onSubmit={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      form.handleSubmit()
+                      e.preventDefault();
+                      e.stopPropagation();
+                      form.handleSubmit();
                     }}
                     className="flex flex-col gap-3 sm:flex-row"
                   >
@@ -134,9 +160,9 @@ const HeroSection = () => {
                       validators={{
                         onChange: ({ value }) =>
                           !value
-                            ? "Email is required"
+                            ? 'Email is required'
                             : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
-                              ? "Please enter a valid email"
+                              ? 'Please enter a valid email'
                               : undefined,
                       }}
                     >
@@ -151,13 +177,19 @@ const HeroSection = () => {
                             className="h-12 bg-card"
                             aria-label="Email address"
                           />
-                          {field.state.meta.isTouched && field.state.meta.errors.length > 0 && (
-                            <p className="mt-1 text-xs text-red-500">{field.state.meta.errors[0]}</p>
-                          )}
+                          {field.state.meta.isTouched &&
+                            field.state.meta.errors.length > 0 && (
+                              <p className="mt-1 text-xs text-red-500">
+                                {field.state.meta.errors[0]}
+                              </p>
+                            )}
                         </div>
                       )}
                     </form.Field>
-                    <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                    >
                       <Button
                         type="submit"
                         size="lg"
@@ -166,13 +198,19 @@ const HeroSection = () => {
                       >
                         {isSubmitting ? (
                           <>
-                            <i className="fa-solid fa-spinner fa-spin mr-2" aria-hidden="true" />
+                            <i
+                              className="fa-solid fa-spinner fa-spin mr-2"
+                              aria-hidden="true"
+                            />
                             Subscribing...
                           </>
                         ) : (
                           <>
                             Subscribe
-                            <i className="fa-solid fa-arrow-right ml-2" aria-hidden="true" />
+                            <i
+                              className="fa-solid fa-arrow-right ml-2"
+                              aria-hidden="true"
+                            />
                           </>
                         )}
                       </Button>
@@ -180,20 +218,34 @@ const HeroSection = () => {
                   </motion.form>
                 )}
               </AnimatePresence>
-              <p className="text-xs text-muted-foreground">No spam. Unsubscribe anytime.</p>
+              <p className="text-xs text-muted-foreground">
+                No spam. Unsubscribe anytime.
+              </p>
             </motion.div>
 
             {/* CTAs */}
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-4"
+            >
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <Button asChild variant="outline" size="lg">
                   <Link href="/things-ive-built">
                     View my projects
-                    <i className="fa-solid fa-arrow-right ml-2" aria-hidden="true" />
+                    <i
+                      className="fa-solid fa-arrow-right ml-2"
+                      aria-hidden="true"
+                    />
                   </Link>
                 </Button>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <Button asChild variant="ghost" size="lg">
                   <Link href="/content">
                     <i className="fa-solid fa-play mr-2" aria-hidden="true" />
@@ -208,7 +260,11 @@ const HeroSection = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, x: 50 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.4, 0.25, 1] }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+              ease: [0.25, 0.4, 0.25, 1],
+            }}
             className="relative flex justify-center lg:justify-end"
           >
             <div className="relative">
@@ -220,7 +276,7 @@ const HeroSection = () => {
                 transition={{
                   duration: 4,
                   repeat: Number.POSITIVE_INFINITY,
-                  ease: "easeInOut",
+                  ease: 'easeInOut',
                 }}
                 className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl"
               />
@@ -243,14 +299,25 @@ const HeroSection = () => {
                 <div className="flex items-center gap-3">
                   <motion.div
                     animate={{ rotate: [0, 5, -5, 0] }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: 'easeInOut',
+                    }}
                     className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"
                   >
-                    <i className="fa-solid fa-code text-primary" aria-hidden="true" />
+                    <i
+                      className="fa-solid fa-code text-primary"
+                      aria-hidden="true"
+                    />
                   </motion.div>
                   <div>
-                    <p className="text-sm font-semibold text-foreground">Chunky Crayon</p>
-                    <p className="text-xs text-muted-foreground">Kids colouring app</p>
+                    <p className="text-sm font-semibold text-foreground">
+                      Chunky Crayon
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Kids colouring app
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -265,14 +332,26 @@ const HeroSection = () => {
                 <div className="flex items-center gap-3">
                   <motion.div
                     animate={{ rotate: [0, -5, 5, 0] }}
-                    transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut", delay: 0.5 }}
+                    transition={{
+                      duration: 2,
+                      repeat: Number.POSITIVE_INFINITY,
+                      ease: 'easeInOut',
+                      delay: 0.5,
+                    }}
                     className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/20"
                   >
-                    <i className="fa-solid fa-car text-accent" aria-hidden="true" />
+                    <i
+                      className="fa-solid fa-car text-accent"
+                      aria-hidden="true"
+                    />
                   </motion.div>
                   <div>
-                    <p className="text-sm font-semibold text-foreground">Parking Ticket Pal</p>
-                    <p className="text-xs text-muted-foreground">Ticket management</p>
+                    <p className="text-sm font-semibold text-foreground">
+                      Parking Ticket Pal
+                    </p>
+                    <p className="text-xs text-muted-foreground">
+                      Ticket management
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -281,7 +360,7 @@ const HeroSection = () => {
         </div>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

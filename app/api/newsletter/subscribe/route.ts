@@ -72,8 +72,7 @@ export async function POST(request: Request) {
     console.error('Newsletter subscription error:', error);
     return NextResponse.json(
       {
-        error:
-          error instanceof Error ? error.message : 'Failed to subscribe',
+        error: error instanceof Error ? error.message : 'Failed to subscribe',
       },
       { status: 500 },
     );

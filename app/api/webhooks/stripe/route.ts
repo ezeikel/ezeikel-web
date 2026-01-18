@@ -40,19 +40,19 @@ export async function POST(request: Request) {
     // Handle the event
     switch (event.type) {
       case 'checkout.session.completed': {
-        const session = event.data.object as Stripe.Checkout.Session;
+        const session = event.data.object;
         await handleCheckoutCompleted(session);
         break;
       }
 
       case 'payment_intent.succeeded': {
-        const paymentIntent = event.data.object as Stripe.PaymentIntent;
+        const paymentIntent = event.data.object;
         console.log('Payment succeeded:', paymentIntent.id);
         break;
       }
 
       case 'payment_intent.payment_failed': {
-        const paymentIntent = event.data.object as Stripe.PaymentIntent;
+        const paymentIntent = event.data.object;
         console.log('Payment failed:', paymentIntent.id);
         break;
       }
@@ -101,7 +101,7 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
           message: `New purchase: ${product?.name || 'Custom amount'}`,
           additionalInfo: {
             'Product ID': productId || 'N/A',
-            'Amount': `${(session.amount_total || 0) / 100} ${session.currency?.toUpperCase()}`,
+            Amount: `${(session.amount_total || 0) / 100} ${session.currency?.toUpperCase()}`,
             'Session ID': session.id,
           },
         }),

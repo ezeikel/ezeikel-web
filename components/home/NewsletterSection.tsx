@@ -1,22 +1,22 @@
-"use client"
+'use client';
 
-import type React from "react"
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import type React from 'react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 const NewsletterSection = () => {
-  const [email, setEmail] = useState("")
-  const [isSubmitted, setIsSubmitted] = useState(false)
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [isFocused, setIsFocused] = useState(false)
+  const [email, setEmail] = useState('');
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isFocused, setIsFocused] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setError(null)
+    e.preventDefault();
+    setIsSubmitting(true);
+    setError(null);
 
     try {
       const response = await fetch('/api/newsletter/subscribe', {
@@ -25,29 +25,29 @@ const NewsletterSection = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
-      })
+      });
 
-      const data = await response.json()
+      const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to subscribe')
+        throw new Error(data.error || 'Failed to subscribe');
       }
 
-      setIsSubmitted(true)
-      setEmail("")
+      setIsSubmitted(true);
+      setEmail('');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
+      setError(err instanceof Error ? err.message : 'Something went wrong');
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <section className="border-t border-border bg-primary/5 py-16 md:py-24">
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
+        viewport={{ once: true, margin: '-50px' }}
         transition={{ duration: 0.6, ease: [0.25, 0.4, 0.25, 1] as const }}
         className="mx-auto max-w-2xl px-6 text-center"
       >
@@ -55,7 +55,7 @@ const NewsletterSection = () => {
           initial={{ scale: 0 }}
           whileInView={{ scale: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+          transition={{ delay: 0.2, type: 'spring', stiffness: 300 }}
           className="mb-2 flex justify-center"
         >
           <motion.div
@@ -66,11 +66,14 @@ const NewsletterSection = () => {
             transition={{
               duration: 3,
               repeat: Number.POSITIVE_INFINITY,
-              ease: "easeInOut",
+              ease: 'easeInOut',
             }}
             className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10"
           >
-            <i className="fa-solid fa-envelope text-xl text-primary" aria-hidden="true" />
+            <i
+              className="fa-solid fa-envelope text-xl text-primary"
+              aria-hidden="true"
+            />
           </motion.div>
         </motion.div>
 
@@ -90,8 +93,8 @@ const NewsletterSection = () => {
           transition={{ delay: 0.4, duration: 0.5 }}
           className="mb-8 text-muted-foreground"
         >
-          Join the newsletter for behind-the-scenes content, new project announcements, and coding tips. No spam,
-          unsubscribe anytime.
+          Join the newsletter for behind-the-scenes content, new project
+          announcements, and coding tips. No spam, unsubscribe anytime.
         </motion.p>
 
         <AnimatePresence mode="wait">
@@ -101,13 +104,16 @@ const NewsletterSection = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              transition={{ duration: 0.4, ease: [0.25, 0.4, 0.25, 1] as const }}
+              transition={{
+                duration: 0.4,
+                ease: [0.25, 0.4, 0.25, 1] as const,
+              }}
               className="rounded-lg bg-green-100 p-4 text-green-700"
             >
               <motion.i
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ delay: 0.2, type: "spring", stiffness: 300 }}
+                transition={{ delay: 0.2, type: 'spring', stiffness: 300 }}
                 className="fa-solid fa-check-circle mr-2"
                 aria-hidden="true"
               />
@@ -125,7 +131,9 @@ const NewsletterSection = () => {
             >
               <motion.div
                 animate={{
-                  boxShadow: isFocused ? "0 0 0 3px rgba(59, 130, 246, 0.2)" : "0 0 0 0px rgba(59, 130, 246, 0)",
+                  boxShadow: isFocused
+                    ? '0 0 0 3px rgba(59, 130, 246, 0.2)'
+                    : '0 0 0 0px rgba(59, 130, 246, 0)',
                 }}
                 transition={{ duration: 0.2 }}
                 className="flex-grow rounded-md"
@@ -150,17 +158,30 @@ const NewsletterSection = () => {
                   {error}
                 </motion.p>
               )}
-              <motion.div whileHover={{ scale: isSubmitting ? 1 : 1.02 }} whileTap={{ scale: isSubmitting ? 1 : 0.98 }}>
-                <Button type="submit" className="font-semibold" disabled={isSubmitting}>
+              <motion.div
+                whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              >
+                <Button
+                  type="submit"
+                  className="font-semibold"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? (
                     <>
-                      <i className="fa-solid fa-spinner fa-spin mr-2" aria-hidden="true" />
+                      <i
+                        className="fa-solid fa-spinner fa-spin mr-2"
+                        aria-hidden="true"
+                      />
                       Subscribing...
                     </>
                   ) : (
                     <>
                       Subscribe
-                      <i className="fa-solid fa-arrow-right ml-2" aria-hidden="true" />
+                      <i
+                        className="fa-solid fa-arrow-right ml-2"
+                        aria-hidden="true"
+                      />
                     </>
                   )}
                 </Button>
@@ -170,7 +191,7 @@ const NewsletterSection = () => {
         </AnimatePresence>
       </motion.div>
     </section>
-  )
-}
+  );
+};
 
-export default NewsletterSection
+export default NewsletterSection;

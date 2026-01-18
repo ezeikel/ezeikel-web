@@ -67,7 +67,10 @@ export default async function BlogPage() {
           </div>
         </section>
 
-        <BlogPostsGrid posts={formattedPosts} categories={formattedCategories} />
+        <BlogPostsGrid
+          posts={formattedPosts}
+          categories={formattedCategories}
+        />
       </main>
       <Footer />
     </div>

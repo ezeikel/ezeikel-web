@@ -80,7 +80,7 @@ export const SHOP_PRODUCTS: Product[] = [
     id: 'code-review',
     name: '1:1 Code Review',
     description:
-      '60-minute live code review session. I\'ll review your React Native app, provide feedback, and answer questions.',
+      "60-minute live code review session. I'll review your React Native app, provide feedback, and answer questions.",
     priceId: 'price_xxx', // TODO: Replace with actual Stripe price ID
     price: 120, // GBP
     currency: 'gbp',
@@ -119,7 +119,7 @@ export const SHOP_PRODUCTS: Product[] = [
   {
     id: 'support-dinner',
     name: 'Buy Me Dinner',
-    description: 'You\'re amazing - thank you!',
+    description: "You're amazing - thank you!",
     priceId: 'price_xxx', // TODO: Replace with actual Stripe price ID
     price: 25, // GBP
     currency: 'gbp',

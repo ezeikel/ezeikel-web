@@ -38,13 +38,18 @@ const categoryIcons: Record<string, string> = {
   Lifestyle: 'fa-heart',
 };
 
-export default function BlogPostsGrid({ posts, categories }: BlogPostsGridProps) {
+export default function BlogPostsGrid({
+  posts,
+  categories,
+}: BlogPostsGridProps) {
   const [activeCategory, setActiveCategory] = useState('all');
 
   const filteredPosts = useMemo(() => {
     if (activeCategory === 'all') return posts;
     return posts.filter(
-      (post) => post.categorySlug === activeCategory || post.category === activeCategory,
+      (post) =>
+        post.categorySlug === activeCategory ||
+        post.category === activeCategory,
     );
   }, [posts, activeCategory]);
 

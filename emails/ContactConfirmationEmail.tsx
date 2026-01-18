@@ -30,8 +30,8 @@ export default function ContactConfirmationEmail({
             <Heading style={heading}>Thanks for reaching out!</Heading>
             <Text style={paragraph}>Hi {name},</Text>
             <Text style={paragraph}>
-              I've received your message and will get back to you as soon as
-              possible, usually within 24-48 hours.
+              I&apos;ve received your message and will get back to you as soon
+              as possible, usually within 24-48 hours.
             </Text>
             <Text style={paragraph}>
               In the meantime, feel free to check out my latest content:
@@ -42,7 +42,7 @@ export default function ContactConfirmationEmail({
               </Link>
               {' | '}
               <Link href={`${baseUrl}/things-ive-built`} style={link}>
-                See what I've built
+                See what I&apos;ve built
               </Link>
             </Text>
             <Hr style={hr} />

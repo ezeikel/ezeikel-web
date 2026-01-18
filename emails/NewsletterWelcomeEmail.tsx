@@ -30,14 +30,20 @@ export default function NewsletterWelcomeEmail({
             <Heading style={heading}>Welcome to the newsletter!</Heading>
 
             <Text style={paragraph}>
-              Thanks for subscribing! You'll now receive updates on:
+              Thanks for subscribing! You&apos;ll now receive updates on:
             </Text>
 
             <ul style={list}>
-              <li style={listItem}>New blog posts about indie hacking and building products</li>
+              <li style={listItem}>
+                New blog posts about indie hacking and building products
+              </li>
               <li style={listItem}>Tech tutorials and development tips</li>
-              <li style={listItem}>Behind-the-scenes of my content creation journey</li>
-              <li style={listItem}>Exclusive insights and early access to new projects</li>
+              <li style={listItem}>
+                Behind-the-scenes of my content creation journey
+              </li>
+              <li style={listItem}>
+                Exclusive insights and early access to new projects
+              </li>
             </ul>
 
             <Text style={paragraph}>
@@ -53,9 +59,12 @@ export default function NewsletterWelcomeEmail({
             <Hr style={hr} />
 
             <Text style={footer}>
-              You're receiving this because you subscribed at ezeikel.dev.
+              You&apos;re receiving this because you subscribed at ezeikel.dev.
               <br />
-              <Link href={`${baseUrl}/unsubscribe?email=${encodeURIComponent(email)}`} style={unsubscribeLink}>
+              <Link
+                href={`${baseUrl}/unsubscribe?email=${encodeURIComponent(email)}`}
+                style={unsubscribeLink}
+              >
                 Unsubscribe
               </Link>
             </Text>

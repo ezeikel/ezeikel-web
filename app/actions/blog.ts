@@ -16,10 +16,7 @@ import {
   IMAGE_EVALUATION_THRESHOLD,
 } from '@/constants';
 import { writeClient, client } from '@/lib/sanity/client';
-import {
-  coveredTopicsQuery,
-  usedPexelsIdsQuery,
-} from '@/lib/sanity/queries';
+import { coveredTopicsQuery, usedPexelsIdsQuery } from '@/lib/sanity/queries';
 import {
   fetchBlogPhotosForEvaluation,
   downloadImageAsBuffer,
@@ -71,7 +68,9 @@ async function getUsedPexelsIds(): Promise<string[]> {
 /**
  * Select a random uncovered topic
  */
-function selectRandomTopic(coveredTopics: string[]): typeof BLOG_TOPICS[0] | null {
+function selectRandomTopic(
+  coveredTopics: string[],
+): (typeof BLOG_TOPICS)[0] | null {
   const uncoveredTopics = BLOG_TOPICS.filter(
     (t) => !coveredTopics.includes(t.topic),
   );
@@ -110,8 +109,7 @@ async function generateBlogContent(
   title: string,
   coveredTopics: string[],
 ): Promise<string> {
-  const prompt = BLOG_CONTENT_PROMPT
-    .replace('{topic}', topic)
+  const prompt = BLOG_CONTENT_PROMPT.replace('{topic}', topic)
     .replace('{title}', title)
     .replace('{coveredTopics}', coveredTopics.slice(0, 10).join(', '));
 
@@ -132,8 +130,7 @@ async function generateImageSearchTerms(
   excerpt: string,
   category: string,
 ): Promise<string[]> {
-  const prompt = IMAGE_SEARCH_PROMPT
-    .replace('{title}', title)
+  const prompt = IMAGE_SEARCH_PROMPT.replace('{title}', title)
     .replace('{excerpt}', excerpt)
     .replace('{category}', category);
 
@@ -153,8 +150,7 @@ async function evaluateImageRelevance(
   imageUrl: string,
   context: { title: string; excerpt: string; category: string },
 ): Promise<{ score: number; reasoning: string }> {
-  const prompt = IMAGE_EVALUATION_PROMPT
-    .replace('{title}', context.title)
+  const prompt = IMAGE_EVALUATION_PROMPT.replace('{title}', context.title)
     .replace('{excerpt}', context.excerpt)
     .replace('{category}', context.category);
 
@@ -184,22 +180,19 @@ async function evaluateImageRelevance(
  * Find the best image from candidates
  */
 async function findBestImage(
-  photos: Array<{ id: number; src: { large: string }; alt: string | null }>,
+  photos: { id: number; src: { large: string }; alt: string | null }[],
   context: { title: string; excerpt: string; category: string },
   threshold: number,
 ): Promise<{
   selectedPhoto: (typeof photos)[0] | null;
   selectedIndex: number;
-  evaluations: Array<{ score: number; reasoning: string }>;
+  evaluations: { score: number; reasoning: string }[];
 }> {
-  const evaluations: Array<{ score: number; reasoning: string }> = [];
+  const evaluations: { score: number; reasoning: string }[] = [];
 
   for (let i = 0; i < photos.length; i++) {
     const photo = photos[i];
-    const evaluation = await evaluateImageRelevance(
-      photo.src.large,
-      context,
-    );
+    const evaluation = await evaluateImageRelevance(photo.src.large, context);
     evaluations.push(evaluation);
 
     if (evaluation.score >= threshold) {
@@ -225,24 +218,34 @@ async function findBestImage(
 /**
  * Convert markdown to Portable Text blocks
  */
-function markdownToPortableText(markdown: string): Array<{
+function markdownToPortableText(markdown: string): {
   _type: string;
   _key: string;
   style?: string;
-  children?: Array<{ _type: string; _key: string; text: string; marks?: string[] }>;
-  markDefs?: Array<{ _type: string; _key: string; href?: string }>;
+  children?: {
+    _type: string;
+    _key: string;
+    text: string;
+    marks?: string[];
+  }[];
+  markDefs?: { _type: string; _key: string; href?: string }[];
   listItem?: string;
   level?: number;
-}> {
-  const blocks: Array<{
+}[] {
+  const blocks: {
     _type: string;
     _key: string;
     style?: string;
-    children?: Array<{ _type: string; _key: string; text: string; marks?: string[] }>;
-    markDefs?: Array<{ _type: string; _key: string; href?: string }>;
+    children?: {
+      _type: string;
+      _key: string;
+      text: string;
+      marks?: string[];
+    }[];
+    markDefs?: { _type: string; _key: string; href?: string }[];
     listItem?: string;
     level?: number;
-  }> = [];
+  }[] = [];
 
   const lines = markdown.split('\n');
   let keyCounter = 0;
@@ -261,27 +264,21 @@ function markdownToPortableText(markdown: string): Array<{
         _type: 'block',
         _key: generateKey(),
         style: 'h4',
-        children: [
-          { _type: 'span', _key: generateKey(), text: line.slice(5) },
-        ],
+        children: [{ _type: 'span', _key: generateKey(), text: line.slice(5) }],
       });
     } else if (line.startsWith('### ')) {
       blocks.push({
         _type: 'block',
         _key: generateKey(),
         style: 'h3',
-        children: [
-          { _type: 'span', _key: generateKey(), text: line.slice(4) },
-        ],
+        children: [{ _type: 'span', _key: generateKey(), text: line.slice(4) }],
       });
     } else if (line.startsWith('## ')) {
       blocks.push({
         _type: 'block',
         _key: generateKey(),
         style: 'h2',
-        children: [
-          { _type: 'span', _key: generateKey(), text: line.slice(3) },
-        ],
+        children: [{ _type: 'span', _key: generateKey(), text: line.slice(3) }],
       });
     }
     // Blockquotes
@@ -290,9 +287,7 @@ function markdownToPortableText(markdown: string): Array<{
         _type: 'block',
         _key: generateKey(),
         style: 'blockquote',
-        children: [
-          { _type: 'span', _key: generateKey(), text: line.slice(2) },
-        ],
+        children: [{ _type: 'span', _key: generateKey(), text: line.slice(2) }],
       });
     }
     // List items
@@ -303,9 +298,7 @@ function markdownToPortableText(markdown: string): Array<{
         style: 'normal',
         listItem: 'bullet',
         level: 1,
-        children: [
-          { _type: 'span', _key: generateKey(), text: line.slice(2) },
-        ],
+        children: [{ _type: 'span', _key: generateKey(), text: line.slice(2) }],
       });
     }
     // Numbered list items
@@ -526,7 +519,7 @@ export async function generateRandomBlogPost(): Promise<{
     );
 
     let imageAssetId: string | null = null;
-    let imageSource: 'pexels' | 'gemini' = 'pexels';
+    const imageSource: 'pexels' | 'gemini' = 'pexels';
     let pexelsPhotoId: string | null = null;
     let imageAlt = meta.title;
 

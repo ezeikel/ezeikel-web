@@ -1,12 +1,12 @@
 import type { PlatformStats, ContentItem } from './types';
 
-const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
-const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
+const { YOUTUBE_API_KEY } = process.env;
+const { YOUTUBE_CHANNEL_ID } = process.env;
 
 const BASE_URL = 'https://www.googleapis.com/youtube/v3';
 
 type YouTubeChannelResponse = {
-  items: Array<{
+  items: {
     id: string;
     snippet: {
       title: string;
@@ -17,11 +17,11 @@ type YouTubeChannelResponse = {
       viewCount: string;
       videoCount: string;
     };
-  }>;
+  }[];
 };
 
 type YouTubeVideosResponse = {
-  items: Array<{
+  items: {
     id: { videoId: string };
     snippet: {
       title: string;
@@ -31,18 +31,18 @@ type YouTubeVideosResponse = {
       };
       publishedAt: string;
     };
-  }>;
+  }[];
 };
 
 type YouTubeVideoStatsResponse = {
-  items: Array<{
+  items: {
     id: string;
     statistics: {
       viewCount: string;
       likeCount: string;
       commentCount: string;
     };
-  }>;
+  }[];
 };
 
 export async function getYouTubeStats(): Promise<PlatformStats | null> {

@@ -213,7 +213,10 @@ export default async function ProjectDetailPage({
                     >
                       <img
                         src={urlFor(screenshot.asset).width(800).url()}
-                        alt={screenshot.alt || `${project.title} screenshot ${index + 1}`}
+                        alt={
+                          screenshot.alt ||
+                          `${project.title} screenshot ${index + 1}`
+                        }
                         className="h-full w-full object-cover"
                       />
                     </div>

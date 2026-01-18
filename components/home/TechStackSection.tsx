@@ -1,35 +1,35 @@
-"use client"
+'use client';
 
-import { motion } from "framer-motion"
-import { useRef } from "react"
+import { motion } from 'framer-motion';
+import { useRef } from 'react';
 
 type Tech = {
-  name: string
-  icon: string
-  category: "frontend" | "backend" | "mobile" | "tools"
-}
+  name: string;
+  icon: string;
+  category: 'frontend' | 'backend' | 'mobile' | 'tools';
+};
 
 const techStack: Tech[] = [
   // Frontend
-  { name: "React", icon: "fa-react", category: "frontend" },
-  { name: "Next.js", icon: "fa-n", category: "frontend" },
-  { name: "TypeScript", icon: "fa-t", category: "frontend" },
-  { name: "JavaScript", icon: "fa-js", category: "frontend" },
+  { name: 'React', icon: 'fa-react', category: 'frontend' },
+  { name: 'Next.js', icon: 'fa-n', category: 'frontend' },
+  { name: 'TypeScript', icon: 'fa-t', category: 'frontend' },
+  { name: 'JavaScript', icon: 'fa-js', category: 'frontend' },
   // Mobile
-  { name: "React Native", icon: "fa-mobile-screen", category: "mobile" },
-  { name: "Expo", icon: "fa-e", category: "mobile" },
+  { name: 'React Native', icon: 'fa-mobile-screen', category: 'mobile' },
+  { name: 'Expo', icon: 'fa-e', category: 'mobile' },
   // Backend
-  { name: "Node.js", icon: "fa-node-js", category: "backend" },
-  { name: "PostgreSQL", icon: "fa-database", category: "backend" },
-  { name: "MongoDB", icon: "fa-leaf", category: "backend" },
+  { name: 'Node.js', icon: 'fa-node-js', category: 'backend' },
+  { name: 'PostgreSQL', icon: 'fa-database', category: 'backend' },
+  { name: 'MongoDB', icon: 'fa-leaf', category: 'backend' },
   // Tools & Integrations
-  { name: "Stripe", icon: "fa-stripe", category: "tools" },
-  { name: "Shopify", icon: "fa-shopify", category: "tools" },
-  { name: "AWS", icon: "fa-aws", category: "tools" },
-  { name: "Vercel", icon: "fa-v", category: "tools" },
-  { name: "OpenAI", icon: "fa-robot", category: "tools" },
-  { name: "GraphQL", icon: "fa-diagram-project", category: "tools" },
-]
+  { name: 'Stripe', icon: 'fa-stripe', category: 'tools' },
+  { name: 'Shopify', icon: 'fa-shopify', category: 'tools' },
+  { name: 'AWS', icon: 'fa-aws', category: 'tools' },
+  { name: 'Vercel', icon: 'fa-v', category: 'tools' },
+  { name: 'OpenAI', icon: 'fa-robot', category: 'tools' },
+  { name: 'GraphQL', icon: 'fa-diagram-project', category: 'tools' },
+];
 
 const containerVariants = {
   hidden: {},
@@ -38,7 +38,7 @@ const containerVariants = {
       staggerChildren: 0.05,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -50,10 +50,10 @@ const itemVariants = {
       ease: [0.25, 0.4, 0.25, 1] as const,
     },
   },
-}
+};
 
 const TechStackSection = () => {
-  const sectionRef = useRef<HTMLElement>(null)
+  const sectionRef = useRef<HTMLElement>(null);
 
   return (
     <section
@@ -64,7 +64,7 @@ const TechStackSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: '-50px' }}
           transition={{ duration: 0.5 }}
           className="mb-8 text-center"
         >
@@ -80,7 +80,7 @@ const TechStackSection = () => {
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, margin: "-50px" }}
+          viewport={{ once: true, margin: '-50px' }}
           className="flex flex-wrap items-center justify-center gap-3 md:gap-4"
         >
           {techStack.map((tech) => (
@@ -104,11 +104,14 @@ const TechStackSection = () => {
 
         {/* SEO-friendly text (visually hidden but readable by search engines) */}
         <p className="sr-only">
-          Ezeikel Pemberton is a Senior Software Engineer specializing in React, React Native, Expo, TypeScript, JavaScript, Next.js, Node.js, PostgreSQL, MongoDB, Stripe, Shopify, AWS, Vercel, OpenAI, and GraphQL development. Based in London, UK.
+          Ezeikel Pemberton is a Senior Software Engineer specializing in React,
+          React Native, Expo, TypeScript, JavaScript, Next.js, Node.js,
+          PostgreSQL, MongoDB, Stripe, Shopify, AWS, Vercel, OpenAI, and GraphQL
+          development. Based in London, UK.
         </p>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default TechStackSection
+export default TechStackSection;

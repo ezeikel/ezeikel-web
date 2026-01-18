@@ -100,7 +100,10 @@ export default function PhotoGrid({ photos, categories }: PhotoGridProps) {
                       )}
                       {photo.camera && (
                         <span className="flex items-center gap-1">
-                          <i className="fa-solid fa-camera" aria-hidden="true" />
+                          <i
+                            className="fa-solid fa-camera"
+                            aria-hidden="true"
+                          />
                           {photo.camera}
                         </span>
                       )}

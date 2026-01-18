@@ -1,5 +1,8 @@
-import { PortableText, type PortableTextComponents } from 'next-sanity';
-import type { PortableTextBlock } from 'next-sanity';
+import {
+  PortableText,
+  type PortableTextComponents,
+  PortableTextBlock,
+} from 'next-sanity';
 import Image from 'next/image';
 import { urlFor } from '@/lib/sanity/client';
 
@@ -105,7 +108,9 @@ type PortableTextContentProps = {
   value: PortableTextBlock[];
 };
 
-export default function PortableTextContent({ value }: PortableTextContentProps) {
+export default function PortableTextContent({
+  value,
+}: PortableTextContentProps) {
   return (
     <div className="prose prose-lg max-w-none">
       <PortableText value={value} components={components} />

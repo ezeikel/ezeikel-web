@@ -110,7 +110,12 @@ export type SanityBook = {
   goodreadsUrl?: string;
   amazonUrl?: string;
   finishedAt?: string;
-  category?: 'fiction' | 'self-improvement' | 'tech-business' | 'biography' | 'other';
+  category?:
+    | 'fiction'
+    | 'self-improvement'
+    | 'tech-business'
+    | 'biography'
+    | 'other';
   favorite?: boolean;
   order?: number;
 };

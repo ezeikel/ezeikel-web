@@ -83,6 +83,7 @@
     "react-day-picker": "^9.8.0",
     "react-dom": "^19.1.0",
     "react-email": "^2.1.0",
+    "react-globe.gl": "^2.37.0",
     "react-resizable-panels": "^2.1.7",
     "recharts": "^2.15.0",
     "resend": "^4.5.1",

@@ -34,10 +34,12 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
 
 # Sentry
 .sentryclirc
 
-# contentlayer
-.contentlayer
+# Sanity
+/sanity/.sanity
+
+# Claude
+.claude

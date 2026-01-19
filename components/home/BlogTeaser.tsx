@@ -3,6 +3,16 @@
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faFolderOpen,
+  faCode,
+  faLightbulb,
+  faCube,
+  faFileAlt,
+  faArrowRight,
+} from '@fortawesome/pro-solid-svg-icons';
 import { Button } from '@/components/ui/button';
 
 type BlogPost = {
@@ -48,11 +58,11 @@ const blogPosts: BlogPost[] = [
   },
 ];
 
-const categoryIcons: Record<string, string> = {
-  'Case Study': 'fa-folder-open',
-  'Dev Log': 'fa-code',
-  'Creator Life': 'fa-lightbulb',
-  Product: 'fa-cube',
+const categoryIcons: Record<string, IconDefinition> = {
+  'Case Study': faFolderOpen,
+  'Dev Log': faCode,
+  'Creator Life': faLightbulb,
+  Product: faCube,
 };
 
 const containerVariants = {
@@ -112,10 +122,7 @@ const BlogTeaser = () => {
             >
               <Link href="/blog">
                 View all articles
-                <i
-                  className="fa-solid fa-arrow-right ml-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
               </Link>
             </Button>
           </motion.div>
@@ -152,9 +159,9 @@ const BlogTeaser = () => {
                       transition={{ delay: 0.2 + index * 0.1 }}
                       className="flex items-center gap-1.5 rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-secondary-foreground"
                     >
-                      <i
-                        className={`fa-solid ${categoryIcons[post.category] || 'fa-file-alt'} text-muted-foreground`}
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={categoryIcons[post.category] || faFileAlt}
+                        className="text-muted-foreground"
                       />
                       {post.category}
                     </motion.span>
@@ -184,10 +191,7 @@ const BlogTeaser = () => {
                       className="text-xs font-medium text-primary opacity-0 group-hover:opacity-100 transition-opacity"
                     >
                       Read more{' '}
-                      <i
-                        className="fa-solid fa-arrow-right ml-1"
-                        aria-hidden="true"
-                      />
+                      <FontAwesomeIcon icon={faArrowRight} className="ml-1" />
                     </motion.span>
                   </motion.div>
                 </motion.div>

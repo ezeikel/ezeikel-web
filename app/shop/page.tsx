@@ -3,6 +3,25 @@
 import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faRocket,
+  faBook,
+  faTableColumns,
+  faCode,
+  faComments,
+  faMugHot,
+  faBurger,
+  faUtensils,
+  faCheckCircle,
+  faTimes,
+  faInfoCircle,
+  faCheck,
+  faArrowRight,
+  faHeart,
+  faSpinnerThird,
+} from '@fortawesome/pro-solid-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -15,7 +34,7 @@ type Product = {
   price: number;
   originalPrice?: number;
   category: 'template' | 'guide' | 'consultation' | 'support';
-  icon: string;
+  icon: IconDefinition;
   featured?: boolean;
   comingSoon?: boolean;
   features?: string[];
@@ -32,7 +51,7 @@ const products: Product[] = [
     price: 119, // GBP
     originalPrice: 159,
     category: 'template',
-    icon: 'fa-rocket',
+    icon: faRocket,
     featured: true,
     comingSoon: true,
     features: [
@@ -52,7 +71,7 @@ const products: Product[] = [
       'A comprehensive guide on going from idea to the App Store. Everything I learned shipping Chunky Crayon and Parking Ticket Pal.',
     price: 25, // GBP
     category: 'guide',
-    icon: 'fa-book',
+    icon: faBook,
     comingSoon: true,
     features: [
       '40+ page PDF guide',
@@ -68,7 +87,7 @@ const products: Product[] = [
       'My complete Notion setup for managing projects, tracking content, and staying productive as an indie hacker.',
     price: 15, // GBP
     category: 'template',
-    icon: 'fa-table-columns',
+    icon: faTableColumns,
     comingSoon: true,
     features: [
       'Project management template',
@@ -84,7 +103,7 @@ const products: Product[] = [
       "60-minute live code review session. I'll review your React Native app, provide feedback, and answer questions.",
     price: 120, // GBP
     category: 'consultation',
-    icon: 'fa-code',
+    icon: faCode,
     features: [
       '60-minute video call',
       'Architecture review',
@@ -99,7 +118,7 @@ const products: Product[] = [
       '30-minute call to discuss your dev career, transitioning to indie hacking, or building in public.',
     price: 60, // GBP
     category: 'consultation',
-    icon: 'fa-comments',
+    icon: faComments,
     features: [
       '30-minute video call',
       'Career advice',
@@ -109,27 +128,35 @@ const products: Product[] = [
   },
 ];
 
+type SupportTier = {
+  id: string;
+  name: string;
+  price: number;
+  icon: IconDefinition;
+  description: string;
+};
+
 // Support tiers with prices in GBP
-const supportTiers = [
+const supportTiers: SupportTier[] = [
   {
     id: 'coffee',
     name: 'Buy me a coffee',
     price: 4, // GBP
-    icon: 'fa-mug-hot',
+    icon: faMugHot,
     description: 'A small thank you',
   },
   {
     id: 'lunch',
     name: 'Buy me lunch',
     price: 12, // GBP
-    icon: 'fa-burger',
+    icon: faBurger,
     description: 'Really appreciate it',
   },
   {
     id: 'dinner',
     name: 'Buy me dinner',
     price: 25, // GBP
-    icon: 'fa-utensils',
+    icon: faUtensils,
     description: "You're amazing",
   },
 ];
@@ -255,9 +282,9 @@ const ShopPage = () => {
           <div className="border-b border-green-200 bg-green-50 px-6 py-4">
             <div className="mx-auto flex max-w-6xl items-center justify-between">
               <div className="flex items-center gap-3">
-                <i
-                  className="fa-solid fa-check-circle text-green-600"
-                  aria-hidden="true"
+                <FontAwesomeIcon
+                  icon={faCheckCircle}
+                  className="text-green-600"
                 />
                 <p className="text-green-800">
                   <span className="font-semibold">
@@ -271,7 +298,7 @@ const ShopPage = () => {
                 onClick={() => setShowSuccess(false)}
                 className="text-green-600 hover:text-green-800"
               >
-                <i className="fa-solid fa-times" aria-hidden="true" />
+                <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
           </div>
@@ -282,9 +309,9 @@ const ShopPage = () => {
           <div className="border-b border-amber-200 bg-amber-50 px-6 py-4">
             <div className="mx-auto flex max-w-6xl items-center justify-between">
               <div className="flex items-center gap-3">
-                <i
-                  className="fa-solid fa-info-circle text-amber-600"
-                  aria-hidden="true"
+                <FontAwesomeIcon
+                  icon={faInfoCircle}
+                  className="text-amber-600"
                 />
                 <p className="text-amber-800">
                   Checkout was canceled. No charge was made.
@@ -295,7 +322,7 @@ const ShopPage = () => {
                 onClick={() => setShowCanceled(false)}
                 className="text-amber-600 hover:text-amber-800"
               >
-                <i className="fa-solid fa-times" aria-hidden="true" />
+                <FontAwesomeIcon icon={faTimes} />
               </button>
             </div>
           </div>
@@ -347,9 +374,9 @@ const ShopPage = () => {
                           key={feature}
                           className="flex items-center gap-2 text-sm text-muted-foreground"
                         >
-                          <i
-                            className="fa-solid fa-check text-primary"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faCheck}
+                            className="text-primary"
                           />
                           {feature}
                         </li>
@@ -381,9 +408,9 @@ const ShopPage = () => {
                     >
                       {isLoading === featuredProduct.id ? (
                         <>
-                          <i
-                            className="fa-solid fa-spinner fa-spin mr-2"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faSpinnerThird}
+                            className="mr-2 animate-spin"
                           />
                           Processing...
                         </>
@@ -392,9 +419,9 @@ const ShopPage = () => {
                       ) : (
                         <>
                           Buy Now
-                          <i
-                            className="fa-solid fa-arrow-right ml-2"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faArrowRight}
+                            className="ml-2"
                           />
                         </>
                       )}
@@ -405,9 +432,9 @@ const ShopPage = () => {
                 <div className="flex items-center justify-center rounded-2xl border border-border bg-card p-12">
                   <div className="text-center">
                     <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-2xl bg-primary/10">
-                      <i
-                        className={`fa-solid ${featuredProduct.icon} text-4xl text-primary`}
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={featuredProduct.icon}
+                        className="text-4xl text-primary"
                       />
                     </div>
                     <p className="text-sm text-muted-foreground">
@@ -453,9 +480,9 @@ const ShopPage = () => {
                   >
                     <div className="mb-4 flex items-start justify-between">
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary">
-                        <i
-                          className={`fa-solid ${product.icon} text-lg text-foreground`}
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={product.icon}
+                          className="text-lg text-foreground"
                         />
                       </div>
                       {product.comingSoon && (
@@ -479,9 +506,9 @@ const ShopPage = () => {
                             key={feature}
                             className="flex items-center gap-2 text-xs text-muted-foreground"
                           >
-                            <i
-                              className="fa-solid fa-check text-primary"
-                              aria-hidden="true"
+                            <FontAwesomeIcon
+                              icon={faCheck}
+                              className="text-primary"
                             />
                             {feature}
                           </li>
@@ -504,9 +531,9 @@ const ShopPage = () => {
                         }
                       >
                         {isLoading === product.id ? (
-                          <i
-                            className="fa-solid fa-spinner fa-spin"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faSpinnerThird}
+                            className="animate-spin"
                           />
                         ) : product.comingSoon ? (
                           'Notify Me'
@@ -527,9 +554,9 @@ const ShopPage = () => {
         <section className="border-t border-border bg-secondary/30 py-16 md:py-24">
           <div className="mx-auto max-w-4xl px-6 text-center">
             <div className="mb-4 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/10">
-              <i
-                className="fa-solid fa-heart text-2xl text-primary"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={faHeart}
+                className="text-2xl text-primary"
               />
             </div>
             <h2 className="mb-3 text-3xl font-bold text-foreground">
@@ -555,9 +582,14 @@ const ShopPage = () => {
                       : 'border-border/60 bg-card hover:border-border',
                   )}
                 >
-                  <i
-                    className={`fa-solid ${tier.icon} mb-2 text-2xl ${selectedSupport === tier.id ? 'text-primary' : 'text-muted-foreground'}`}
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={tier.icon}
+                    className={cn(
+                      'mb-2 text-2xl',
+                      selectedSupport === tier.id
+                        ? 'text-primary'
+                        : 'text-muted-foreground',
+                    )}
                   />
                   <span className="mb-1 text-sm font-medium text-foreground">
                     {tier.name}
@@ -596,9 +628,9 @@ const ShopPage = () => {
             >
               {isLoading === 'support' ? (
                 <>
-                  <i
-                    className="fa-solid fa-spinner fa-spin mr-2"
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={faSpinnerThird}
+                    className="mr-2 animate-spin"
                   />
                   Processing...
                 </>
@@ -607,7 +639,7 @@ const ShopPage = () => {
                   Support with £
                   {customAmount ||
                     supportTiers.find((t) => t.id === selectedSupport)?.price}
-                  <i className="fa-solid fa-heart ml-2" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faHeart} className="ml-2" />
                 </>
               )}
             </Button>
@@ -670,10 +702,7 @@ const ShopPage = () => {
             <Button asChild variant="outline" className="bg-transparent">
               <Link href="mailto:hello@ezeikel.com">
                 Get in Touch
-                <i
-                  className="fa-solid fa-arrow-right ml-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
               </Link>
             </Button>
           </div>

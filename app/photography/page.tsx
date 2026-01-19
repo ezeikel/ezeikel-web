@@ -1,4 +1,12 @@
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCamera,
+  faVideo,
+  faHelicopter,
+  faArrowRight,
+} from '@fortawesome/pro-solid-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { client, urlFor } from '@/lib/sanity/client';
@@ -18,24 +26,31 @@ async function getPhotos(): Promise<SanityPhoto[]> {
   return client.fetch(photosQuery);
 }
 
-const gear = [
+type GearItem = {
+  name: string;
+  type: string;
+  description: string;
+  icon: IconDefinition;
+};
+
+const gear: GearItem[] = [
   {
     name: 'Canon 5D Mark III',
     type: 'Camera',
     description: 'My main camera for portraits and travel photography',
-    icon: 'fa-camera',
+    icon: faCamera,
   },
   {
     name: 'DJI Osmo Pocket 3',
     type: 'Gimbal Camera',
     description: 'Compact stabilized camera for video and street photography',
-    icon: 'fa-video',
+    icon: faVideo,
   },
   {
     name: 'DJI Mavic Pro',
     type: 'Drone',
     description: 'For aerial shots and cinematic drone footage',
-    icon: 'fa-helicopter',
+    icon: faHelicopter,
   },
 ];
 
@@ -92,9 +107,9 @@ export default async function PhotographyPage() {
                   className="flex items-start gap-4 rounded-xl border border-border/60 bg-card p-4"
                 >
                   <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-secondary">
-                    <i
-                      className={`fa-solid ${item.icon} text-foreground`}
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className="text-foreground"
                     />
                   </div>
                   <div>
@@ -124,7 +139,7 @@ export default async function PhotographyPage() {
               className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-colors hover:bg-foreground/90"
             >
               Get in touch
-              <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+              <FontAwesomeIcon icon={faArrowRight} />
             </Link>
           </div>
         </section>

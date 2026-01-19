@@ -9,6 +9,15 @@ import {
 } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useForm } from '@tanstack/react-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faArrowRight,
+  faCar,
+  faCheckCircle,
+  faCode,
+  faPlay,
+  faSpinnerThird,
+} from '@fortawesome/pro-solid-svg-icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -134,10 +143,7 @@ const HeroSection = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="flex items-center gap-2 rounded-lg bg-green-50 px-4 py-3 text-green-700"
                   >
-                    <i
-                      className="fa-solid fa-check-circle"
-                      aria-hidden="true"
-                    />
+                    <FontAwesomeIcon icon={faCheckCircle} />
                     <span className="text-sm font-medium">
                       You&apos;re in! Check your inbox to confirm.
                     </span>
@@ -198,18 +204,19 @@ const HeroSection = () => {
                       >
                         {isSubmitting ? (
                           <>
-                            <i
-                              className="fa-solid fa-spinner fa-spin mr-2"
-                              aria-hidden="true"
+                            <FontAwesomeIcon
+                              icon={faSpinnerThird}
+                              spin
+                              className="mr-2"
                             />
                             Subscribing...
                           </>
                         ) : (
                           <>
                             Subscribe
-                            <i
-                              className="fa-solid fa-arrow-right ml-2"
-                              aria-hidden="true"
+                            <FontAwesomeIcon
+                              icon={faArrowRight}
+                              className="ml-2"
                             />
                           </>
                         )}
@@ -235,10 +242,7 @@ const HeroSection = () => {
                 <Button asChild variant="outline" size="lg">
                   <Link href="/things-ive-built">
                     View my projects
-                    <i
-                      className="fa-solid fa-arrow-right ml-2"
-                      aria-hidden="true"
-                    />
+                    <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                   </Link>
                 </Button>
               </motion.div>
@@ -248,7 +252,7 @@ const HeroSection = () => {
               >
                 <Button asChild variant="ghost" size="lg">
                   <Link href="/content">
-                    <i className="fa-solid fa-play mr-2" aria-hidden="true" />
+                    <FontAwesomeIcon icon={faPlay} className="mr-2" />
                     Watch latest video
                   </Link>
                 </Button>
@@ -306,10 +310,7 @@ const HeroSection = () => {
                     }}
                     className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"
                   >
-                    <i
-                      className="fa-solid fa-code text-primary"
-                      aria-hidden="true"
-                    />
+                    <FontAwesomeIcon icon={faCode} className="text-primary" />
                   </motion.div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">
@@ -340,10 +341,7 @@ const HeroSection = () => {
                     }}
                     className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/20"
                   >
-                    <i
-                      className="fa-solid fa-car text-accent"
-                      aria-hidden="true"
-                    />
+                    <FontAwesomeIcon icon={faCar} className="text-accent" />
                   </motion.div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">

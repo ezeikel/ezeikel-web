@@ -1,4 +1,21 @@
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight,
+  faCode,
+  faBullhorn,
+  faRocket,
+  faVideo,
+  faChartLine,
+  faMicrophone,
+  faLaptopCode,
+  faUsers,
+  faPodcast,
+  faCalendarPlus,
+  faEnvelope,
+} from '@fortawesome/pro-solid-svg-icons';
+import { faReact } from '@fortawesome/free-brands-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -9,63 +26,78 @@ export const metadata = {
     'Book Ezeikel Pemberton for your next conference, meetup, or private workshop. Topics include React, React Native, TypeScript, and building in public.',
 };
 
-const topics = [
+type Topic = {
+  title: string;
+  description: string;
+  icon: IconDefinition;
+  isBrand?: boolean;
+};
+
+const topics: Topic[] = [
   {
     title: 'React & React Native',
     description: 'Building performant, accessible apps for web and mobile.',
-    icon: 'fa-react',
+    icon: faReact,
+    isBrand: true,
   },
   {
     title: 'TypeScript',
     description: 'Type-safe JavaScript that scales with your team.',
-    icon: 'fa-code',
+    icon: faCode,
   },
   {
     title: 'Building in Public',
     description: 'Growing an audience while shipping products.',
-    icon: 'fa-bullhorn',
+    icon: faBullhorn,
   },
   {
     title: 'Indie Hacking',
     description: 'From idea to App Store - the solo founder journey.',
-    icon: 'fa-rocket',
+    icon: faRocket,
   },
   {
     title: 'Content Creation for Devs',
     description: 'Turning your expertise into engaging content.',
-    icon: 'fa-video',
+    icon: faVideo,
   },
   {
     title: 'Career Growth',
     description: 'Navigating the path from junior to senior engineer.',
-    icon: 'fa-chart-line',
+    icon: faChartLine,
   },
 ];
 
-const formats = [
+type Format = {
+  title: string;
+  duration: string;
+  description: string;
+  icon: IconDefinition;
+};
+
+const formats: Format[] = [
   {
     title: 'Conference Talk',
     duration: '30-45 min',
     description: 'Polished presentations for large audiences with Q&A.',
-    icon: 'fa-microphone',
+    icon: faMicrophone,
   },
   {
     title: 'Workshop',
     duration: '2-4 hours',
     description: 'Hands-on sessions where attendees build something real.',
-    icon: 'fa-laptop-code',
+    icon: faLaptopCode,
   },
   {
     title: 'Meetup / Lunch & Learn',
     duration: '20-30 min',
     description: 'Casual talks for smaller, more intimate groups.',
-    icon: 'fa-users',
+    icon: faUsers,
   },
   {
     title: 'Podcast / Interview',
     duration: '45-60 min',
     description: 'Conversations about tech, indie hacking, and content.',
-    icon: 'fa-podcast',
+    icon: faPodcast,
   },
 ];
 
@@ -105,7 +137,7 @@ const SpeakingPage = () => (
           <Button asChild size="lg">
             <a href="mailto:speaking@ezeikel.com">
               Get in touch
-              <i className="fa-solid fa-arrow-right ml-2" aria-hidden="true" />
+              <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </a>
           </Button>
         </div>
@@ -124,9 +156,9 @@ const SpeakingPage = () => (
                 className="flex items-start gap-4 rounded-2xl border border-border/60 bg-card p-5"
               >
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary">
-                  <i
-                    className={`fa-brands ${topic.icon === 'fa-react' ? topic.icon : ''} fa-solid ${topic.icon !== 'fa-react' ? topic.icon : ''} text-foreground`}
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={topic.icon}
+                    className="text-foreground"
                   />
                 </div>
                 <div>
@@ -157,9 +189,9 @@ const SpeakingPage = () => (
               >
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                    <i
-                      className={`fa-solid ${format.icon} text-foreground`}
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={format.icon}
+                      className="text-foreground"
                     />
                   </div>
                   <span className="rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
@@ -185,9 +217,9 @@ const SpeakingPage = () => (
             Past & Upcoming
           </h2>
           <div className="rounded-2xl border border-dashed border-border/60 bg-secondary/20 p-8 text-center">
-            <i
-              className="fa-solid fa-calendar-plus mb-4 text-3xl text-muted-foreground/50"
-              aria-hidden="true"
+            <FontAwesomeIcon
+              icon={faCalendarPlus}
+              className="mb-4 text-3xl text-muted-foreground/50"
             />
             <p className="mb-2 font-medium text-foreground">Coming soon</p>
             <p className="text-sm text-muted-foreground">
@@ -211,17 +243,14 @@ const SpeakingPage = () => (
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button asChild size="lg">
               <a href="mailto:speaking@ezeikel.com">
-                <i className="fa-solid fa-envelope mr-2" aria-hidden="true" />
+                <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                 speaking@ezeikel.com
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/media-kit">
                 View Media Kit
-                <i
-                  className="fa-solid fa-arrow-right ml-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
               </Link>
             </Button>
           </div>

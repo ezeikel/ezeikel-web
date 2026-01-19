@@ -1,6 +1,22 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faChevronRight,
+  faCode,
+  faCube,
+  faRocket,
+  faLightbulb,
+  faFolderOpen,
+  faMicrochip,
+  faRobot,
+  faHeart,
+  faFileAlt,
+  faEnvelope,
+} from '@fortawesome/pro-solid-svg-icons';
+import { faXTwitter, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -76,15 +92,15 @@ export async function generateMetadata({
   };
 }
 
-const categoryIcons: Record<string, string> = {
-  Dev: 'fa-code',
-  Product: 'fa-cube',
-  'Indie Hacking': 'fa-rocket',
-  'Creator Life': 'fa-lightbulb',
-  'Case Study': 'fa-folder-open',
-  Tech: 'fa-microchip',
-  AI: 'fa-robot',
-  Lifestyle: 'fa-heart',
+const categoryIcons: Record<string, IconDefinition> = {
+  Dev: faCode,
+  Product: faCube,
+  'Indie Hacking': faRocket,
+  'Creator Life': faLightbulb,
+  'Case Study': faFolderOpen,
+  Tech: faMicrochip,
+  AI: faRobot,
+  Lifestyle: faHeart,
 };
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
@@ -129,19 +145,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <Link href="/blog" className="hover:text-primary">
                 Blog
               </Link>
-              <i
-                className="fa-solid fa-chevron-right text-xs"
-                aria-hidden="true"
-              />
+              <FontAwesomeIcon icon={faChevronRight} size="xs" />
               <span className="text-foreground">{categoryTitle}</span>
             </nav>
 
             {/* Category & Read Time */}
             <div className="mb-4 flex items-center gap-3">
               <span className="flex items-center gap-1.5 rounded-full border border-border bg-secondary/50 px-3 py-1 text-sm font-medium text-secondary-foreground">
-                <i
-                  className={`fa-solid ${categoryIcons[categoryTitle] || 'fa-file-alt'} text-muted-foreground`}
-                  aria-hidden="true"
+                <FontAwesomeIcon
+                  icon={categoryIcons[categoryTitle] || faFileAlt}
+                  className="text-muted-foreground"
                 />
                 {categoryTitle}
               </span>
@@ -240,7 +253,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="Share on X/Twitter"
                 >
-                  <i className="fa-brands fa-x-twitter" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faXTwitter} />
                 </a>
                 <a
                   href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(`https://ezeikel.dev/blog/${post.slug.current}`)}`}
@@ -249,7 +262,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                   aria-label="Share on LinkedIn"
                 >
-                  <i className="fa-brands fa-linkedin-in" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
               </div>
             </div>
@@ -288,9 +301,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                       )}
                       <div className="flex flex-col justify-center">
                         <span className="mb-2 flex w-fit items-center gap-1.5 rounded-full border border-border bg-secondary/50 px-2 py-0.5 text-xs font-medium text-secondary-foreground">
-                          <i
-                            className={`fa-solid ${categoryIcons[relatedCategory] || 'fa-file-alt'} text-muted-foreground`}
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={categoryIcons[relatedCategory] || faFileAlt}
+                            className="text-muted-foreground"
                           />
                           {relatedCategory}
                         </span>
@@ -321,7 +334,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </p>
             <Button asChild>
               <Link href="/#newsletter">
-                <i className="fa-solid fa-envelope mr-2" aria-hidden="true" />
+                <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                 Subscribe to newsletter
               </Link>
             </Button>

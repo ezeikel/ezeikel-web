@@ -2,6 +2,21 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCode,
+  faCube,
+  faRocket,
+  faLightbulb,
+  faFolderOpen,
+  faMicrochip,
+  faRobot,
+  faHeart,
+  faFileAlt,
+  faArrowRight,
+  faFileLines,
+} from '@fortawesome/pro-solid-svg-icons';
 import { cn } from '@/lib/utils';
 
 type BlogPost = {
@@ -27,15 +42,15 @@ type BlogPostsGridProps = {
   categories: Category[];
 };
 
-const categoryIcons: Record<string, string> = {
-  Dev: 'fa-code',
-  Product: 'fa-cube',
-  'Indie Hacking': 'fa-rocket',
-  'Creator Life': 'fa-lightbulb',
-  'Case Study': 'fa-folder-open',
-  Tech: 'fa-microchip',
-  AI: 'fa-robot',
-  Lifestyle: 'fa-heart',
+const categoryIcons: Record<string, IconDefinition> = {
+  Dev: faCode,
+  Product: faCube,
+  'Indie Hacking': faRocket,
+  'Creator Life': faLightbulb,
+  'Case Study': faFolderOpen,
+  Tech: faMicrochip,
+  AI: faRobot,
+  Lifestyle: faHeart,
 };
 
 export default function BlogPostsGrid({
@@ -135,9 +150,9 @@ export default function BlogPostsGrid({
                 <div className="flex flex-1 flex-col p-6">
                   <div className="mb-3 flex items-center gap-3">
                     <span className="flex items-center gap-1.5 rounded-full border border-border bg-secondary/50 px-3 py-1 text-xs font-medium text-secondary-foreground">
-                      <i
-                        className={`fa-solid ${categoryIcons[post.category] || 'fa-file-alt'} text-muted-foreground`}
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={categoryIcons[post.category] || faFileAlt}
+                        className="text-muted-foreground"
                       />
                       {post.category}
                     </span>
@@ -158,9 +173,9 @@ export default function BlogPostsGrid({
                     <span>{post.date}</span>
                     <span className="flex items-center gap-1 font-medium text-primary">
                       Read more
-                      <i
-                        className="fa-solid fa-arrow-right transition-transform group-hover:translate-x-1"
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={faArrowRight}
+                        className="transition-transform group-hover:translate-x-1"
                       />
                     </span>
                   </div>
@@ -172,9 +187,9 @@ export default function BlogPostsGrid({
           {/* Empty State */}
           {filteredPosts.length === 0 && (
             <div className="py-16 text-center">
-              <i
-                className="fa-solid fa-file-lines mb-4 text-4xl text-muted-foreground/50"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={faFileLines}
+                className="mb-4 text-4xl text-muted-foreground/50"
               />
               <p className="text-muted-foreground">
                 No posts found in this category.

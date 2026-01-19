@@ -1,4 +1,15 @@
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCode,
+  faDesktop,
+  faLayerGroup,
+  faVideo,
+  faChair,
+  faGamepad,
+  faArrowUpRightFromSquare,
+} from '@fortawesome/pro-solid-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
@@ -10,7 +21,7 @@ type UseItem = {
 
 type UseCategory = {
   title: string;
-  icon: string;
+  icon: IconDefinition;
   description?: string;
   items: UseItem[];
 };
@@ -18,7 +29,7 @@ type UseCategory = {
 const usesData: UseCategory[] = [
   {
     title: 'Editor & Terminal',
-    icon: 'fa-code',
+    icon: faCode,
     items: [
       {
         name: 'VS Code',
@@ -53,7 +64,7 @@ const usesData: UseCategory[] = [
   },
   {
     title: 'Desktop Apps',
-    icon: 'fa-desktop',
+    icon: faDesktop,
     items: [
       {
         name: 'Raycast',
@@ -94,7 +105,7 @@ const usesData: UseCategory[] = [
   },
   {
     title: 'Development',
-    icon: 'fa-layer-group',
+    icon: faLayerGroup,
     items: [
       {
         name: 'React / React Native',
@@ -136,7 +147,7 @@ const usesData: UseCategory[] = [
   },
   {
     title: 'Recording & Content',
-    icon: 'fa-video',
+    icon: faVideo,
     items: [
       {
         name: 'Sony A7C',
@@ -176,7 +187,7 @@ const usesData: UseCategory[] = [
   },
   {
     title: 'Desk Setup',
-    icon: 'fa-chair',
+    icon: faChair,
     items: [
       {
         name: 'Apple MacBook Pro 16" M3 Max',
@@ -215,7 +226,7 @@ const usesData: UseCategory[] = [
   },
   {
     title: 'Gaming',
-    icon: 'fa-gamepad',
+    icon: faGamepad,
     items: [
       {
         name: 'PlayStation 5',
@@ -282,9 +293,9 @@ const UsesPage = () => (
                 {/* Category Header */}
                 <div className="mb-6 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                    <i
-                      className={`fa-solid ${category.icon} text-foreground`}
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={category.icon}
+                      className="text-foreground"
                     />
                   </div>
                   <h2 className="text-2xl font-bold text-foreground">
@@ -308,9 +319,9 @@ const UsesPage = () => (
                         >
                           <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
                             {item.name}
-                            <i
-                              className="fa-solid fa-arrow-up-right-from-square ml-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
-                              aria-hidden="true"
+                            <FontAwesomeIcon
+                              icon={faArrowUpRightFromSquare}
+                              className="ml-2 text-xs text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity"
                             />
                           </h3>
                         </a>

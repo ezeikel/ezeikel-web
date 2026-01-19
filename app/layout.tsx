@@ -3,7 +3,12 @@ import type { Metadata, Viewport } from 'next';
 import { Plus_Jakarta_Sans, Geist_Mono } from 'next/font/google';
 import { Analytics } from '@vercel/analytics/next';
 import PlausibleProvider from 'next-plausible';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import './globals.css';
+
+// Prevent FontAwesome from adding its CSS since we did it manually above
+config.autoAddCss = false;
 
 const plusJakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
@@ -62,12 +67,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"
-        />
-      </head>
       <body
         className={`${plusJakartaSans.variable} ${geistMono.variable} font-sans antialiased`}
       >

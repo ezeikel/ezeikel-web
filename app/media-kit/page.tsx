@@ -33,6 +33,26 @@ import { useInView } from 'framer-motion';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight,
+  faBriefcase,
+  faEnvelope,
+  faMicrophone,
+  faPaperPlane,
+  faPlay,
+  faPuzzlePiece,
+  faStar,
+  faVideo,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faInstagram,
+  faLinkedinIn,
+  faTiktok,
+  faXTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 
 const useCountUp = (
   end: number,
@@ -94,10 +114,19 @@ const KeyMetrics = () => {
 
 // TODO: Fetch from /api/social/stats endpoint - currently hardcoded
 // These stats should be fetched server-side and passed as props, or fetched client-side with SWR
-const platformStats = [
+const platformStats: {
+  platform: string;
+  icon: IconDefinition;
+  handle: string;
+  followers: string;
+  avgViews: string;
+  engagement: string;
+  color: string;
+  bgColor: string;
+}[] = [
   {
     platform: 'Instagram',
-    icon: 'fa-instagram',
+    icon: faInstagram,
     handle: '@ezeikel.dev',
     followers: '103K', // TODO: Fetch from Instagram Graph API
     avgViews: '45K', // TODO: Calculate from recent posts
@@ -107,7 +136,7 @@ const platformStats = [
   },
   {
     platform: 'TikTok',
-    icon: 'fa-tiktok',
+    icon: faTiktok,
     handle: '@ezeikel.dev',
     followers: '78K', // TODO: Fetch from TikTok API
     avgViews: '120K', // TODO: Calculate from recent videos
@@ -117,7 +146,7 @@ const platformStats = [
   },
   {
     platform: 'YouTube',
-    icon: 'fa-youtube',
+    icon: faYoutube,
     handle: '@ezeikel',
     followers: '45K', // TODO: Fetch from YouTube Data API v3
     avgViews: '15K', // TODO: Calculate from recent videos
@@ -127,7 +156,7 @@ const platformStats = [
   },
   {
     platform: 'X/Twitter',
-    icon: 'fa-x-twitter',
+    icon: faXTwitter,
     handle: '@ezeikel',
     followers: '12K', // TODO: Fetch from Twitter/X API v2
     avgViews: '8K', // TODO: Calculate from impressions
@@ -137,7 +166,7 @@ const platformStats = [
   },
   {
     platform: 'LinkedIn',
-    icon: 'fa-linkedin-in',
+    icon: faLinkedinIn,
     handle: 'ezeikel-pemberton',
     followers: '8K', // TODO: Fetch from LinkedIn API
     avgViews: '5K', // TODO: Calculate from post impressions
@@ -198,30 +227,34 @@ const contentExamples = [
   },
 ];
 
-const collaborationFormats = [
+const collaborationFormats: {
+  title: string;
+  description: string;
+  icon: IconDefinition;
+}[] = [
   {
     title: 'Sponsored Videos & Reels',
     description:
       'Dedicated content featuring your product or service, tailored to my audience of developers and tech enthusiasts.',
-    icon: 'fa-video',
+    icon: faVideo,
   },
   {
     title: 'App & Product Integrations',
     description:
       'Natural integration of your product into my development workflow, app builds, or content creation process.',
-    icon: 'fa-puzzle-piece',
+    icon: faPuzzlePiece,
   },
   {
     title: 'Tech & Tool Reviews',
     description:
       'Honest, in-depth reviews of developer tools, software, hardware, and tech products.',
-    icon: 'fa-star',
+    icon: faStar,
   },
   {
     title: 'Speaking & Workshops',
     description:
       'Virtual or in-person talks about indie hacking, React Native, content creation, or tech careers.',
-    icon: 'fa-microphone',
+    icon: faMicrophone,
   },
 ];
 
@@ -234,10 +267,7 @@ const MediaKitPage = () => (
         <div className="mx-auto max-w-6xl px-6">
           <div className="flex items-center gap-3 mb-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
-              <i
-                className="fa-solid fa-briefcase text-primary"
-                aria-hidden="true"
-              />
+              <FontAwesomeIcon icon={faBriefcase} className="text-primary" />
             </div>
             <span className="text-sm font-medium uppercase tracking-wider text-primary">
               Media Kit
@@ -367,10 +397,7 @@ const MediaKitPage = () => (
                         <div
                           className={`flex h-10 w-10 items-center justify-center rounded-lg ${stat.bgColor} ${stat.color}`}
                         >
-                          <i
-                            className={`fa-brands ${stat.icon}`}
-                            aria-hidden="true"
-                          />
+                          <FontAwesomeIcon icon={stat.icon} />
                         </div>
                         <span className="font-medium text-foreground">
                           {stat.platform}
@@ -416,7 +443,7 @@ const MediaKitPage = () => (
               className="text-sm font-medium text-primary hover:underline"
             >
               View all content
-              <i className="fa-solid fa-arrow-right ml-2" aria-hidden="true" />
+              <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </Link>
           </div>
 
@@ -433,7 +460,7 @@ const MediaKitPage = () => (
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="mb-3 inline-flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                    <i className="fa-brands fa-youtube" aria-hidden="true" />
+                    <FontAwesomeIcon icon={faYoutube} />
                     {contentExamples[0].platform}
                   </span>
                   <h3 className="mb-2 text-2xl font-bold text-white">
@@ -445,9 +472,9 @@ const MediaKitPage = () => (
                 </div>
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
                   <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-xl">
-                    <i
-                      className="fa-solid fa-play ml-1 text-xl text-foreground"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faPlay}
+                      className="ml-1 text-xl text-foreground"
                     />
                   </div>
                 </div>
@@ -458,10 +485,10 @@ const MediaKitPage = () => (
             {contentExamples.slice(1).map((example) => {
               const platformIcon =
                 example.platform === 'YouTube'
-                  ? 'fa-youtube'
+                  ? faYoutube
                   : example.platform === 'TikTok'
-                    ? 'fa-tiktok'
-                    : 'fa-instagram';
+                    ? faTiktok
+                    : faInstagram;
               return (
                 <div
                   key={example.title}
@@ -475,9 +502,9 @@ const MediaKitPage = () => (
                     />
                     <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:opacity-100">
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg">
-                        <i
-                          className="fa-solid fa-play ml-0.5 text-foreground"
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={faPlay}
+                          className="ml-0.5 text-foreground"
                         />
                       </div>
                     </div>
@@ -485,9 +512,9 @@ const MediaKitPage = () => (
                   <div className="p-4">
                     <div className="mb-2 flex items-center gap-2">
                       <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/50 px-2 py-0.5 text-xs font-medium text-secondary-foreground">
-                        <i
-                          className={`fa-brands ${platformIcon} text-muted-foreground`}
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={platformIcon}
+                          className="text-muted-foreground"
                         />
                         {example.platform}
                       </span>
@@ -523,9 +550,9 @@ const MediaKitPage = () => (
                 className="flex gap-4 rounded-xl border border-border bg-card p-6 transition-colors hover:border-primary/30"
               >
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                  <i
-                    className={`fa-solid ${format.icon} text-primary`}
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={format.icon}
+                    className="text-primary"
                   />
                 </div>
                 <div>
@@ -555,16 +582,13 @@ const MediaKitPage = () => (
           <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Button asChild size="lg" className="font-semibold">
               <a href="mailto:partnerships@ezeikel.dev">
-                <i className="fa-solid fa-envelope mr-2" aria-hidden="true" />
+                <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                 Email Me
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/about#contact">
-                <i
-                  className="fa-solid fa-paper-plane mr-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
                 Contact Form
               </Link>
             </Button>

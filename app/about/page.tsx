@@ -9,6 +9,41 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight,
+  faBrain,
+  faBriefcase,
+  faBuilding,
+  faCamera,
+  faCheckCircle,
+  faCode,
+  faDatabase,
+  faEnvelope,
+  faFlag,
+  faHelicopter,
+  faLayerGroup,
+  faMobileScreen,
+  faPalette,
+  faPaperPlane,
+  faPlane,
+  faRocket,
+  faSpinnerThird,
+  faUsers,
+  faVideo,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faGithub,
+  faInstagram,
+  faLinkedinIn,
+  faReact,
+  faShopify,
+  faStripe,
+  faTiktok,
+  faXTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 
 const InteractiveGlobe = dynamic(
   () => import('@/components/InteractiveGlobe'),
@@ -19,7 +54,7 @@ const InteractiveGlobe = dynamic(
         <div className="flex flex-col items-center gap-3">
           <div className="h-32 w-32 animate-pulse rounded-full bg-secondary/50 sm:h-40 sm:w-40 md:h-48 md:w-48" />
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <i className="fa-solid fa-spinner fa-spin" aria-hidden="true" />
+            <FontAwesomeIcon icon={faSpinnerThird} spin />
             Loading globe...
           </div>
         </div>
@@ -28,59 +63,64 @@ const InteractiveGlobe = dynamic(
   },
 );
 
-const skills = [
-  { name: 'React', icon: 'fa-react', color: 'text-cyan-500' },
-  { name: 'React Native', icon: 'fa-mobile-screen', color: 'text-blue-500' },
-  { name: 'Expo', icon: 'fa-layer-group', color: 'text-foreground' },
-  { name: 'TypeScript', icon: 'fa-code', color: 'text-blue-600' },
-  { name: 'Postgres', icon: 'fa-database', color: 'text-blue-700' },
-  { name: 'Shopify', icon: 'fa-shopify', color: 'text-green-500' },
-  { name: 'Stripe', icon: 'fa-stripe', color: 'text-purple-500' },
-  { name: 'AI/ML', icon: 'fa-brain', color: 'text-pink-500' },
+const skills: { name: string; icon: IconDefinition; color: string }[] = [
+  { name: 'React', icon: faReact, color: 'text-cyan-500' },
+  { name: 'React Native', icon: faMobileScreen, color: 'text-blue-500' },
+  { name: 'Expo', icon: faLayerGroup, color: 'text-foreground' },
+  { name: 'TypeScript', icon: faCode, color: 'text-blue-600' },
+  { name: 'Postgres', icon: faDatabase, color: 'text-blue-700' },
+  { name: 'Shopify', icon: faShopify, color: 'text-green-500' },
+  { name: 'Stripe', icon: faStripe, color: 'text-purple-500' },
+  { name: 'AI/ML', icon: faBrain, color: 'text-pink-500' },
 ];
 
-const timeline = [
+const timeline: {
+  year: string;
+  title: string;
+  description: string;
+  icon: IconDefinition;
+}[] = [
   {
     year: '2026',
     title: 'Scaling indie apps',
     description:
       'Growing Chunky Crayon and Parking Ticket Pal while building new products and expanding content reach.',
-    icon: 'fa-rocket',
+    icon: faRocket,
   },
   {
     year: '2025',
     title: '100K+ followers milestone',
     description:
       'Crossed 100K followers across platforms while launching Parking Ticket Pal and growing Chunky Crayon.',
-    icon: 'fa-users',
+    icon: faUsers,
   },
   {
     year: '2024',
     title: 'Launched Chunky Crayon',
     description:
       "Built and shipped my first successful indie app, featured in the App Store's Apps We Love.",
-    icon: 'fa-palette',
+    icon: faPalette,
   },
   {
     year: '2023',
     title: 'Started content creation',
     description:
       'Began documenting my journey as a developer on TikTok and YouTube, building an audience.',
-    icon: 'fa-video',
+    icon: faVideo,
   },
   {
     year: '2020',
     title: 'Went full-time indie',
     description:
       'Left my full-time job to focus on building my own products and pursuing indie hacking.',
-    icon: 'fa-flag',
+    icon: faFlag,
   },
   {
     year: '2018',
     title: 'Senior Engineer at tech startup',
     description:
       'Led frontend development at a London tech startup, working with React and React Native.',
-    icon: 'fa-briefcase',
+    icon: faBriefcase,
   },
 ];
 
@@ -111,40 +151,45 @@ const currentlyBuilding = [
   },
 ];
 
-const socialLinks = [
+const socialLinks: {
+  href: string;
+  icon: IconDefinition;
+  label: string;
+  handle: string;
+}[] = [
   {
     href: 'https://instagram.com/ezeikel.dev',
-    icon: 'fa-instagram',
+    icon: faInstagram,
     label: 'Instagram',
     handle: '@ezeikel.dev',
   },
   {
     href: 'https://tiktok.com/@ezeikel.dev',
-    icon: 'fa-tiktok',
+    icon: faTiktok,
     label: 'TikTok',
     handle: '@ezeikel.dev',
   },
   {
     href: 'https://youtube.com/@ezeikel',
-    icon: 'fa-youtube',
+    icon: faYoutube,
     label: 'YouTube',
     handle: '@ezeikel',
   },
   {
     href: 'https://twitter.com/ezeikel',
-    icon: 'fa-x-twitter',
+    icon: faXTwitter,
     label: 'X/Twitter',
     handle: '@ezeikel',
   },
   {
     href: 'https://linkedin.com/in/ezeikel',
-    icon: 'fa-linkedin-in',
+    icon: faLinkedinIn,
     label: 'LinkedIn',
     handle: '/in/ezeikel',
   },
   {
     href: 'https://github.com/ezeikel',
-    icon: 'fa-github',
+    icon: faGithub,
     label: 'GitHub',
     handle: '@ezeikel',
   },
@@ -261,9 +306,9 @@ const AboutPage = () => {
                         key={skill.name}
                         className="flex items-center gap-2 rounded-lg border border-border bg-card px-3 py-2 text-sm font-medium text-foreground"
                       >
-                        <i
-                          className={`fa-brands ${skill.icon} ${skill.color}`}
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={skill.icon}
+                          className={skill.color}
                         />
                         {skill.name}
                       </div>
@@ -322,9 +367,9 @@ const AboutPage = () => {
 
                     {/* Icon */}
                     <div className="absolute left-0 flex h-8 w-8 items-center justify-center rounded-full border-2 border-primary bg-background md:relative md:left-auto">
-                      <i
-                        className={`fa-solid ${item.icon} text-sm text-primary`}
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={item.icon}
+                        className="text-sm text-primary"
                       />
                     </div>
 
@@ -371,16 +416,16 @@ const AboutPage = () => {
                 </div>
                 <div className="flex flex-wrap gap-3 pt-2">
                   <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground">
-                    <i
-                      className="fa-solid fa-plane text-muted-foreground"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faPlane}
+                      className="text-muted-foreground"
                     />
                     Open to UAE roles
                   </span>
                   <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground">
-                    <i
-                      className="fa-solid fa-building text-muted-foreground"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faBuilding}
+                      className="text-muted-foreground"
                     />
                     Remote or On-site
                   </span>
@@ -405,10 +450,7 @@ const AboutPage = () => {
                 className="text-sm font-medium text-primary hover:text-primary/80"
               >
                 View full library
-                <i
-                  className="fa-solid fa-arrow-right ml-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
               </Link>
             </div>
 
@@ -463,10 +505,7 @@ const AboutPage = () => {
                 className="text-sm font-medium text-primary hover:text-primary/80"
               >
                 View gallery
-                <i
-                  className="fa-solid fa-arrow-right ml-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
               </Link>
             </div>
 
@@ -480,9 +519,9 @@ const AboutPage = () => {
               <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border/60 bg-secondary sm:col-span-2 sm:row-span-2 sm:aspect-square">
                 <div className="flex h-full items-center justify-center">
                   <div className="text-center">
-                    <i
-                      className="fa-solid fa-helicopter mb-2 text-4xl text-muted-foreground/50"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faHelicopter}
+                      className="mb-2 text-4xl text-muted-foreground/50"
                     />
                     <p className="text-sm text-muted-foreground/50">
                       Dubai Skyline
@@ -499,9 +538,9 @@ const AboutPage = () => {
               <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border/60 bg-secondary">
                 <div className="flex h-full items-center justify-center">
                   <div className="text-center">
-                    <i
-                      className="fa-solid fa-camera mb-2 text-2xl text-muted-foreground/50"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faCamera}
+                      className="mb-2 text-2xl text-muted-foreground/50"
                     />
                     <p className="text-xs text-muted-foreground/50">
                       London Streets
@@ -518,9 +557,9 @@ const AboutPage = () => {
               <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border/60 bg-secondary">
                 <div className="flex h-full items-center justify-center">
                   <div className="text-center">
-                    <i
-                      className="fa-solid fa-video mb-2 text-2xl text-muted-foreground/50"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faVideo}
+                      className="mb-2 text-2xl text-muted-foreground/50"
                     />
                     <p className="text-xs text-muted-foreground/50">
                       Tokyo Night
@@ -537,9 +576,9 @@ const AboutPage = () => {
               <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border/60 bg-secondary">
                 <div className="flex h-full items-center justify-center">
                   <div className="text-center">
-                    <i
-                      className="fa-solid fa-helicopter mb-2 text-2xl text-muted-foreground/50"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faHelicopter}
+                      className="mb-2 text-2xl text-muted-foreground/50"
                     />
                     <p className="text-xs text-muted-foreground/50">
                       Beach Aerial
@@ -556,9 +595,9 @@ const AboutPage = () => {
               <div className="group relative aspect-[4/3] overflow-hidden rounded-xl border border-border/60 bg-secondary">
                 <div className="flex h-full items-center justify-center">
                   <div className="text-center">
-                    <i
-                      className="fa-solid fa-camera mb-2 text-2xl text-muted-foreground/50"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faCamera}
+                      className="mb-2 text-2xl text-muted-foreground/50"
                     />
                     <p className="text-xs text-muted-foreground/50">
                       Abu Dhabi
@@ -630,7 +669,7 @@ const AboutPage = () => {
                     href="mailto:hello@ezeikel.dev"
                     className="flex items-center gap-3 text-primary hover:text-primary/80"
                   >
-                    <i className="fa-solid fa-envelope" aria-hidden="true" />
+                    <FontAwesomeIcon icon={faEnvelope} />
                     hello@ezeikel.dev
                   </a>
                 </div>
@@ -650,9 +689,9 @@ const AboutPage = () => {
                         className="flex items-center gap-3 rounded-lg border border-border bg-card p-3 transition-colors hover:border-primary/50"
                       >
                         <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary">
-                          <i
-                            className={`fa-brands ${social.icon} text-foreground`}
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={social.icon}
+                            className="text-foreground"
                           />
                         </div>
                         <div>
@@ -677,9 +716,9 @@ const AboutPage = () => {
 
                 {isSubmitted ? (
                   <div className="rounded-lg bg-green-100 p-6 text-center text-green-700">
-                    <i
-                      className="fa-solid fa-check-circle mb-2 text-3xl"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faCheckCircle}
+                      className="mb-2 text-3xl"
                     />
                     <p className="font-medium">Thanks for your message!</p>
                     <p className="mt-1 text-sm">
@@ -761,18 +800,19 @@ const AboutPage = () => {
                     >
                       {isSubmitting ? (
                         <>
-                          <i
-                            className="fa-solid fa-spinner fa-spin mr-2"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faSpinnerThird}
+                            spin
+                            className="mr-2"
                           />
                           Sending...
                         </>
                       ) : (
                         <>
                           Send Message
-                          <i
-                            className="fa-solid fa-paper-plane ml-2"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faPaperPlane}
+                            className="ml-2"
                           />
                         </>
                       )}

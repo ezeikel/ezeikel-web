@@ -3,9 +3,30 @@
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight,
+  faBook,
+  faChampagneGlasses,
+  faHeart,
+  faMobileScreen,
+  faMugHot,
+  faUtensils,
+} from '@fortawesome/pro-solid-svg-icons';
 import { Button } from '@/components/ui/button';
 
-const featuredProducts = [
+type FeaturedProduct = {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  tag: string;
+  icon: IconDefinition;
+  featured: boolean;
+};
+
+const featuredProducts: FeaturedProduct[] = [
   {
     id: 'starter-kit',
     name: 'React Native Expo Starter Kit',
@@ -13,7 +34,7 @@ const featuredProducts = [
       'Production-ready boilerplate with auth, payments, and push notifications. Ship your app faster.',
     price: '$99',
     tag: 'Coming Soon',
-    icon: 'fa-mobile-screen',
+    icon: faMobileScreen,
     featured: true,
   },
   {
@@ -23,15 +44,21 @@ const featuredProducts = [
       'Step-by-step guide from idea to App Store. Learn from real launches.',
     price: '$29',
     tag: 'PDF Guide',
-    icon: 'fa-book',
+    icon: faBook,
     featured: false,
   },
 ];
 
-const tipOptions = [
-  { label: 'Coffee', amount: '$5', icon: 'fa-mug-hot' },
-  { label: 'Lunch', amount: '$15', icon: 'fa-utensils' },
-  { label: 'Dinner', amount: '$30', icon: 'fa-champagne-glasses' },
+type TipOption = {
+  label: string;
+  amount: string;
+  icon: IconDefinition;
+};
+
+const tipOptions: TipOption[] = [
+  { label: 'Coffee', amount: '$5', icon: faMugHot },
+  { label: 'Lunch', amount: '$15', icon: faUtensils },
+  { label: 'Dinner', amount: '$30', icon: faChampagneGlasses },
 ];
 
 const ShopTeaser = () => {
@@ -68,7 +95,7 @@ const ShopTeaser = () => {
           >
             <Link href="/shop">
               Browse all
-              <i className="fa-solid fa-arrow-right ml-2" aria-hidden="true" />
+              <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
             </Link>
           </Button>
         </div>
@@ -83,9 +110,9 @@ const ShopTeaser = () => {
                 className="group flex flex-col gap-4 rounded-2xl border border-border/60 bg-card p-5 transition-all hover:border-border hover:shadow-sm sm:flex-row sm:items-center"
               >
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-secondary">
-                  <i
-                    className={`fa-solid ${product.icon} text-xl text-foreground`}
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={product.icon}
+                    className="text-xl text-foreground"
                   />
                 </div>
                 <div className="flex-1">
@@ -112,10 +139,7 @@ const ShopTeaser = () => {
           <div className="rounded-2xl border border-border/60 bg-card p-6">
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                <i
-                  className="fa-solid fa-heart text-foreground"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faHeart} className="text-foreground" />
               </div>
               <div>
                 <h3 className="font-semibold text-foreground">
@@ -133,9 +157,9 @@ const ShopTeaser = () => {
                   className="flex w-full items-center justify-between rounded-xl border border-border bg-background px-4 py-3 text-sm transition-all hover:border-primary hover:bg-secondary/50"
                 >
                   <span className="flex items-center gap-2">
-                    <i
-                      className={`fa-solid ${tip.icon} text-muted-foreground`}
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={tip.icon}
+                      className="text-muted-foreground"
                     />
                     <span className="text-foreground">{tip.label}</span>
                   </span>
@@ -149,10 +173,7 @@ const ShopTeaser = () => {
             <Button asChild variant="outline" className="w-full bg-transparent">
               <Link href="/shop#support">
                 Custom amount
-                <i
-                  className="fa-solid fa-arrow-right ml-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
               </Link>
             </Button>
           </div>

@@ -10,10 +10,24 @@ import {
   useInView,
 } from 'framer-motion';
 import { useRef, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight,
+  faBriefcase,
+  faChartLine,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faInstagram,
+  faLinkedinIn,
+  faTiktok,
+  faXTwitter,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 
 type StatItem = {
   platform: string;
-  icon: string;
+  icon: IconDefinition;
   followers: string;
   followersNum: number;
   engagement: string;
@@ -23,7 +37,7 @@ type StatItem = {
 const stats: StatItem[] = [
   {
     platform: 'Instagram',
-    icon: 'fa-instagram',
+    icon: faInstagram,
     followers: '103K',
     followersNum: 103000,
     engagement: '5.2%',
@@ -31,7 +45,7 @@ const stats: StatItem[] = [
   },
   {
     platform: 'TikTok',
-    icon: 'fa-tiktok',
+    icon: faTiktok,
     followers: '78K',
     followersNum: 78000,
     engagement: '8.1%',
@@ -39,7 +53,7 @@ const stats: StatItem[] = [
   },
   {
     platform: 'YouTube',
-    icon: 'fa-youtube',
+    icon: faYoutube,
     followers: '45K',
     followersNum: 45000,
     engagement: '4.8%',
@@ -47,7 +61,7 @@ const stats: StatItem[] = [
   },
   {
     platform: 'X/Twitter',
-    icon: 'fa-x-twitter',
+    icon: faXTwitter,
     followers: '12K',
     followersNum: 12000,
     engagement: '3.2%',
@@ -55,7 +69,7 @@ const stats: StatItem[] = [
   },
   {
     platform: 'LinkedIn',
-    icon: 'fa-linkedin-in',
+    icon: faLinkedinIn,
     followers: '8K',
     followersNum: 8000,
     engagement: '6.5%',
@@ -206,7 +220,7 @@ const StatsSnapshot = () => {
               transition={{ duration: 0.3 }}
               className="rounded-xl border border-border bg-card p-5 text-center transition-shadow hover:shadow-lg"
             >
-              <motion.i
+              <motion.span
                 initial={{ scale: 0 }}
                 whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
@@ -215,9 +229,10 @@ const StatsSnapshot = () => {
                   type: 'spring',
                   stiffness: 300,
                 }}
-                className={`fa-brands ${stat.icon} mb-3 text-2xl ${stat.color}`}
-                aria-hidden="true"
-              />
+                className={`mb-3 text-2xl ${stat.color}`}
+              >
+                <FontAwesomeIcon icon={stat.icon} />
+              </motion.span>
               <p className="mb-1 text-2xl font-bold text-foreground">
                 {stat.followers}
               </p>
@@ -231,7 +246,7 @@ const StatsSnapshot = () => {
                 transition={{ delay: 0.5 + index * 0.1 }}
                 className="text-xs text-accent"
               >
-                <i className="fa-solid fa-chart-line mr-1" aria-hidden="true" />
+                <FontAwesomeIcon icon={faChartLine} className="mr-1" />
                 {stat.engagement} engagement
               </motion.p>
             </motion.div>
@@ -251,9 +266,9 @@ const StatsSnapshot = () => {
               href="/media-kit"
               className="inline-flex items-center gap-2 text-sm font-medium text-primary transition-colors hover:text-primary/80"
             >
-              <i className="fa-solid fa-briefcase" aria-hidden="true" />
+              <FontAwesomeIcon icon={faBriefcase} />
               View full media kit for brands
-              <i className="fa-solid fa-arrow-right" aria-hidden="true" />
+              <FontAwesomeIcon icon={faArrowRight} />
             </Link>
           </motion.div>
         </motion.div>

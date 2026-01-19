@@ -2,12 +2,25 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCode,
+  faBriefcase,
+  faLayerGroup,
+  faArrowUp,
+  faVideo,
+  faRocket,
+  faUsers,
+  faCar,
+  faChevronDown,
+} from '@fortawesome/pro-solid-svg-icons';
 
 type Milestone = {
   year: string;
   title: string;
   description: string;
-  icon: string;
+  icon: IconDefinition;
   highlight?: boolean;
 };
 
@@ -17,47 +30,47 @@ const milestones: Milestone[] = [
     title: 'Started Coding',
     description:
       'Discovered my passion for building things with code. First lines of JavaScript.',
-    icon: 'fa-code',
+    icon: faCode,
   },
   {
     year: '2017',
     title: 'First Dev Role',
     description: 'Landed my first professional software engineering position.',
-    icon: 'fa-briefcase',
+    icon: faBriefcase,
   },
   {
     year: '2019',
     title: 'Went Full-Stack',
     description: 'Expanded into backend, databases, and cloud infrastructure.',
-    icon: 'fa-layer-group',
+    icon: faLayerGroup,
   },
   {
     year: '2021',
     title: 'Senior Engineer',
     description:
       'Promoted to Senior Software Engineer. Leading projects and mentoring juniors.',
-    icon: 'fa-arrow-up',
+    icon: faArrowUp,
     highlight: true,
   },
   {
     year: '2022',
     title: 'Started Creating',
     description: 'Began sharing my journey on social media. First viral video.',
-    icon: 'fa-video',
+    icon: faVideo,
   },
   {
     year: '2023',
     title: 'Launched Chunky Crayon',
     description:
       'Shipped my first indie app. A colouring app designed for kids.',
-    icon: 'fa-rocket',
+    icon: faRocket,
     highlight: true,
   },
   {
     year: '2024',
     title: '100K Followers',
     description: 'Hit 100,000 followers across platforms. Community growing.',
-    icon: 'fa-users',
+    icon: faUsers,
     highlight: true,
   },
   {
@@ -65,7 +78,7 @@ const milestones: Milestone[] = [
     title: 'Parking Ticket Pal',
     description:
       'Launched my second app. Helping people fight unfair parking tickets.',
-    icon: 'fa-car',
+    icon: faCar,
     highlight: true,
   },
 ];
@@ -151,10 +164,7 @@ const JourneySection = () => {
                         : 'bg-secondary text-foreground'
                     }`}
                   >
-                    <i
-                      className={`fa-solid ${milestone.icon} text-lg`}
-                      aria-hidden="true"
-                    />
+                    <FontAwesomeIcon icon={milestone.icon} size="lg" />
                   </div>
 
                   {/* Year */}
@@ -195,9 +205,9 @@ const JourneySection = () => {
           <p className="mb-2 text-xs text-muted-foreground">
             Scroll to explore
           </p>
-          <i
-            className="fa-solid fa-chevron-down text-muted-foreground"
-            aria-hidden="true"
+          <FontAwesomeIcon
+            icon={faChevronDown}
+            className="text-muted-foreground"
           />
         </motion.div>
       </div>

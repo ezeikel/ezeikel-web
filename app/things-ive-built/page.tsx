@@ -1,4 +1,86 @@
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faCube,
+  faArrowRight,
+  faPalette,
+  faCode,
+  faRocket,
+  faMobile,
+  faGlobe,
+  faHeart,
+  faMusic,
+  faCamera,
+  faGamepad,
+  faBook,
+  faShoppingCart,
+  faUtensils,
+  faDumbbell,
+  faPlane,
+  faCar,
+  faHome,
+  faBriefcase,
+  faGraduationCap,
+  faMedkit,
+  faLeaf,
+  faPaw,
+  faStar,
+  faBolt,
+  faLightbulb,
+  faChartLine,
+  faUsers,
+  faComments,
+  faCalendar,
+  faClock,
+  faMapMarkerAlt,
+  faWallet,
+  faCreditCard,
+  faShieldAlt,
+  faLock,
+  faKey,
+  faCloud,
+  faDatabase,
+  faServer,
+  faCog,
+  faWrench,
+  faTools,
+  faMagic,
+  faGift,
+  faTrophy,
+  faMedal,
+  faFlag,
+  faBell,
+  faEnvelope,
+  faPhone,
+  faVideo,
+  faMicrophone,
+  faHeadphones,
+  faFilm,
+  faImage,
+  faFileAlt,
+  faFolder,
+  faSearch,
+  faFilter,
+  faSort,
+  faEdit,
+  faTrash,
+  faPlus,
+  faMinus,
+  faCheck,
+  faTimes,
+  faInfo,
+  faQuestion,
+  faExclamation,
+  faCircle,
+  faSquare,
+  faHexagon,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faAppStoreIos,
+  faApple,
+  faGooglePlay,
+} from '@fortawesome/free-brands-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -6,6 +88,87 @@ import { client, urlFor } from '@/lib/sanity/client';
 import { projectsQuery, publishedAppsQuery } from '@/lib/sanity/queries';
 import type { SanityProject } from '@/lib/sanity/types';
 import ProjectsGrid from './ProjectsGrid';
+
+// Map FontAwesome class names to icon definitions for dynamic icons from Sanity
+const iconMap: Record<string, IconDefinition> = {
+  'fa-cube': faCube,
+  'fa-palette': faPalette,
+  'fa-code': faCode,
+  'fa-rocket': faRocket,
+  'fa-mobile': faMobile,
+  'fa-globe': faGlobe,
+  'fa-heart': faHeart,
+  'fa-music': faMusic,
+  'fa-camera': faCamera,
+  'fa-gamepad': faGamepad,
+  'fa-book': faBook,
+  'fa-shopping-cart': faShoppingCart,
+  'fa-utensils': faUtensils,
+  'fa-dumbbell': faDumbbell,
+  'fa-plane': faPlane,
+  'fa-car': faCar,
+  'fa-home': faHome,
+  'fa-briefcase': faBriefcase,
+  'fa-graduation-cap': faGraduationCap,
+  'fa-medkit': faMedkit,
+  'fa-leaf': faLeaf,
+  'fa-paw': faPaw,
+  'fa-star': faStar,
+  'fa-bolt': faBolt,
+  'fa-lightbulb': faLightbulb,
+  'fa-chart-line': faChartLine,
+  'fa-users': faUsers,
+  'fa-comments': faComments,
+  'fa-calendar': faCalendar,
+  'fa-clock': faClock,
+  'fa-map-marker-alt': faMapMarkerAlt,
+  'fa-wallet': faWallet,
+  'fa-credit-card': faCreditCard,
+  'fa-shield-alt': faShieldAlt,
+  'fa-lock': faLock,
+  'fa-key': faKey,
+  'fa-cloud': faCloud,
+  'fa-database': faDatabase,
+  'fa-server': faServer,
+  'fa-cog': faCog,
+  'fa-wrench': faWrench,
+  'fa-tools': faTools,
+  'fa-magic': faMagic,
+  'fa-gift': faGift,
+  'fa-trophy': faTrophy,
+  'fa-medal': faMedal,
+  'fa-flag': faFlag,
+  'fa-bell': faBell,
+  'fa-envelope': faEnvelope,
+  'fa-phone': faPhone,
+  'fa-video': faVideo,
+  'fa-microphone': faMicrophone,
+  'fa-headphones': faHeadphones,
+  'fa-film': faFilm,
+  'fa-image': faImage,
+  'fa-file-alt': faFileAlt,
+  'fa-folder': faFolder,
+  'fa-search': faSearch,
+  'fa-filter': faFilter,
+  'fa-sort': faSort,
+  'fa-edit': faEdit,
+  'fa-trash': faTrash,
+  'fa-plus': faPlus,
+  'fa-minus': faMinus,
+  'fa-check': faCheck,
+  'fa-times': faTimes,
+  'fa-info': faInfo,
+  'fa-question': faQuestion,
+  'fa-exclamation': faExclamation,
+  'fa-circle': faCircle,
+  'fa-square': faSquare,
+  'fa-hexagon': faHexagon,
+};
+
+const getIcon = (iconClass?: string): IconDefinition => {
+  if (!iconClass) return faCube;
+  return iconMap[iconClass] || faCube;
+};
 
 export const revalidate = 3600;
 
@@ -51,9 +214,9 @@ export default async function ThingsIveBuiltPage() {
             <div className="mx-auto max-w-6xl px-6">
               <div className="mb-8 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                  <i
-                    className="fa-brands fa-app-store-ios text-lg text-primary"
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={faAppStoreIos}
+                    className="text-lg text-primary"
                   />
                 </div>
                 <div>
@@ -79,9 +242,9 @@ export default async function ThingsIveBuiltPage() {
                           <div
                             className={`flex h-14 w-14 items-center justify-center rounded-2xl ${app.iconBg || 'bg-primary/10 text-primary'}`}
                           >
-                            <i
-                              className={`fa-solid text-2xl ${app.icon || 'fa-cube'}`}
-                              aria-hidden="true"
+                            <FontAwesomeIcon
+                              icon={getIcon(app.icon)}
+                              className="text-2xl"
                             />
                           </div>
                           <div>
@@ -141,9 +304,9 @@ export default async function ThingsIveBuiltPage() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <i
-                                className="fa-brands fa-apple mr-2"
-                                aria-hidden="true"
+                              <FontAwesomeIcon
+                                icon={faApple}
+                                className="mr-2"
                               />
                               App Store
                             </a>
@@ -156,9 +319,9 @@ export default async function ThingsIveBuiltPage() {
                               target="_blank"
                               rel="noopener noreferrer"
                             >
-                              <i
-                                className="fa-brands fa-google-play mr-2"
-                                aria-hidden="true"
+                              <FontAwesomeIcon
+                                icon={faGooglePlay}
+                                className="mr-2"
                               />
                               Play Store
                             </a>
@@ -167,9 +330,9 @@ export default async function ThingsIveBuiltPage() {
                         <Button asChild size="sm" variant="ghost">
                           <Link href={`/things-ive-built/${app.slug.current}`}>
                             View Details
-                            <i
-                              className="fa-solid fa-arrow-right ml-2"
-                              aria-hidden="true"
+                            <FontAwesomeIcon
+                              icon={faArrowRight}
+                              className="ml-2"
                             />
                           </Link>
                         </Button>

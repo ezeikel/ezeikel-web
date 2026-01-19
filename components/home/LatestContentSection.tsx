@@ -8,6 +8,13 @@ import {
   useTransform,
   AnimatePresence,
 } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faPlay,
+} from '@fortawesome/pro-solid-svg-icons';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { Button } from '@/components/ui/button';
 
 type ContentItem = {
@@ -136,7 +143,7 @@ const LatestContentSection = () => {
             className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition-colors hover:bg-background hover:border-primary"
             aria-label="Previous video"
           >
-            <i className="fa-solid fa-chevron-left" aria-hidden="true" />
+            <FontAwesomeIcon icon={faChevronLeft} />
           </motion.button>
 
           <motion.button
@@ -146,7 +153,7 @@ const LatestContentSection = () => {
             className="absolute right-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition-colors hover:bg-background hover:border-primary"
             aria-label="Next video"
           >
-            <i className="fa-solid fa-chevron-right" aria-hidden="true" />
+            <FontAwesomeIcon icon={faChevronRight} />
           </motion.button>
 
           {/* Video Cards */}
@@ -210,10 +217,7 @@ const LatestContentSection = () => {
                         />
                         {/* YouTube Badge */}
                         <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded bg-red-600 px-2 py-1 text-xs font-medium text-white">
-                          <i
-                            className="fa-brands fa-youtube"
-                            aria-hidden="true"
-                          />
+                          <FontAwesomeIcon icon={faYoutube} />
                           YouTube
                         </div>
                         {/* Duration */}
@@ -224,9 +228,9 @@ const LatestContentSection = () => {
                         {isCenter && (
                           <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:opacity-100">
                             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-xl">
-                              <i
-                                className="fa-solid fa-play ml-1 text-xl text-foreground"
-                                aria-hidden="true"
+                              <FontAwesomeIcon
+                                icon={faPlay}
+                                className="ml-1 text-xl text-foreground"
                               />
                             </div>
                           </div>
@@ -268,9 +272,9 @@ const LatestContentSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <i
-                  className="fa-brands fa-youtube mr-2 text-red-500"
-                  aria-hidden="true"
+                <FontAwesomeIcon
+                  icon={faYoutube}
+                  className="mr-2 text-red-500"
                 />
                 Subscribe on YouTube
               </Link>

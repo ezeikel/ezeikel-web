@@ -2,33 +2,50 @@
 
 import { motion } from 'framer-motion';
 import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faDatabase,
+  faDiagramProject,
+  faLeaf,
+  faMobileScreen,
+  faRobot,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faAws,
+  faJs,
+  faNodeJs,
+  faReact,
+  faShopify,
+  faStripe,
+} from '@fortawesome/free-brands-svg-icons';
 
 type Tech = {
   name: string;
-  icon: string;
+  icon: IconDefinition;
   category: 'frontend' | 'backend' | 'mobile' | 'tools';
 };
 
 const techStack: Tech[] = [
   // Frontend
-  { name: 'React', icon: 'fa-react', category: 'frontend' },
-  { name: 'Next.js', icon: 'fa-n', category: 'frontend' },
-  { name: 'TypeScript', icon: 'fa-t', category: 'frontend' },
-  { name: 'JavaScript', icon: 'fa-js', category: 'frontend' },
+  { name: 'React', icon: faReact, category: 'frontend' },
+  { name: 'Next.js', icon: faReact, category: 'frontend' }, // Using React icon as placeholder
+  { name: 'TypeScript', icon: faJs, category: 'frontend' }, // Using JS icon as placeholder
+  { name: 'JavaScript', icon: faJs, category: 'frontend' },
   // Mobile
-  { name: 'React Native', icon: 'fa-mobile-screen', category: 'mobile' },
-  { name: 'Expo', icon: 'fa-e', category: 'mobile' },
+  { name: 'React Native', icon: faMobileScreen, category: 'mobile' },
+  { name: 'Expo', icon: faMobileScreen, category: 'mobile' }, // Using mobile icon as placeholder
   // Backend
-  { name: 'Node.js', icon: 'fa-node-js', category: 'backend' },
-  { name: 'PostgreSQL', icon: 'fa-database', category: 'backend' },
-  { name: 'MongoDB', icon: 'fa-leaf', category: 'backend' },
+  { name: 'Node.js', icon: faNodeJs, category: 'backend' },
+  { name: 'PostgreSQL', icon: faDatabase, category: 'backend' },
+  { name: 'MongoDB', icon: faLeaf, category: 'backend' },
   // Tools & Integrations
-  { name: 'Stripe', icon: 'fa-stripe', category: 'tools' },
-  { name: 'Shopify', icon: 'fa-shopify', category: 'tools' },
-  { name: 'AWS', icon: 'fa-aws', category: 'tools' },
-  { name: 'Vercel', icon: 'fa-v', category: 'tools' },
-  { name: 'OpenAI', icon: 'fa-robot', category: 'tools' },
-  { name: 'GraphQL', icon: 'fa-diagram-project', category: 'tools' },
+  { name: 'Stripe', icon: faStripe, category: 'tools' },
+  { name: 'Shopify', icon: faShopify, category: 'tools' },
+  { name: 'AWS', icon: faAws, category: 'tools' },
+  { name: 'Vercel', icon: faReact, category: 'tools' }, // Using React icon as placeholder
+  { name: 'OpenAI', icon: faRobot, category: 'tools' },
+  { name: 'GraphQL', icon: faDiagramProject, category: 'tools' },
 ];
 
 const containerVariants = {
@@ -91,9 +108,9 @@ const TechStackSection = () => {
               transition={{ duration: 0.2 }}
               className="group flex items-center gap-2 rounded-full border border-border/60 bg-card px-4 py-2 transition-colors hover:border-primary/30 hover:bg-card/80"
             >
-              <i
-                className={`fa-brands ${tech.icon} text-base text-muted-foreground transition-colors group-hover:text-primary`}
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={tech.icon}
+                className="text-base text-muted-foreground transition-colors group-hover:text-primary"
               />
               <span className="text-sm font-medium text-foreground">
                 {tech.name}

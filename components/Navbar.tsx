@@ -4,6 +4,12 @@ import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBars,
+  faChevronDown,
+  faXmark,
+} from '@fortawesome/pro-solid-svg-icons';
 import { cn } from '@/lib/utils';
 
 // Primary nav items - always visible on desktop
@@ -97,12 +103,12 @@ const Navbar = () => {
               )}
             >
               More
-              <i
+              <FontAwesomeIcon
+                icon={faChevronDown}
                 className={cn(
-                  'fa-solid fa-chevron-down text-[10px] transition-transform duration-200',
+                  'text-[10px] transition-transform duration-200',
                   moreOpen && 'rotate-180',
                 )}
-                aria-hidden="true"
               />
               {isMoreActive && (
                 <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary" />
@@ -145,10 +151,7 @@ const Navbar = () => {
           className="flex items-center justify-center rounded-lg p-2 text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground lg:hidden"
           aria-label="Toggle menu"
         >
-          <i
-            className={cn('fa-solid', isOpen ? 'fa-xmark' : 'fa-bars')}
-            aria-hidden="true"
-          />
+          <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
         </button>
       </nav>
 

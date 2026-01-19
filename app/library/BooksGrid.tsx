@@ -1,6 +1,12 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faArrowUpRightFromSquare,
+  faBook,
+  faStar,
+} from '@fortawesome/pro-solid-svg-icons';
 import { cn } from '@/lib/utils';
 
 type Book = {
@@ -39,9 +45,9 @@ function BookCard({ book }: { book: Book }) {
         ) : (
           <div className="flex h-full items-center justify-center p-4">
             <div className="text-center">
-              <i
-                className="fa-solid fa-book mb-2 text-3xl text-muted-foreground/50"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={faBook}
+                className="mb-2 text-3xl text-muted-foreground/50"
               />
               <p className="text-xs text-muted-foreground/50">Cover</p>
             </div>
@@ -57,9 +63,9 @@ function BookCard({ book }: { book: Book }) {
           >
             <span className="flex items-center gap-2 rounded-full bg-background px-4 py-2 text-sm font-medium text-foreground">
               View on Goodreads
-              <i
-                className="fa-solid fa-arrow-up-right-from-square text-xs"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={faArrowUpRightFromSquare}
+                className="text-xs"
               />
             </span>
           </a>
@@ -77,13 +83,13 @@ function BookCard({ book }: { book: Book }) {
         {book.rating && (
           <div className="mb-2 flex items-center gap-0.5">
             {Array.from({ length: 5 }).map((_, i) => (
-              <i
+              <FontAwesomeIcon
                 key={i}
+                icon={faStar}
                 className={cn(
-                  'fa-solid fa-star text-xs',
+                  'text-xs',
                   i < book.rating! ? 'text-foreground' : 'text-border',
                 )}
-                aria-hidden="true"
               />
             ))}
           </div>

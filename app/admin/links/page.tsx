@@ -3,6 +3,34 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { useForm } from '@tanstack/react-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowLeft,
+  faArrowUpRightFromSquare,
+  faSpinnerThird,
+  faPlus,
+  faLink,
+  faChevronUp,
+  faChevronDown,
+  faTrash,
+  faGlobe,
+  faMobileScreen,
+  faCar,
+  faMicrophone,
+  faBriefcase,
+  faEnvelope,
+  faStar as faStarSolid,
+} from '@fortawesome/pro-solid-svg-icons';
+import { faStar as faStarRegular } from '@fortawesome/pro-regular-svg-icons';
+import {
+  faYoutube,
+  faTiktok,
+  faInstagram,
+  faTwitter,
+  faLinkedin,
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
@@ -13,6 +41,28 @@ type LinkItem = {
   icon?: string;
   featured?: boolean;
   order: number;
+};
+
+// Map icon string values to IconDefinition
+const iconMap: Record<string, IconDefinition> = {
+  'fa-youtube': faYoutube,
+  'fa-tiktok': faTiktok,
+  'fa-instagram': faInstagram,
+  'fa-twitter': faTwitter,
+  'fa-linkedin': faLinkedin,
+  'fa-github': faGithub,
+  'fa-globe': faGlobe,
+  'fa-mobile-screen': faMobileScreen,
+  'fa-car': faCar,
+  'fa-microphone': faMicrophone,
+  'fa-briefcase': faBriefcase,
+  'fa-envelope': faEnvelope,
+  'fa-link': faLink,
+};
+
+const getIcon = (iconClass?: string): IconDefinition => {
+  if (!iconClass) return faLink;
+  return iconMap[iconClass] || faLink;
 };
 
 // Placeholder data - replace with your data source
@@ -136,7 +186,7 @@ const AdminLinksPage = () => {
                 href="/"
                 className="text-muted-foreground hover:text-foreground"
               >
-                <i className="fa-solid fa-arrow-left" aria-hidden="true" />
+                <FontAwesomeIcon icon={faArrowLeft} />
               </Link>
               <h1 className="text-xl font-bold text-foreground">
                 Manage Links
@@ -144,9 +194,9 @@ const AdminLinksPage = () => {
             </div>
             <Link href="/links" target="_blank">
               <Button variant="outline" size="sm">
-                <i
-                  className="fa-solid fa-external-link mr-2"
-                  aria-hidden="true"
+                <FontAwesomeIcon
+                  icon={faArrowUpRightFromSquare}
+                  className="mr-2"
                 />
                 View Page
               </Button>
@@ -320,18 +370,15 @@ const AdminLinksPage = () => {
                     >
                       {isSubmitting ? (
                         <>
-                          <i
-                            className="fa-solid fa-spinner fa-spin mr-2"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faSpinnerThird}
+                            className="mr-2 animate-spin"
                           />
                           Adding...
                         </>
                       ) : (
                         <>
-                          <i
-                            className="fa-solid fa-plus mr-2"
-                            aria-hidden="true"
-                          />
+                          <FontAwesomeIcon icon={faPlus} className="mr-2" />
                           Add Link
                         </>
                       )}
@@ -350,9 +397,9 @@ const AdminLinksPage = () => {
             <div className="space-y-3">
               {links.length === 0 ? (
                 <div className="rounded-2xl border border-dashed border-border p-8 text-center">
-                  <i
-                    className="fa-solid fa-link mb-2 text-2xl text-muted-foreground"
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={faLink}
+                    className="mb-2 text-2xl text-muted-foreground"
                   />
                   <p className="text-muted-foreground">
                     No links yet. Add your first link!
@@ -377,9 +424,9 @@ const AdminLinksPage = () => {
                           link.featured ? 'bg-primary/10' : 'bg-secondary',
                         )}
                       >
-                        <i
-                          className={`fa-brands ${link.icon} text-foreground`}
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={getIcon(link.icon)}
+                          className="text-foreground"
                         />
                       </div>
 
@@ -403,9 +450,9 @@ const AdminLinksPage = () => {
                           className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground disabled:opacity-30"
                           aria-label="Move up"
                         >
-                          <i
-                            className="fa-solid fa-chevron-up text-xs"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faChevronUp}
+                            className="text-xs"
                           />
                         </button>
 
@@ -417,9 +464,9 @@ const AdminLinksPage = () => {
                           className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground disabled:opacity-30"
                           aria-label="Move down"
                         >
-                          <i
-                            className="fa-solid fa-chevron-down text-xs"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faChevronDown}
+                            className="text-xs"
                           />
                         </button>
 
@@ -437,9 +484,9 @@ const AdminLinksPage = () => {
                             link.featured ? 'Remove featured' : 'Make featured'
                           }
                         >
-                          <i
-                            className={`fa-${link.featured ? 'solid' : 'regular'} fa-star text-xs`}
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={link.featured ? faStarSolid : faStarRegular}
+                            className="text-xs"
                           />
                         </button>
 
@@ -450,10 +497,7 @@ const AdminLinksPage = () => {
                           className="flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-red-50 hover:text-red-600"
                           aria-label="Delete"
                         >
-                          <i
-                            className="fa-solid fa-trash text-xs"
-                            aria-hidden="true"
-                          />
+                          <FontAwesomeIcon icon={faTrash} size="xs" />
                         </button>
                       </div>
                     </div>

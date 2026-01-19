@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLocationDot, faCamera } from '@fortawesome/pro-solid-svg-icons';
 import { cn } from '@/lib/utils';
 
 type Photo = {
@@ -91,19 +93,13 @@ export default function PhotoGrid({ photos, categories }: PhotoGridProps) {
                     <div className="mt-1 flex items-center gap-3 text-xs text-white/70">
                       {photo.location && (
                         <span className="flex items-center gap-1">
-                          <i
-                            className="fa-solid fa-location-dot"
-                            aria-hidden="true"
-                          />
+                          <FontAwesomeIcon icon={faLocationDot} />
                           {photo.location}
                         </span>
                       )}
                       {photo.camera && (
                         <span className="flex items-center gap-1">
-                          <i
-                            className="fa-solid fa-camera"
-                            aria-hidden="true"
-                          />
+                          <FontAwesomeIcon icon={faCamera} />
                           {photo.camera}
                         </span>
                       )}
@@ -114,9 +110,9 @@ export default function PhotoGrid({ photos, categories }: PhotoGridProps) {
             </div>
           ) : (
             <div className="py-16 text-center">
-              <i
-                className="fa-solid fa-camera mb-4 text-4xl text-muted-foreground/50"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={faCamera}
+                className="mb-4 text-4xl text-muted-foreground/50"
               />
               <p className="text-muted-foreground">
                 No photos in this category yet.

@@ -3,6 +3,25 @@
 import { useRef, useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useInView } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faArrowRight,
+  faArrowUpRightFromSquare,
+  faBrain,
+  faBuildingColumns,
+  faComments,
+  faCube,
+  faDownload,
+  faEnvelope,
+  faFilePdf,
+  faGraduationCap,
+  faLightbulb,
+  faPlane,
+  faPlay,
+  faRocket,
+} from '@fortawesome/pro-solid-svg-icons';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -116,50 +135,57 @@ const highlights = [
   },
 ];
 
-const whatIBring = [
+const whatIBring: {
+  title: string;
+  description: string;
+  icon: IconDefinition;
+}[] = [
   {
     title: 'Full-Stack Product Thinking',
     description:
       "I don't just write code - I understand product, UX, and how to ship features that users love.",
-    icon: 'fa-lightbulb',
+    icon: faLightbulb,
   },
   {
     title: 'Indie Hacker Mindset',
     description:
       "I've built and launched my own apps. I know how to move fast, prioritise, and get things done.",
-    icon: 'fa-rocket',
+    icon: faRocket,
   },
   {
     title: 'Content & Communication',
     description:
       'With 100K+ followers, I know how to explain complex topics simply and advocate for good practices.',
-    icon: 'fa-comments',
+    icon: faComments,
   },
   {
     title: 'Continuous Learner',
     description:
       'Always exploring new tech, sharing what I learn, and bringing fresh ideas to the team.',
-    icon: 'fa-graduation-cap',
+    icon: faGraduationCap,
   },
 ];
 
-const quickLinks = [
-  { label: "Things I've Built", href: '/things-ive-built', icon: 'fa-cube' },
+const quickLinks: {
+  label: string;
+  href: string;
+  icon: IconDefinition;
+  external?: boolean;
+}[] = [
+  { label: "Things I've Built", href: '/things-ive-built', icon: faCube },
   {
     label: 'GitHub',
     href: 'https://github.com/yourusername',
-    icon: 'fa-github',
+    icon: faGithub,
     external: true,
-    brand: true,
   },
   {
     label: 'LinkedIn',
     href: 'https://linkedin.com/in/yourusername',
-    icon: 'fa-linkedin',
+    icon: faLinkedin,
     external: true,
-    brand: true,
   },
-  { label: 'Content', href: '/content', icon: 'fa-play' },
+  { label: 'Content', href: '/content', icon: faPlay },
 ];
 
 const HireMePage = () => (
@@ -178,10 +204,7 @@ const HireMePage = () => (
               Open to opportunities
             </div>
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground">
-              <i
-                className="fa-solid fa-brain text-primary"
-                aria-hidden="true"
-              />
+              <FontAwesomeIcon icon={faBrain} className="text-primary" />
               AI & Fintech Specialist
             </div>
           </div>
@@ -199,17 +222,14 @@ const HireMePage = () => (
           <div className="flex flex-wrap gap-4">
             <Button asChild size="lg">
               <a href="/cv.pdf" download>
-                <i className="fa-solid fa-download mr-2" aria-hidden="true" />
+                <FontAwesomeIcon icon={faDownload} className="mr-2" />
                 Download CV
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
               <Link href="/about#contact">
                 Get in Touch
-                <i
-                  className="fa-solid fa-arrow-right ml-2"
-                  aria-hidden="true"
-                />
+                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
               </Link>
             </Button>
           </div>
@@ -232,9 +252,9 @@ const HireMePage = () => (
             <div className="rounded-2xl border border-border/60 bg-card p-6">
               <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                  <i
-                    className="fa-solid fa-building-columns text-foreground"
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={faBuildingColumns}
+                    className="text-foreground"
                   />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">
@@ -262,10 +282,7 @@ const HireMePage = () => (
             <div className="rounded-2xl border border-border/60 bg-card p-6">
               <div className="mb-4 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                  <i
-                    className="fa-solid fa-brain text-foreground"
-                    aria-hidden="true"
-                  />
+                  <FontAwesomeIcon icon={faBrain} className="text-foreground" />
                 </div>
                 <h3 className="text-lg font-semibold text-foreground">
                   AI & Machine Learning
@@ -328,9 +345,9 @@ const HireMePage = () => (
             {whatIBring.map((item) => (
               <div key={item.title} className="flex gap-4">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-secondary">
-                  <i
-                    className={`fa-solid ${item.icon} text-lg text-foreground`}
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={item.icon}
+                    className="text-lg text-foreground"
                   />
                 </div>
                 <div>
@@ -363,17 +380,15 @@ const HireMePage = () => (
                 className="group flex flex-col items-center gap-3 rounded-2xl border border-border/60 bg-card p-6 text-center transition-all hover:border-primary/50 hover:shadow-sm"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-secondary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <i
-                    className={`${link.brand ? 'fa-brands' : 'fa-solid'} ${link.icon} text-lg`}
-                    aria-hidden="true"
-                  />
+                  <FontAwesomeIcon icon={link.icon} size="lg" />
                 </div>
                 <span className="text-sm font-medium text-foreground group-hover:text-primary">
                   {link.label}
                   {link.external && (
-                    <i
-                      className="fa-solid fa-arrow-up-right-from-square ml-1.5 text-xs text-muted-foreground"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faArrowUpRightFromSquare}
+                      size="xs"
+                      className="ml-1.5 text-muted-foreground"
                     />
                   )}
                 </span>
@@ -391,9 +406,9 @@ const HireMePage = () => (
               <div className="flex-1">
                 <div className="mb-3 flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                    <i
-                      className="fa-solid fa-plane text-foreground"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faPlane}
+                      className="text-foreground"
                     />
                   </div>
                   <h2 className="text-xl font-bold text-foreground">
@@ -436,10 +451,7 @@ const HireMePage = () => (
                 <Button asChild variant="outline">
                   <Link href="/about#globe">
                     See My Journey
-                    <i
-                      className="fa-solid fa-arrow-right ml-2"
-                      aria-hidden="true"
-                    />
+                    <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                   </Link>
                 </Button>
               </div>
@@ -461,13 +473,13 @@ const HireMePage = () => (
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">
               <a href="mailto:hire@ezeikel.com">
-                <i className="fa-solid fa-envelope mr-2" aria-hidden="true" />
+                <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                 hire@ezeikel.com
               </a>
             </Button>
             <Button asChild variant="outline" size="lg">
               <a href="/cv.pdf" download>
-                <i className="fa-solid fa-file-pdf mr-2" aria-hidden="true" />
+                <FontAwesomeIcon icon={faFilePdf} className="mr-2" />
                 Download CV
               </a>
             </Button>

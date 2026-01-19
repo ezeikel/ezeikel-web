@@ -1,6 +1,22 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronRight,
+  faGlobe,
+  faImage,
+  faCircleExclamation,
+  faLightbulb,
+  faCheck,
+  faBookOpen,
+  faEnvelope,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faApple,
+  faGooglePlay,
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
@@ -79,10 +95,7 @@ export default async function ProjectDetailPage({
               <Link href="/things-ive-built" className="hover:text-primary">
                 Things I&apos;ve Built
               </Link>
-              <i
-                className="fa-solid fa-chevron-right text-xs"
-                aria-hidden="true"
-              />
+              <FontAwesomeIcon icon={faChevronRight} size="xs" />
               <span className="text-foreground">{project.title}</span>
             </nav>
 
@@ -131,10 +144,7 @@ export default async function ProjectDetailPage({
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i
-                          className="fa-solid fa-globe mr-2"
-                          aria-hidden="true"
-                        />
+                        <FontAwesomeIcon icon={faGlobe} className="mr-2" />
                         Visit Website
                       </a>
                     </Button>
@@ -146,10 +156,7 @@ export default async function ProjectDetailPage({
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i
-                          className="fa-brands fa-apple mr-2"
-                          aria-hidden="true"
-                        />
+                        <FontAwesomeIcon icon={faApple} className="mr-2" />
                         App Store
                       </a>
                     </Button>
@@ -161,10 +168,7 @@ export default async function ProjectDetailPage({
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i
-                          className="fa-brands fa-google-play mr-2"
-                          aria-hidden="true"
-                        />
+                        <FontAwesomeIcon icon={faGooglePlay} className="mr-2" />
                         Play Store
                       </a>
                     </Button>
@@ -176,10 +180,7 @@ export default async function ProjectDetailPage({
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <i
-                          className="fa-brands fa-github mr-2"
-                          aria-hidden="true"
-                        />
+                        <FontAwesomeIcon icon={faGithub} className="mr-2" />
                         GitHub
                       </a>
                     </Button>
@@ -224,9 +225,9 @@ export default async function ProjectDetailPage({
                 ) : (
                   <div className="flex aspect-[4/3] items-center justify-center rounded-2xl border border-border bg-secondary/50">
                     <div className="text-center">
-                      <i
-                        className="fa-solid fa-image mb-4 text-4xl text-muted-foreground/50"
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={faImage}
+                        className="mb-4 text-4xl text-muted-foreground/50"
                       />
                       <p className="text-muted-foreground">
                         Screenshots coming soon
@@ -248,9 +249,9 @@ export default async function ProjectDetailPage({
                   <div className="rounded-2xl border border-border/60 bg-card p-6 md:p-8">
                     <div className="mb-4 flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                        <i
-                          className="fa-solid fa-circle-exclamation text-foreground"
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={faCircleExclamation}
+                          className="text-foreground"
                         />
                       </div>
                       <h2 className="text-xl font-bold text-foreground">
@@ -267,9 +268,9 @@ export default async function ProjectDetailPage({
                   <div className="rounded-2xl border border-border/60 bg-card p-6 md:p-8">
                     <div className="mb-4 flex items-center gap-3">
                       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                        <i
-                          className="fa-solid fa-lightbulb text-foreground"
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={faLightbulb}
+                          className="text-foreground"
                         />
                       </div>
                       <h2 className="text-xl font-bold text-foreground">
@@ -348,9 +349,9 @@ export default async function ProjectDetailPage({
                     key={role}
                     className="flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground"
                   >
-                    <i
-                      className="fa-solid fa-check text-muted-foreground"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faCheck}
+                      className="text-muted-foreground"
                     />
                     {role}
                   </span>
@@ -373,16 +374,13 @@ export default async function ProjectDetailPage({
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild variant="outline">
                 <Link href="/blog">
-                  <i
-                    className="fa-solid fa-book-open mr-2"
-                    aria-hidden="true"
-                  />
+                  <FontAwesomeIcon icon={faBookOpen} className="mr-2" />
                   Read the blog
                 </Link>
               </Button>
               <Button asChild>
                 <Link href="/about#contact">
-                  <i className="fa-solid fa-envelope mr-2" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faEnvelope} className="mr-2" />
                   Get in touch
                 </Link>
               </Button>

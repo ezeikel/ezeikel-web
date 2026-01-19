@@ -1,32 +1,42 @@
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faInstagram,
+  faTiktok,
+  faYoutube,
+  faXTwitter,
+  faLinkedinIn,
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
 
-const socialLinks = [
+const socialLinks: { href: string; icon: IconDefinition; label: string }[] = [
   {
     href: 'https://instagram.com/ezeikel.dev',
-    icon: 'fa-instagram',
+    icon: faInstagram,
     label: 'Instagram',
   },
   {
     href: 'https://tiktok.com/@ezeikel.dev',
-    icon: 'fa-tiktok',
+    icon: faTiktok,
     label: 'TikTok',
   },
   {
     href: 'https://youtube.com/@ezeikel',
-    icon: 'fa-youtube',
+    icon: faYoutube,
     label: 'YouTube',
   },
   {
     href: 'https://twitter.com/ezeikel',
-    icon: 'fa-x-twitter',
+    icon: faXTwitter,
     label: 'X/Twitter',
   },
   {
     href: 'https://linkedin.com/in/ezeikel',
-    icon: 'fa-linkedin-in',
+    icon: faLinkedinIn,
     label: 'LinkedIn',
   },
-  { href: 'https://github.com/ezeikel', icon: 'fa-github', label: 'GitHub' },
+  { href: 'https://github.com/ezeikel', icon: faGithub, label: 'GitHub' },
 ];
 
 const footerLinks = [
@@ -92,7 +102,7 @@ const Footer = () => (
                 className="flex h-10 w-10 items-center justify-center rounded-lg bg-secondary text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
                 aria-label={social.label}
               >
-                <i className={`fa-brands ${social.icon}`} aria-hidden="true" />
+                <FontAwesomeIcon icon={social.icon} />
               </a>
             ))}
           </div>

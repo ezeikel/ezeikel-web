@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBook, faBookOpen } from '@fortawesome/pro-solid-svg-icons';
+import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { client, urlFor } from '@/lib/sanity/client';
@@ -84,9 +87,9 @@ export default async function LibraryPage() {
             <div className="mx-auto max-w-6xl px-6">
               <div className="mb-8 flex items-center gap-3">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary">
-                  <i
-                    className="fa-solid fa-book-open text-foreground"
-                    aria-hidden="true"
+                  <FontAwesomeIcon
+                    icon={faBookOpen}
+                    className="text-foreground"
                   />
                 </div>
                 <h2 className="text-2xl font-bold text-foreground">
@@ -109,9 +112,9 @@ export default async function LibraryPage() {
                           className="h-full w-full object-cover"
                         />
                       ) : (
-                        <i
-                          className="fa-solid fa-book text-muted-foreground"
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={faBook}
+                          className="text-muted-foreground"
                         />
                       )}
                     </div>
@@ -148,7 +151,7 @@ export default async function LibraryPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-foreground px-6 py-3 font-medium text-background transition-colors hover:bg-foreground/90"
             >
-              <i className="fa-brands fa-x-twitter" aria-hidden="true" />
+              <FontAwesomeIcon icon={faXTwitter} />
               Send me a recommendation
             </a>
           </div>

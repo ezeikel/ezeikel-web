@@ -5,14 +5,28 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { contentSeries, getContentByPlatform } from '@/lib/content';
 import { cn } from '@/lib/utils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faEye,
+  faHeart,
+  faList,
+  faPlay,
+  faVideo,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faInstagram,
+  faTiktok,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 
 const platforms = ['All', 'YouTube', 'TikTok', 'Instagram', 'Shorts'];
 
-const platformIcons: Record<string, string> = {
-  YouTube: 'fa-youtube',
-  TikTok: 'fa-tiktok',
-  Instagram: 'fa-instagram',
-  Shorts: 'fa-youtube',
+const platformIcons: Record<string, IconDefinition> = {
+  YouTube: faYoutube,
+  TikTok: faTiktok,
+  Instagram: faInstagram,
+  Shorts: faYoutube,
 };
 
 const platformColors: Record<string, string> = {
@@ -78,7 +92,7 @@ const ContentPage = () => {
 
                     {/* Video count badge */}
                     <div className="absolute right-4 top-4 flex items-center gap-1.5 rounded-full bg-white/20 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
-                      <i className="fa-solid fa-list" aria-hidden="true" />
+                      <FontAwesomeIcon icon={faList} />
                       {series.videoCount} videos
                     </div>
 
@@ -95,9 +109,9 @@ const ContentPage = () => {
                     {/* Play overlay */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
                       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-xl">
-                        <i
-                          className="fa-solid fa-play ml-1 text-xl text-foreground"
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={faPlay}
+                          className="ml-1 text-xl text-foreground"
                         />
                       </div>
                     </div>
@@ -134,10 +148,7 @@ const ContentPage = () => {
                       )}
                     >
                       {platform !== 'All' && (
-                        <i
-                          className={`fa-brands ${platformIcons[platform]}`}
-                          aria-hidden="true"
-                        />
+                        <FontAwesomeIcon icon={platformIcons[platform]} />
                       )}
                       {platform}
                       <span
@@ -182,9 +193,8 @@ const ContentPage = () => {
                         <span
                           className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium text-white ${platformColors[filteredContent[0].platform]}`}
                         >
-                          <i
-                            className={`fa-brands ${platformIcons[filteredContent[0].platform]}`}
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={platformIcons[filteredContent[0].platform]}
                           />
                           {filteredContent[0].platform}
                         </span>
@@ -200,11 +210,11 @@ const ContentPage = () => {
                       </p>
                       <div className="flex items-center gap-4 text-xs text-white/70">
                         <span className="flex items-center gap-1">
-                          <i className="fa-solid fa-eye" aria-hidden="true" />
+                          <FontAwesomeIcon icon={faEye} />
                           {filteredContent[0].views} views
                         </span>
                         <span className="flex items-center gap-1">
-                          <i className="fa-solid fa-heart" aria-hidden="true" />
+                          <FontAwesomeIcon icon={faHeart} />
                           {filteredContent[0].likes}
                         </span>
                         <span>{filteredContent[0].date}</span>
@@ -212,9 +222,9 @@ const ContentPage = () => {
                     </div>
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity group-hover:opacity-100">
                       <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-xl">
-                        <i
-                          className="fa-solid fa-play ml-1 text-xl text-foreground"
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={faPlay}
+                          className="ml-1 text-xl text-foreground"
                         />
                       </div>
                     </div>
@@ -241,9 +251,9 @@ const ContentPage = () => {
                       </div>
                       <div className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 transition-opacity group-hover:opacity-100">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg">
-                          <i
-                            className="fa-solid fa-play ml-0.5 text-foreground"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faPlay}
+                            className="ml-0.5 text-foreground"
                           />
                         </div>
                       </div>
@@ -251,9 +261,9 @@ const ContentPage = () => {
                     <div className="p-4">
                       <div className="mb-2 flex items-center gap-2">
                         <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-secondary/50 px-2 py-0.5 text-xs font-medium text-secondary-foreground">
-                          <i
-                            className={`fa-brands ${platformIcons[item.platform]} text-muted-foreground`}
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={platformIcons[item.platform]}
+                            className="text-muted-foreground"
                           />
                           {item.platform}
                         </span>
@@ -273,9 +283,9 @@ const ContentPage = () => {
               </div>
             ) : (
               <div className="py-16 text-center">
-                <i
-                  className="fa-solid fa-video mb-4 text-4xl text-muted-foreground/50"
-                  aria-hidden="true"
+                <FontAwesomeIcon
+                  icon={faVideo}
+                  className="mb-4 text-4xl text-muted-foreground/50"
                 />
                 <p className="text-muted-foreground">
                   No content found for this platform.
@@ -302,7 +312,7 @@ const ContentPage = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-lg bg-red-500 px-6 py-3 font-medium text-white transition-colors hover:bg-red-600"
               >
-                <i className="fa-brands fa-youtube" aria-hidden="true" />
+                <FontAwesomeIcon icon={faYoutube} />
                 Subscribe on YouTube
               </a>
               <a
@@ -311,7 +321,7 @@ const ContentPage = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-lg bg-foreground px-6 py-3 font-medium text-background transition-colors hover:bg-foreground/90"
               >
-                <i className="fa-brands fa-tiktok" aria-hidden="true" />
+                <FontAwesomeIcon icon={faTiktok} />
                 Follow on TikTok
               </a>
               <a
@@ -320,7 +330,7 @@ const ContentPage = () => {
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-lg bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 px-6 py-3 font-medium text-white transition-colors hover:opacity-90"
               >
-                <i className="fa-brands fa-instagram" aria-hidden="true" />
+                <FontAwesomeIcon icon={faInstagram} />
                 Follow on Instagram
               </a>
             </div>

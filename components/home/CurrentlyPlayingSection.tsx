@@ -4,6 +4,10 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faGamepad, faPlay } from '@fortawesome/pro-solid-svg-icons';
+import { faCopy } from '@fortawesome/pro-regular-svg-icons';
+import { faPlaystation, faTwitch } from '@fortawesome/free-brands-svg-icons';
 
 const games = [
   { title: 'Call of Duty', subtitle: 'Warzone / Black Ops 6' },
@@ -59,7 +63,7 @@ const CurrentlyPlayingSection = () => {
               {/* Play overlay */}
               <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 transition-opacity group-hover:opacity-100">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-purple-600 text-white">
-                  <i className="fa-solid fa-play ml-1" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faPlay} className="ml-1" />
                 </div>
               </div>
               {/* Duration badge */}
@@ -68,7 +72,7 @@ const CurrentlyPlayingSection = () => {
               </div>
               {/* Twitch badge */}
               <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded bg-purple-600 px-2 py-1 text-xs font-medium text-white">
-                <i className="fa-brands fa-twitch" aria-hidden="true" />
+                <FontAwesomeIcon icon={faTwitch} />
                 VOD
               </div>
             </Link>
@@ -99,9 +103,9 @@ const CurrentlyPlayingSection = () => {
                 {/* Currently Playing */}
                 <div className="mb-6">
                   <div className="flex items-center gap-2 mb-3">
-                    <i
-                      className="fa-solid fa-gamepad text-muted-foreground"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faGamepad}
+                      className="text-muted-foreground"
                     />
                     <span className="text-sm font-medium text-muted-foreground">
                       Currently Playing
@@ -131,22 +135,22 @@ const CurrentlyPlayingSection = () => {
                     onClick={copyPSN}
                     className="group flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 transition-colors hover:border-primary/50"
                   >
-                    <i
-                      className="fa-brands fa-playstation text-blue-500"
-                      aria-hidden="true"
+                    <FontAwesomeIcon
+                      icon={faPlaystation}
+                      className="text-blue-500"
                     />
                     <span className="text-sm font-medium text-foreground">
                       {PSN_TAG}
                     </span>
                     {copied ? (
-                      <i
-                        className="fa-solid fa-check text-xs text-green-500"
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={faCheck}
+                        className="text-xs text-green-500"
                       />
                     ) : (
-                      <i
-                        className="fa-regular fa-copy text-xs text-muted-foreground transition-colors group-hover:text-foreground"
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={faCopy}
+                        className="text-xs text-muted-foreground transition-colors group-hover:text-foreground"
                       />
                     )}
                   </button>
@@ -157,7 +161,7 @@ const CurrentlyPlayingSection = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700"
                   >
-                    <i className="fa-brands fa-twitch" aria-hidden="true" />
+                    <FontAwesomeIcon icon={faTwitch} />
                     <span>Follow on Twitch</span>
                   </Link>
                 </div>

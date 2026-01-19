@@ -2,6 +2,8 @@
 
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFolderOpen } from '@fortawesome/pro-solid-svg-icons';
 import { cn } from '@/lib/utils';
 import type { SanityProject } from '@/lib/sanity/types';
 
@@ -131,9 +133,9 @@ export default function ProjectsGrid({
           {/* Empty State */}
           {filteredProjects.length === 0 && (
             <div className="py-16 text-center">
-              <i
-                className="fa-solid fa-folder-open mb-4 text-4xl text-muted-foreground/50"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={faFolderOpen}
+                className="mb-4 text-4xl text-muted-foreground/50"
               />
               <p className="text-muted-foreground">
                 No projects found in this category.

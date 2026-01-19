@@ -3,6 +3,13 @@
 import type React from 'react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faEnvelope,
+  faCircleCheck,
+  faSpinnerThird,
+  faArrowRight,
+} from '@fortawesome/pro-solid-svg-icons';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -70,9 +77,9 @@ const NewsletterSection = () => {
             }}
             className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10"
           >
-            <i
-              className="fa-solid fa-envelope text-xl text-primary"
-              aria-hidden="true"
+            <FontAwesomeIcon
+              icon={faEnvelope}
+              className="text-xl text-primary"
             />
           </motion.div>
         </motion.div>
@@ -110,13 +117,14 @@ const NewsletterSection = () => {
               }}
               className="rounded-lg bg-green-100 p-4 text-green-700"
             >
-              <motion.i
+              <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.2, type: 'spring', stiffness: 300 }}
-                className="fa-solid fa-check-circle mr-2"
-                aria-hidden="true"
-              />
+                className="mr-2"
+              >
+                <FontAwesomeIcon icon={faCircleCheck} />
+              </motion.span>
               Thanks for subscribing! Check your inbox to confirm.
             </motion.div>
           ) : (
@@ -169,19 +177,16 @@ const NewsletterSection = () => {
                 >
                   {isSubmitting ? (
                     <>
-                      <i
-                        className="fa-solid fa-spinner fa-spin mr-2"
-                        aria-hidden="true"
+                      <FontAwesomeIcon
+                        icon={faSpinnerThird}
+                        className="mr-2 animate-spin"
                       />
                       Subscribing...
                     </>
                   ) : (
                     <>
                       Subscribe
-                      <i
-                        className="fa-solid fa-arrow-right ml-2"
-                        aria-hidden="true"
-                      />
+                      <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
                     </>
                   )}
                 </Button>

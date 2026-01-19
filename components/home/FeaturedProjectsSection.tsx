@@ -3,6 +3,8 @@
 import Link from 'next/link';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight } from '@fortawesome/pro-solid-svg-icons';
 
 type Project = {
   id: string;
@@ -168,9 +170,9 @@ const FeaturedProjectsSection = () => {
               href="/things-ive-built"
               className="group flex h-full min-h-[180px] flex-col items-center justify-center rounded-2xl border border-dashed border-border/60 bg-transparent p-6 transition-all duration-300 hover:border-primary/50 hover:bg-secondary/30"
             >
-              <i
-                className="fa-solid fa-arrow-right mb-3 text-xl text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
-                aria-hidden="true"
+              <FontAwesomeIcon
+                icon={faArrowRight}
+                className="mb-3 text-xl text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
               />
               <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground">
                 View all projects

@@ -7,6 +7,19 @@ import {
   useTransform,
   AnimatePresence,
 } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
+import {
+  faChevronLeft,
+  faChevronRight,
+  faPlay,
+  faVolumeXmark,
+} from '@fortawesome/pro-solid-svg-icons';
+import {
+  faInstagram,
+  faTiktok,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 
@@ -86,10 +99,10 @@ const shortVideos: ShortVideo[] = [
   },
 ];
 
-const platformIcons = {
-  TikTok: 'fa-tiktok',
-  'YouTube Shorts': 'fa-youtube',
-  Reels: 'fa-instagram',
+const platformIcons: Record<string, IconDefinition> = {
+  TikTok: faTiktok,
+  'YouTube Shorts': faYoutube,
+  Reels: faInstagram,
 };
 
 const platformColors = {
@@ -165,7 +178,7 @@ const ShortFormSection = () => {
             className="absolute left-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition-colors hover:bg-background hover:border-primary"
             aria-label="Previous video"
           >
-            <i className="fa-solid fa-chevron-left" aria-hidden="true" />
+            <FontAwesomeIcon icon={faChevronLeft} />
           </motion.button>
 
           <motion.button
@@ -175,7 +188,7 @@ const ShortFormSection = () => {
             className="absolute right-0 top-1/2 z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-border bg-background/80 text-foreground shadow-lg backdrop-blur-sm transition-colors hover:bg-background hover:border-primary"
             aria-label="Next video"
           >
-            <i className="fa-solid fa-chevron-right" aria-hidden="true" />
+            <FontAwesomeIcon icon={faChevronRight} />
           </motion.button>
 
           {/* Video Cards Fan Layout */}
@@ -255,9 +268,9 @@ const ShortFormSection = () => {
                         transition={{ delay: 0.2, type: 'spring' }}
                         className={`absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-full ${platformColors[video.platform]}`}
                       >
-                        <i
-                          className={`fa-brands ${platformIcons[video.platform]} text-sm`}
-                          aria-hidden="true"
+                        <FontAwesomeIcon
+                          icon={platformIcons[video.platform]}
+                          className="text-sm"
                         />
                       </motion.div>
 
@@ -273,9 +286,9 @@ const ShortFormSection = () => {
                             whileHover={{ scale: 1.1 }}
                             className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 shadow-xl backdrop-blur-sm"
                           >
-                            <i
-                              className="fa-solid fa-play ml-1 text-lg text-foreground"
-                              aria-hidden="true"
+                            <FontAwesomeIcon
+                              icon={faPlay}
+                              className="ml-1 text-lg text-foreground"
                             />
                           </motion.div>
                         </motion.div>
@@ -308,9 +321,9 @@ const ShortFormSection = () => {
                           className="absolute right-3 top-14 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm"
                           aria-label="Toggle sound"
                         >
-                          <i
-                            className="fa-solid fa-volume-xmark text-xs"
-                            aria-hidden="true"
+                          <FontAwesomeIcon
+                            icon={faVolumeXmark}
+                            className="text-xs"
                           />
                         </motion.button>
                       )}
@@ -341,7 +354,7 @@ const ShortFormSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fa-brands fa-tiktok mr-2" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faTiktok} className="mr-2" />
                   TikTok
                 </Link>
               </Button>
@@ -353,7 +366,7 @@ const ShortFormSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i className="fa-brands fa-youtube mr-2" aria-hidden="true" />
+                  <FontAwesomeIcon icon={faYoutube} className="mr-2" />
                   YouTube
                 </Link>
               </Button>
@@ -365,10 +378,7 @@ const ShortFormSection = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <i
-                    className="fa-brands fa-instagram mr-2"
-                    aria-hidden="true"
-                  />
+                  <FontAwesomeIcon icon={faInstagram} className="mr-2" />
                   Instagram
                 </Link>
               </Button>

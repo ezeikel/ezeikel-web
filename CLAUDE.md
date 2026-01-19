@@ -2,7 +2,8 @@
 
 ## Project Overview
 
-Personal portfolio and brand website for Ezeikel Pemberton - indie developer, content creator, and software engineer.
+Personal portfolio and brand website for Ezeikel Pemberton - indie developer,
+content creator, and software engineer.
 
 ## Tech Stack
 
@@ -20,9 +21,11 @@ Personal portfolio and brand website for Ezeikel Pemberton - indie developer, co
 
 ## Commit Guidelines
 
-- Follow semantic commit convention (feat:, fix:, chore:, docs:, style:, refactor:, test:, perf:)
+- Follow semantic commit convention (feat:, fix:, chore:, docs:, style:,
+  refactor:, test:, perf:)
 - Keep commit messages as one-liners when possible
-- Never include Claude attribution, "Generated with Claude Code", or "Co-Authored-By: Claude" lines
+- Never include Claude attribution, "Generated with Claude Code", or
+  "Co-Authored-By: Claude" lines
 - Write commit messages as if authored by the developer, not AI
 
 ## Form Handling
@@ -53,7 +56,8 @@ const form = useForm({
 
 ## Email Rate Limiting
 
-Resend has a rate limit of 2 requests/second. Always add 600ms delays between sending multiple emails:
+Resend has a rate limit of 2 requests/second. Always add 600ms delays between
+sending multiple emails:
 
 ```typescript
 await sendAdminNotification();
@@ -86,7 +90,7 @@ Always use dynamic imports with `ssr: false` for 3D components:
 ```typescript
 const InteractiveGlobe = dynamic(
   () => import('@/components/InteractiveGlobe'),
-  { ssr: false }
+  { ssr: false },
 );
 ```
 
@@ -95,14 +99,15 @@ const InteractiveGlobe = dynamic(
 Required for full functionality:
 
 - `NEXT_PUBLIC_SANITY_PROJECT_ID`, `SANITY_API_TOKEN` - CMS
-- `OPENAI_API_KEY`, `GOOGLE_API_KEY` - AI
+- `OPENAI_API_KEY`, `GOOGLE_GENERATIVE_AI_API_KEY` - AI
 - `RESEND_API_KEY` - Email
 - `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` - Payments
 - `PEXELS_API_KEY` - Blog images
 
 ## GitHub CLI
 
-Use `gh` CLI when referencing GitHub repos that I own or public repos (e.g., `gh repo view`, `gh issue list`, `gh pr list`).
+Use `gh` CLI when referencing GitHub repos that I own or public repos (e.g.,
+`gh repo view`, `gh issue list`, `gh pr list`).
 
 ## Key Directories
 

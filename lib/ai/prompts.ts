@@ -31,11 +31,45 @@ Requirements:
 - Include a compelling introduction and conclusion
 - Add bullet points or numbered lists where appropriate
 
+CODE EXAMPLE STYLE GUIDE (follow these strictly):
+- Use TypeScript with latest Next.js App Router patterns
+- Use \`type\` instead of \`interface\` for type definitions
+- Avoid React.FC - use \`({ prop1, prop2 }: PropsType) => { }\` pattern
+- Use arrow functions for components
+- Define arrow function first, then \`export default ComponentName\` at bottom
+- Use CamelCase for component filenames (e.g., UserProfile.tsx)
+- Use kebab-case for utility files (e.g., format-date.ts)
+- Keep components small, composable, and easy to test
+- Use meaningful, readable variable and function names
+- Follow clean, minimalist code style
+- For icons, prefer Font Awesome Pro with size prop (not h-/w- classes)
+
+Example component structure:
+\`\`\`tsx
+type ButtonProps = {
+  label: string;
+  onClick: () => void;
+};
+
+const Button = ({ label, onClick }: ButtonProps) => {
+  return (
+    <button onClick={onClick}>
+      {label}
+    </button>
+  );
+};
+
+export default Button;
+\`\`\`
+
 Avoid:
 - Topics that have already been covered: {coveredTopics}
 - Generic filler content
 - Overly promotional language
 - Clichés and buzzwords
+- Using \`interface\` (use \`type\` instead)
+- Using React.FC
+- Inline exports on component definition
 
 The audience is:
 - Software developers (React, Next.js, TypeScript)

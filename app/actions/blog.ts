@@ -8,6 +8,7 @@ import {
   BLOG_CONTENT_PROMPT,
   IMAGE_SEARCH_PROMPT,
   IMAGE_EVALUATION_PROMPT,
+  IMAGE_GENERATION_PROMPT,
 } from '@/lib/ai/prompts';
 import {
   BLOG_TOPICS,
@@ -216,38 +217,151 @@ async function findBestImage(
 }
 
 /**
- * Convert markdown to Portable Text blocks
+ * Generate a featured image using Gemini 3 Pro Image
+ * Fallback when Pexels images don't meet quality threshold
  */
-function markdownToPortableText(markdown: string): {
+async function generateImageWithGemini(
+  title: string,
+): Promise<{ buffer: Buffer; mimeType: string } | null> {
+  const prompt = IMAGE_GENERATION_PROMPT.replace('{{TITLE}}', title);
+
+  try {
+    console.log('Generating image with Gemini 3 Pro Image...');
+
+    const result = await generateText({
+      model: models.geminiImage,
+      prompt: `Generate a high-quality professional photograph for this blog post. Do not include any text in the image. ${prompt}`,
+    });
+
+    const imageFile = result.files?.find((f) =>
+      f.mimeType?.startsWith('image/'),
+    );
+
+    if (imageFile) {
+      console.log('Gemini 3 Pro Image generated image successfully');
+      const buffer = Buffer.from(imageFile.uint8Array);
+      return {
+        buffer,
+        mimeType: imageFile.mimeType,
+      };
+    }
+
+    console.error('Gemini 3 Pro Image response did not contain image data');
+    return null;
+  } catch (error) {
+    console.error('Gemini 3 Pro Image generation failed:', error);
+    return null;
+  }
+}
+
+type PortableTextSpan = {
+  _type: string;
+  _key: string;
+  text: string;
+  marks?: string[];
+};
+
+type PortableTextBlock = {
   _type: string;
   _key: string;
   style?: string;
-  children?: {
-    _type: string;
-    _key: string;
-    text: string;
-    marks?: string[];
-  }[];
+  children?: PortableTextSpan[];
   markDefs?: { _type: string; _key: string; href?: string }[];
   listItem?: string;
   level?: number;
-}[] {
-  const blocks: {
-    _type: string;
-    _key: string;
-    style?: string;
-    children?: {
-      _type: string;
-      _key: string;
-      text: string;
-      marks?: string[];
-    }[];
-    markDefs?: { _type: string; _key: string; href?: string }[];
-    listItem?: string;
-    level?: number;
-  }[] = [];
+  language?: string;
+  code?: string;
+};
 
-  const lines = markdown.split('\n');
+/**
+ * Parse inline markdown marks (bold, italic, inline code) within text
+ */
+function parseInlineMarks(
+  text: string,
+  generateKey: () => string,
+): PortableTextSpan[] {
+  const spans: PortableTextSpan[] = [];
+
+  // Regex to match inline formatting: **bold**, *italic*, `code`
+  // Order matters: check ** before * to avoid conflicts
+  const inlineRegex = /(\*\*(.+?)\*\*|\*(.+?)\*|`([^`]+)`)/g;
+
+  let lastIndex = 0;
+  let match = inlineRegex.exec(text);
+
+  while (match !== null) {
+    // Add text before the match as plain span
+    if (match.index > lastIndex) {
+      const plainText = text.slice(lastIndex, match.index);
+      if (plainText) {
+        spans.push({
+          _type: 'span',
+          _key: generateKey(),
+          text: plainText,
+        });
+      }
+    }
+
+    // Determine which pattern matched
+    if (match[2] !== undefined) {
+      // **bold**
+      spans.push({
+        _type: 'span',
+        _key: generateKey(),
+        text: match[2],
+        marks: ['strong'],
+      });
+    } else if (match[3] !== undefined) {
+      // *italic*
+      spans.push({
+        _type: 'span',
+        _key: generateKey(),
+        text: match[3],
+        marks: ['em'],
+      });
+    } else if (match[4] !== undefined) {
+      // `code`
+      spans.push({
+        _type: 'span',
+        _key: generateKey(),
+        text: match[4],
+        marks: ['code'],
+      });
+    }
+
+    lastIndex = match.index + match[0].length;
+    match = inlineRegex.exec(text);
+  }
+
+  // Add remaining text after last match
+  if (lastIndex < text.length) {
+    const remainingText = text.slice(lastIndex);
+    if (remainingText) {
+      spans.push({
+        _type: 'span',
+        _key: generateKey(),
+        text: remainingText,
+      });
+    }
+  }
+
+  // If no matches found, return original text as single span
+  if (spans.length === 0) {
+    spans.push({
+      _type: 'span',
+      _key: generateKey(),
+      text,
+    });
+  }
+
+  return spans;
+}
+
+/**
+ * Convert markdown to Portable Text blocks
+ */
+function markdownToPortableText(markdown: string): PortableTextBlock[] {
+  const blocks: PortableTextBlock[] = [];
   let keyCounter = 0;
 
   const generateKey = () => {
@@ -255,8 +369,40 @@ function markdownToPortableText(markdown: string): {
     return `block_${keyCounter}`;
   };
 
+  // First, extract code blocks and replace with placeholders
+  const codeBlocks: { language: string; code: string }[] = [];
+  const codeBlockRegex = /```(\w*)\n([\s\S]*?)```/g;
+
+  const processedMarkdown = markdown.replace(
+    codeBlockRegex,
+    (_, lang, code) => {
+      const index = codeBlocks.length;
+      codeBlocks.push({
+        language: lang || 'text',
+        code: code.trim(),
+      });
+      return `__CODE_BLOCK_${index}__`;
+    },
+  );
+
+  const lines = processedMarkdown.split('\n');
+
   for (const line of lines) {
     if (!line.trim()) continue;
+
+    // Check for code block placeholder (trim whitespace to handle indented code blocks)
+    const trimmedLine = line.trim();
+    const codeBlockMatch = trimmedLine.match(/^__CODE_BLOCK_(\d+)__$/);
+    if (codeBlockMatch) {
+      const codeBlock = codeBlocks[parseInt(codeBlockMatch[1])];
+      blocks.push({
+        _type: 'code',
+        _key: generateKey(),
+        language: codeBlock.language,
+        code: codeBlock.code,
+      });
+      continue;
+    }
 
     // Headers
     if (line.startsWith('#### ')) {
@@ -264,22 +410,25 @@ function markdownToPortableText(markdown: string): {
         _type: 'block',
         _key: generateKey(),
         style: 'h4',
-        children: [{ _type: 'span', _key: generateKey(), text: line.slice(5) }],
+        children: parseInlineMarks(line.slice(5), generateKey),
       });
     } else if (line.startsWith('### ')) {
       blocks.push({
         _type: 'block',
         _key: generateKey(),
         style: 'h3',
-        children: [{ _type: 'span', _key: generateKey(), text: line.slice(4) }],
+        children: parseInlineMarks(line.slice(4), generateKey),
       });
     } else if (line.startsWith('## ')) {
       blocks.push({
         _type: 'block',
         _key: generateKey(),
         style: 'h2',
-        children: [{ _type: 'span', _key: generateKey(), text: line.slice(3) }],
+        children: parseInlineMarks(line.slice(3), generateKey),
       });
+    } else if (line.startsWith('# ')) {
+      // Skip h1 headers as they're typically the title
+      continue;
     }
     // Blockquotes
     else if (line.startsWith('> ')) {
@@ -287,7 +436,7 @@ function markdownToPortableText(markdown: string): {
         _type: 'block',
         _key: generateKey(),
         style: 'blockquote',
-        children: [{ _type: 'span', _key: generateKey(), text: line.slice(2) }],
+        children: parseInlineMarks(line.slice(2), generateKey),
       });
     }
     // List items
@@ -298,7 +447,7 @@ function markdownToPortableText(markdown: string): {
         style: 'normal',
         listItem: 'bullet',
         level: 1,
-        children: [{ _type: 'span', _key: generateKey(), text: line.slice(2) }],
+        children: parseInlineMarks(line.slice(2), generateKey),
       });
     }
     // Numbered list items
@@ -309,13 +458,7 @@ function markdownToPortableText(markdown: string): {
         style: 'normal',
         listItem: 'number',
         level: 1,
-        children: [
-          {
-            _type: 'span',
-            _key: generateKey(),
-            text: line.replace(/^\d+\. /, ''),
-          },
-        ],
+        children: parseInlineMarks(line.replace(/^\d+\. /, ''), generateKey),
       });
     }
     // Normal paragraphs
@@ -324,7 +467,7 @@ function markdownToPortableText(markdown: string): {
         _type: 'block',
         _key: generateKey(),
         style: 'normal',
-        children: [{ _type: 'span', _key: generateKey(), text: line }],
+        children: parseInlineMarks(line, generateKey),
       });
     }
   }
@@ -519,13 +662,13 @@ export async function generateRandomBlogPost(): Promise<{
     );
 
     let imageAssetId: string | null = null;
-    const imageSource: 'pexels' | 'gemini' = 'pexels';
+    let imageSource: 'pexels' | 'gemini' = 'pexels';
     let pexelsPhotoId: string | null = null;
     let imageAlt = meta.title;
 
     if (photos.length > 0 && !pexelsError) {
       // Evaluate images
-      const { selectedPhoto, evaluations } = await findBestImage(
+      const { selectedPhoto } = await findBestImage(
         photos,
         {
           title: meta.title,
@@ -551,8 +694,24 @@ export async function generateRandomBlogPost(): Promise<{
       }
     }
 
-    // TODO: If no suitable Pexels photo, generate with Gemini
-    // For now, we'll proceed without an image if Pexels fails
+    // Fallback to Gemini image generation if no suitable Pexels photo
+    if (!imageAssetId) {
+      console.log('No suitable Pexels image found, falling back to Gemini...');
+      const geminiResult = await generateImageWithGemini(meta.title);
+
+      if (geminiResult) {
+        const extension = geminiResult.mimeType.includes('png') ? 'png' : 'jpg';
+        imageAssetId = await uploadImageToSanity(
+          geminiResult.buffer,
+          `${meta.slug}-generated.${extension}`,
+        );
+        imageSource = 'gemini';
+        imageAlt = meta.title;
+        console.log('Successfully generated and uploaded Gemini image');
+      } else {
+        console.log('Gemini image generation failed, proceeding without image');
+      }
+    }
 
     // Create the post
     const result = await createSanityPost({

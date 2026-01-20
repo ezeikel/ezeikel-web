@@ -8,9 +8,9 @@ export const MODEL_IDS = {
   GPT_4O_MINI: 'gpt-4o-mini',
 
   // Google Gemini
-  GEMINI_2_FLASH: 'gemini-2.0-flash',
-  GEMINI_2_PRO: 'gemini-2.0-pro',
-  GEMINI_2_FLASH_IMAGE: 'gemini-2.0-flash-exp',
+  GEMINI_3_FLASH: 'gemini-3-flash-preview',
+  GEMINI_3_PRO: 'gemini-3-pro-preview',
+  GEMINI_3_PRO_IMAGE: 'gemini-3-pro-image-preview',
 } as const;
 
 // Configured models for different purposes
@@ -22,10 +22,10 @@ export const models = {
   textFast: openai(MODEL_IDS.GPT_4O_MINI),
 
   // Vision/image analysis (evaluating Pexels photos)
-  vision: google(MODEL_IDS.GEMINI_2_PRO),
+  vision: google(MODEL_IDS.GEMINI_3_PRO),
 
-  // Image generation fallback
-  image: google(MODEL_IDS.GEMINI_2_FLASH_IMAGE),
+  // Image generation fallback (use with generateText, not generateImage)
+  geminiImage: google(MODEL_IDS.GEMINI_3_PRO_IMAGE),
 };
 
 export type ModelType = keyof typeof models;

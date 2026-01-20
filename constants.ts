@@ -23,7 +23,7 @@ export const BLOG_TOPICS: BlogTopic[] = [
     keywords: ['build in public', 'transparency', 'community'],
   },
   {
-    topic: 'From idea to revenue: My 90-day product launch timeline',
+    topic: 'From idea to revenue: A realistic product launch timeline',
     category: 'indie-hacking',
     keywords: ['product launch', 'timeline', 'revenue', 'mvp'],
   },
@@ -137,7 +137,7 @@ export const BLOG_TOPICS: BlogTopic[] = [
 
   // Content Creation
   {
-    topic: 'How I grew my tech audience to 100K followers',
+    topic: 'Strategies for growing a tech audience on social media',
     category: 'content-creation',
     keywords: ['audience', 'growth', 'social media', 'followers'],
   },
@@ -167,7 +167,8 @@ export const BLOG_TOPICS: BlogTopic[] = [
     keywords: ['equipment', 'studio', 'setup', 'gear'],
   },
   {
-    topic: 'How I batch create a week of content in one day',
+    topic:
+      'Batch content creation: How to create a week of content efficiently',
     category: 'content-creation',
     keywords: ['batch create', 'productivity', 'content calendar'],
   },

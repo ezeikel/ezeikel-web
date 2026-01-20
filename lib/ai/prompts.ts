@@ -70,3 +70,33 @@ Rate the image on a scale of 0-100 based on:
 Return a JSON object with:
 - score: number (0-100)
 - reasoning: string (brief explanation of the score)`;
+
+/**
+ * Prompt for Gemini image generation (fallback when Pexels fails)
+ */
+export const IMAGE_GENERATION_PROMPT = `Create a professional, modern photograph suitable for a tech and indie hacking blog.
+
+REQUIRED ELEMENTS:
+- Clean, modern aesthetic with tech/startup vibes
+- Professional quality that feels authentic, not overly staged
+- Warm, inviting lighting
+- Minimalist design approach
+
+STYLE GUIDANCE:
+- Modern workspace or creative environment aesthetic
+- Developer/creator focused imagery
+- Clean desk setups, code on screens, creative tools
+- Diverse representation welcome
+- Avoid generic corporate stock photo poses
+
+AVOID:
+- Overly busy or cluttered scenes
+- Generic business handshakes or meetings
+- Text overlays or watermarks
+- Low quality or pixelated images
+- Outdated technology
+
+TOPIC CONTEXT:
+{{TITLE}}
+
+Create an image that a tech-savvy developer or indie hacker would find relevant and professional when reading about this topic.`;

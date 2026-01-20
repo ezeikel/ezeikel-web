@@ -88,6 +88,7 @@ import { client, urlFor } from '@/lib/sanity/client';
 import { projectsQuery, publishedAppsQuery } from '@/lib/sanity/queries';
 import type { SanityProject } from '@/lib/sanity/types';
 import ProjectsGrid from './ProjectsGrid';
+import ThisWebsiteShowcase from './ThisWebsiteShowcase';
 
 // Map FontAwesome class names to icon definitions for dynamic icons from Sanity
 const iconMap: Record<string, IconDefinition> = {
@@ -196,7 +197,7 @@ export default async function ThingsIveBuiltPage() {
         <section className="border-b border-border py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-6">
             <p className="mb-2 text-sm font-medium text-primary">
-              {projects.length} Projects
+              {projects.length + 1} Projects
             </p>
             <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
               Things I&apos;ve Built
@@ -207,6 +208,9 @@ export default async function ThingsIveBuiltPage() {
             </p>
           </div>
         </section>
+
+        {/* This Website Showcase */}
+        <ThisWebsiteShowcase />
 
         {/* Published Apps - Featured Section */}
         {publishedApps.length > 0 && (

@@ -8,7 +8,6 @@ import type { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import {
   faRocket,
   faBook,
-  faTableColumns,
   faCode,
   faComments,
   faMugHot,
@@ -33,7 +32,7 @@ type Product = {
   description: string;
   price: number;
   originalPrice?: number;
-  category: 'template' | 'guide' | 'consultation' | 'support';
+  category: 'boilerplate' | 'guide' | 'consultation' | 'support';
   icon: IconDefinition;
   featured?: boolean;
   comingSoon?: boolean;
@@ -44,24 +43,30 @@ type Product = {
 // Products with prices in GBP
 const products: Product[] = [
   {
-    id: 'expo-starter-kit',
-    name: 'React Native Expo Starter Kit',
+    id: 'ez-stack',
+    name: 'EZ Stack',
     description:
-      'Production-ready boilerplate with authentication, payments, push notifications, and more. Ship your app in days, not months.',
-    price: 119, // GBP
-    originalPrice: 159,
-    category: 'template',
+      'Ship web and mobile apps from one codebase. Turborepo monorepo with Next.js, Expo, auth, payments, database, and more.',
+    price: 149, // GBP
+    originalPrice: 199,
+    category: 'boilerplate',
     icon: faRocket,
     featured: true,
     comingSoon: true,
     features: [
-      'Expo SDK 52 + TypeScript',
-      'Supabase Auth & Database',
-      'RevenueCat Payments',
-      'Push Notifications',
-      'Dark Mode Support',
-      'CI/CD Pipeline',
-      'Lifetime Updates',
+      'Next.js 16 + Expo SDK 54 monorepo',
+      'Turborepo with pnpm workspaces',
+      'Auth (Google, Apple, Facebook, Magic Link)',
+      'Stripe (web) + RevenueCat (mobile) payments',
+      'Prisma + Neon PostgreSQL',
+      'Tailwind CSS 4 + NativeWind',
+      'shadcn/ui components',
+      'Sanity CMS + Blog',
+      'PostHog analytics + Sentry',
+      'React Email + Resend',
+      'EAS Build configuration',
+      'Cal.com scheduling',
+      'Lifetime updates',
     ],
   },
   {
@@ -81,26 +86,10 @@ const products: Product[] = [
     ],
   },
   {
-    id: 'notion-dev-workflow',
-    name: 'Developer Workflow Kit',
-    description:
-      'My complete Notion setup for managing projects, tracking content, and staying productive as an indie hacker.',
-    price: 15, // GBP
-    category: 'template',
-    icon: faTableColumns,
-    comingSoon: true,
-    features: [
-      'Project management template',
-      'Content calendar',
-      'App launch checklist',
-      'Weekly review system',
-    ],
-  },
-  {
     id: 'code-review',
     name: '1:1 Code Review',
     description:
-      "60-minute live code review session. I'll review your React Native app, provide feedback, and answer questions.",
+      "60-minute live code review session. I'll review your React or React Native app, provide feedback, and answer questions.",
     price: 120, // GBP
     category: 'consultation',
     icon: faCode,
@@ -163,7 +152,7 @@ const supportTiers: SupportTier[] = [
 
 const categories = [
   { id: 'all', label: 'All' },
-  { id: 'template', label: 'Templates' },
+  { id: 'boilerplate', label: 'Boilerplates' },
   { id: 'guide', label: 'Guides' },
   { id: 'consultation', label: 'Consultations' },
 ];
@@ -671,8 +660,8 @@ const ShopPage = () => {
                   a: "After booking, you'll receive a calendar link to schedule your session. We'll meet via Google Meet or Zoom at your chosen time.",
                 },
                 {
-                  q: 'Do templates include updates?',
-                  a: 'Yes, all templates include lifetime updates. When I improve them, you get the latest version for free.',
+                  q: 'Do boilerplates include updates?',
+                  a: 'Yes, all boilerplates include lifetime updates. When I improve them, you get the latest version for free.',
                 },
               ].map((faq) => (
                 <div
@@ -696,8 +685,8 @@ const ShopPage = () => {
               Have a custom request?
             </h2>
             <p className="mb-6 text-muted-foreground">
-              Need something specific? Let&apos;s chat about custom templates,
-              consulting packages, or collaborations.
+              Need something specific? Let&apos;s chat about custom
+              boilerplates, consulting packages, or collaborations.
             </p>
             <Button asChild variant="outline" className="bg-transparent">
               <Link href="mailto:hello@ezeikel.com">

@@ -10,8 +10,8 @@ import {
   faBook,
   faChampagneGlasses,
   faHeart,
-  faMobileScreen,
   faMugHot,
+  faRocket,
   faUtensils,
 } from '@fortawesome/pro-solid-svg-icons';
 import { Button } from '@/components/ui/button';
@@ -28,13 +28,13 @@ type FeaturedProduct = {
 
 const featuredProducts: FeaturedProduct[] = [
   {
-    id: 'starter-kit',
-    name: 'React Native Expo Starter Kit',
+    id: 'ez-stack',
+    name: 'EZ Stack',
     description:
-      'Production-ready boilerplate with auth, payments, and push notifications. Ship your app faster.',
-    price: '$99',
+      'Production-ready Turborepo boilerplate with Next.js, Expo, auth, payments, and everything you need to ship web & mobile apps fast.',
+    price: '£149',
     tag: 'Coming Soon',
-    icon: faMobileScreen,
+    icon: faRocket,
     featured: true,
   },
   {
@@ -42,7 +42,7 @@ const featuredProducts: FeaturedProduct[] = [
     name: 'Ship Your First App',
     description:
       'Step-by-step guide from idea to App Store. Learn from real launches.',
-    price: '$29',
+    price: '£25',
     tag: 'PDF Guide',
     icon: faBook,
     featured: false,
@@ -56,9 +56,9 @@ type TipOption = {
 };
 
 const tipOptions: TipOption[] = [
-  { label: 'Coffee', amount: '$5', icon: faMugHot },
-  { label: 'Lunch', amount: '$15', icon: faUtensils },
-  { label: 'Dinner', amount: '$30', icon: faChampagneGlasses },
+  { label: 'Coffee', amount: '£4', icon: faMugHot },
+  { label: 'Lunch', amount: '£12', icon: faUtensils },
+  { label: 'Dinner', amount: '£25', icon: faChampagneGlasses },
 ];
 
 const ShopTeaser = () => {

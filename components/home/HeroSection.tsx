@@ -14,7 +14,7 @@ import {
   faArrowRight,
   faCar,
   faCheckCircle,
-  faCode,
+  faPalette,
   faPlay,
   faSpinnerThird,
 } from '@fortawesome/pro-solid-svg-icons';
@@ -310,7 +310,10 @@ const HeroSection = () => {
                     }}
                     className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10"
                   >
-                    <FontAwesomeIcon icon={faCode} className="text-primary" />
+                    <FontAwesomeIcon
+                      icon={faPalette}
+                      className="text-primary"
+                    />
                   </motion.div>
                   <div>
                     <p className="text-sm font-semibold text-foreground">

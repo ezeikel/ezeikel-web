@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useInView } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -194,44 +195,65 @@ const HireMePage = () => (
     <main>
       {/* Hero */}
       <section className="border-b border-border py-16 md:py-24">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="mb-6 flex flex-wrap gap-3">
-            <div className="inline-flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-medium text-green-700">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
-              </span>
-              Open to opportunities
-            </div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground">
-              <FontAwesomeIcon icon={faBrain} className="text-primary" />
-              AI & Fintech Specialist
-            </div>
-          </div>
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            {/* Content */}
+            <div>
+              <div className="mb-6 flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-medium text-green-700">
+                  <span className="relative flex h-2 w-2">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
+                    <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+                  </span>
+                  Open to opportunities
+                </div>
+                <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 text-sm font-medium text-foreground">
+                  <FontAwesomeIcon icon={faBrain} className="text-primary" />
+                  AI & Fintech Specialist
+                </div>
+              </div>
 
-          <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
-            Senior Engineer in Fintech & AI
-          </h1>
-          <p className="mb-8 max-w-2xl text-xl text-muted-foreground">
-            I build AI-powered products and have deep experience in fintech.
-            From early-stage startups to established financial institutions,
-            I&apos;ve shipped software that handles money, data, and intelligent
-            automation at scale.
-          </p>
+              <h1 className="mb-4 text-4xl font-bold tracking-tight text-foreground md:text-5xl">
+                Senior Engineer in Fintech & AI
+              </h1>
+              <p className="mb-8 max-w-2xl text-xl text-muted-foreground">
+                I build AI-powered products and have deep experience in fintech.
+                From early-stage startups to established financial institutions,
+                I&apos;ve shipped software that handles money, data, and
+                intelligent automation at scale.
+              </p>
 
-          <div className="flex flex-wrap gap-4">
-            <Button asChild size="lg">
-              <a href="/cv.pdf" download>
-                <FontAwesomeIcon icon={faDownload} className="mr-2" />
-                Download CV
-              </a>
-            </Button>
-            <Button asChild variant="outline" size="lg">
-              <Link href="/about#contact">
-                Get in Touch
-                <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
-              </Link>
-            </Button>
+              <div className="flex flex-wrap gap-4">
+                <Button asChild size="lg">
+                  <a href="/cv.pdf" download>
+                    <FontAwesomeIcon icon={faDownload} className="mr-2" />
+                    Download CV
+                  </a>
+                </Button>
+                <Button asChild variant="outline" size="lg">
+                  <Link href="/about#contact">
+                    Get in Touch
+                    <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
+                  </Link>
+                </Button>
+              </div>
+            </div>
+
+            {/* Image */}
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="relative">
+                <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl" />
+                <div className="relative aspect-[3/4] w-72 overflow-hidden rounded-3xl border border-border bg-card shadow-2xl md:w-80">
+                  <Image
+                    src="/ezeikel-hire-me.png"
+                    alt="Ezeikel Pemberton"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

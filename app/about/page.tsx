@@ -4,6 +4,7 @@ import type React from 'react';
 
 import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -322,10 +323,12 @@ const AboutPage = () => {
                 <div className="relative">
                   <div className="absolute -inset-4 rounded-3xl bg-primary/10 blur-2xl" />
                   <div className="relative aspect-[3/4] w-72 overflow-hidden rounded-3xl border border-border bg-card shadow-2xl md:w-80">
-                    <img
-                      src="/ezeikel-hero.jpg"
+                    <Image
+                      src="/ezeikel-about.png"
                       alt="Ezeikel Pemberton"
-                      className="h-full w-full object-cover"
+                      fill
+                      className="object-cover"
+                      priority
                     />
                   </div>
                 </div>
